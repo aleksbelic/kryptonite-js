@@ -1,0 +1,19 @@
+{
+  "name": "kryptonite-ts",
+  "version": "1.0.0",
+  "description": "JavaScript Crypto Lib",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aleksbelic/kryptonite-ts.git"
+  },
+  "author": "Aleksandar Belic Aleksanchez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aleksbelic/kryptonite-ts/issues"
+  },
+  "homepage": "https://github.com/aleksbelic/kryptonite-ts#readme"
+}

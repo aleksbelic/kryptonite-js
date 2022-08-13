@@ -1,2 +1,3 @@
-# kryptonite-js
-JavaScript Crypto Library.
+# Kryptonite-TS
+
+TypeScript Crypto Lib.
