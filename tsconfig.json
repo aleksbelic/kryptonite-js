@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "strictNullChecks": true,
+    "sourceMap": false,
+    "rootDir": ".",
+    "outDir": "./dist",
+    "skipLibCheck": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["./node_modules"]
+}

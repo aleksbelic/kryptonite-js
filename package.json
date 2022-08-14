@@ -4,7 +4,8 @@
   "description": "JavaScript Crypto Lib",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretty": "npx prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/aleksbelic/kryptonite-ts#readme",
   "devDependencies": {
     "jest": "^28.1.3",
+    "prettier": "^2.7.1",
     "typescript": "^4.7.4"
   }
 }
