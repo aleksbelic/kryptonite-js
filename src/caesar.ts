@@ -1,4 +1,5 @@
-import {ALPHABET_EN} from './helper';
+import {ALPHABET_EN} from './globals';
+import {isUpperCase} from './helpers';
 
 /**
  * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) encryption.
@@ -11,10 +12,10 @@ import {ALPHABET_EN} from './helper';
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * encrypt('ABC', 1)
- * returns 'BCD'
+ * // returns 'BCD'
  * @example
  * encrypt('ABC', -1)
- * returns 'ZAB'
+ * // returns 'ZAB'
  */
 export const encrypt = (
   plaintext: string,
@@ -53,10 +54,10 @@ export const encrypt = (
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * decrypt('BCD', 1)
- * returns 'ABC'
+ * // returns 'ABC'
  * @example
  * decrypt('ZAB', -1)
- * returns 'ABC'
+ * // returns 'ABC'
  */
 export const decrypt = (
   ciphertext: string,

@@ -1,13 +1,25 @@
 import {encrypt, decrypt} from '../src/caesar';
 
 describe('Caesar cipher - encryption', () => {
-  test('Basic', () => {
-    expect(encrypt('abc', 1)).toEqual('bcd');
+  test('Shift', () => {
+    expect(encrypt('abcdefghijklmnopqrstuvwxyz', 1)).toEqual(
+      'bcdefghijklmnopqrstuvwxyza'
+    );
+    expect(encrypt('abcdefghijklmnopqrstuvwxyz', -1)).toEqual(
+      'zabcdefghijklmnopqrstuvwxy'
+    );
   });
+  test('Case sensitive', () => {});
+  test('Include foreign chars', () => {});
 });
 
 describe('Caesar cipher - decryption', () => {
-  test('Basic', () => {
+  test('Shift', () => {
+    expect(decrypt('bcdefghijklmnopqrstuvwxyza', 1)).toEqual(
+      'abcdefghijklmnopqrstuvwxyz'
+    );
     expect(decrypt('bcd', -1)).toEqual('cde');
   });
+  test('Case sensitive', () => {});
+  test('Include foreign chars', () => {});
 });
