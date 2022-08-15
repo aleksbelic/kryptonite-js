@@ -1,7 +1,7 @@
-import { ALPHABET_EN } from './helper.js';
+import {ALPHABET_EN} from './helper';
 
 /**
- * Caesar cipher encryption.
+ * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) encryption.
  * @param plaintext text to be encrypted
  * @param shift number of left or right alphabet rotations
  * @param caseSensitive if correct input of uppercase and lowercase chars matters
@@ -24,7 +24,6 @@ export const encrypt = (
   alphabet = ALPHABET_EN
 ): string => {
   let ciphertext = '';
-  plaintext = plaintext.toUpperCase();
   if (shift < 0) {
     shift = alphabet.length + shift;
   }
@@ -44,7 +43,7 @@ export const encrypt = (
 };
 
 /**
- * Caesar cipher decryption.
+ * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) decryption.
  * @param ciphertext text to be decrypted
  * @param shift number of left or right alphabet rotations
  * @param caseSensitive if correct input of uppercase and lowercase chars matters
@@ -67,5 +66,11 @@ export const decrypt = (
   alphabet = ALPHABET_EN
 ): string => {
   encrypt;
-  return encrypt(ciphertext, alphabet.length - shift, caseSensitive, includeForeignChars, alphabet);
+  return encrypt(
+    ciphertext,
+    alphabet.length - shift,
+    caseSensitive,
+    includeForeignChars,
+    alphabet
+  );
 };

@@ -8,6 +8,12 @@ Ciphers:
 
 ## Development
 
+To start TypeScript compilation in watch mode:
+
+```
+$ tsc --watch
+```
+
 Code formatting is done by [Prettier](https://prettier.io/).
 Simply format project files by following predefined rules in `.prettierrc.json`:
 
