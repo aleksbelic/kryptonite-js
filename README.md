@@ -4,7 +4,7 @@ TypeScript Crypto Lib.
 
 Ciphers:
 
-- Caesar
+- Caesar (monoalphabetic substitution)
 
 ## Development
 
@@ -22,3 +22,17 @@ $ npx prettier --write .
 ```
 
 To exclude files from formatting, please refer to `.prettierignore` (corresponds to `.gitignore`).
+
+Identifying problematic patterns is covered by static code analysis tool [ESLint](https://eslint.org/):
+
+```
+$ npm run lint
+```
+
+which is an alias for:
+
+```
+$ npx eslint .
+```
+
+Linting config can be found in `.eslintrc.json`.
