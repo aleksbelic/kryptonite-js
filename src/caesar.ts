@@ -35,17 +35,32 @@ export const encrypt = (
   if (shift < 0) {
     shift = alphabet.length + shift;
   }
-  let currentCharIndexInAlphabet = -1;
+
+  let currentChar: string,
+    currentCharIndexInAlphabet: number,
+    isCurrentCharUpperCase: boolean,
+    encryptedCurrentChar: string;
+
   for (let i = 0; i < plaintext.length; i++) {
-    currentCharIndexInAlphabet = alphabet.indexOf(plaintext[i]);
+    currentChar = plaintext[i];
+    isCurrentCharUpperCase = isUpperCase(currentChar);
+    currentCharIndexInAlphabet = alphabet.indexOf(
+      currentChar.toLocaleLowerCase()
+    );
+
     if (currentCharIndexInAlphabet === -1) {
       if (includeForeignChars) {
-        ciphertext += plaintext[i];
+        ciphertext += currentChar;
       }
       continue;
     }
-    ciphertext +=
+
+    encryptedCurrentChar =
       alphabet[(currentCharIndexInAlphabet + shift) % alphabet.length];
+    if (caseSensitive && isCurrentCharUpperCase) {
+      encryptedCurrentChar = encryptedCurrentChar.toLocaleUpperCase();
+    }
+    ciphertext += encryptedCurrentChar;
   }
   return ciphertext;
 };

@@ -20,7 +20,17 @@ describe('Caesar cipher - encryption', () => {
     expect(encrypt('ab!c', 1, true, true)).toEqual('bc!d');
     expect(encrypt('ab!c', 1, true, false)).toEqual('bcd');
   });
-  test('Random', () => {});
+  test('Random', () => {
+    expect(
+      encrypt(
+        'Ignavi coram morte quidem animam trahunt, audaces autem illam non saltem advertunt.',
+        5
+      )
+    ).toBe(
+      'Nlsfan htwfr rtwyj vznijr fsnrfr ywfmzsy, fzifhjx fzyjr nqqfr sts xfqyjr fiajwyzsy.'
+    );
+    expect(encrypt('Veni, vidi, vici.', 22, false, false)).toBe('rajerezereye');
+  });
 });
 
 describe('Caesar cipher - decryption', () => {
@@ -32,4 +42,5 @@ describe('Caesar cipher - decryption', () => {
   });
   test('Case sensitive', () => {});
   test('Include foreign chars', () => {});
+  test('Random', () => {});
 });
