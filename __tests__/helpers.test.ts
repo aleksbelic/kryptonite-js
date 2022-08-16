@@ -1,4 +1,4 @@
-import {isUpperCase} from '../src/helpers';
+import {isUpperCase} from '../src/helpers.js';
 
 describe('Helper functions', () => {
   test('isUpperCase', () => {

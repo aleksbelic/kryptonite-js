@@ -1,5 +1,5 @@
-import {ALPHABET_EN} from './globals';
-import {isUpperCase} from './helpers';
+import {ALPHABET_EN} from './globals.js';
+import {isUpperCase} from './helpers.js';
 
 /**
  * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) encryption.
@@ -11,11 +11,18 @@ import {isUpperCase} from './helpers';
  * @returns ciphertext
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
- * encrypt('ABC', 1)
- * // returns 'BCD'
- * @example
- * encrypt('ABC', -1)
- * // returns 'ZAB'
+ * encrypt('abc', 1)
+ * // returns 'bcd'
+ * encrypt('abc', -1)
+ * // returns 'zab'
+ * encrypt('Abc', 1, true)
+ * // returns 'Bcd'
+ * encrypt('Abc', 1, false)
+ * // returns 'bcd'
+ * encrypt('ab!c', 1, true, true)
+ * // returns 'bc!d'
+ * encrypt('ab!c', 1, true, false)
+ * // returns 'bcd'
  */
 export const encrypt = (
   plaintext: string,
@@ -53,11 +60,10 @@ export const encrypt = (
  * @returns plaintext
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
- * decrypt('BCD', 1)
- * // returns 'ABC'
- * @example
- * decrypt('ZAB', -1)
- * // returns 'ABC'
+ * decrypt('bcd', 1)
+ * // returns 'abc'
+ * decrypt('zab', -1)
+ * // returns 'abc'
  */
 export const decrypt = (
   ciphertext: string,
