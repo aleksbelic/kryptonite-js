@@ -1,5 +1,5 @@
-import {ALPHABET_EN} from './globals.js';
-import {isUpperCase} from './helpers.js';
+import {ALPHABET_EN} from '../globals.js';
+import {isUpperCase} from '../helpers.js';
 
 /**
  * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) encryption.
@@ -31,8 +31,12 @@ export const encrypt = (
   includeForeignChars = true,
   alphabet = ALPHABET_EN
 ): string => {
+  if (alphabet.length < 2) {
+    throw Error('Alphabet needs be at least 2 characters long.');
+  }
+
   let ciphertext = '';
-  if (shift < 0) {
+  while (shift < 0) {
     shift = alphabet.length + shift;
   }
 

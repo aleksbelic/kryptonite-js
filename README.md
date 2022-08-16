@@ -4,19 +4,19 @@ TypeScript Crypto Lib.
 
 ## Progress
 
-| Cipher                         | Description                 | Implemented |
-| ------------------------------ | :-------------------------- | :---------: |
-| Atbash                         |                             |             |
-| Bacon's (v1, v2)               |                             |             |
-| Caesar                         | monoalphabetic substitution |   &#9989;   |
-| M-94 (a.k.a. CSP-488 for Navy) |                             |             |
-| Morse                          |                             |             |
-| Polybius square                |                             |             |
-| Porta                          |                             |             |
-| Rail Fence                     |                             |             |
-| ROT13                          |                             |             |
-| Scytale                        |                             |             |
-| Vigenère                       |                             |             |
+| Cipher                  | Description                 | Implemented |
+| :---------------------- | :-------------------------- | :---------: |
+| Atbash                  |                             |             |
+| Bacon's (v1, v2)        |                             |             |
+| Caesar                  | monoalphabetic substitution |   &#9989;   |
+| M-94 (CSP-488 for Navy) |                             |             |
+| Morse                   |                             |             |
+| Polybius square         |                             |             |
+| Porta                   |                             |             |
+| Rail Fence              |                             |             |
+| ROT13                   |                             |             |
+| Scytale                 |                             |             |
+| Vigenère                |                             |             |
 
 ## Development
 
