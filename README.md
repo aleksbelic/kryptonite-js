@@ -1,4 +1,4 @@
-# Kryptonite-TS
+# Kryptonite-Core
 
 TypeScript Crypto Lib.
 
@@ -15,7 +15,7 @@ TypeScript Crypto Lib.
 | Porta                   |                             |             |
 | Rail Fence              |                             |             |
 | ROT5                    | monoalphabetic substitution |             |
-| ROT13                   | monoalphabetic substitution |             |
+| ROT13                   | monoalphabetic substitution |   &#9989;   |
 | ROT18                   | monoalphabetic substitution |             |
 | ROT47                   | monoalphabetic substitution |             |
 | Scytale                 |                             |             |

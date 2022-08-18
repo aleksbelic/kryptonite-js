@@ -1,7 +1,7 @@
 {
-  "name": "kryptonite-ts",
+  "name": "kryptonite-core",
   "version": "1.0.0",
-  "description": "JavaScript Crypto Lib",
+  "description": "TypeScript Crypto Lib",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aleksbelic/kryptonite-ts.git"
+    "url": "git+https://github.com/aleksbelic/kryptonite-core.git"
   },
   "author": "Aleksandar Belic Aleksanchez",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aleksbelic/kryptonite-ts/issues"
+    "url": "https://github.com/aleksbelic/kryptonite-core/issues"
   },
-  "homepage": "https://github.com/aleksbelic/kryptonite-ts#readme",
+  "homepage": "https://github.com/aleksbelic/kryptonite-core#readme",
   "devDependencies": {
     "@types/jest": "^28.1.7",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
