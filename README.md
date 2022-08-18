@@ -1,5 +1,8 @@
 # Kryptonite-Core
 
+![testing workflow](https://github.com/aleksbelic/kryptonite-core/actions/workflows/tests.yml/badge.svg)
+[![GitHub license](https://img.shields.io/github/license/aleksbelic/kryptonite-core?style=flat-square)](https://raw.githubusercontent.com/aleksbelic/kryptonite-core/release/1.0.0/LICENSE)
+
 TypeScript Crypto Lib.
 
 ## Progress
