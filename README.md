@@ -14,7 +14,10 @@ TypeScript Crypto Lib.
 | Polybius square         |                             |             |
 | Porta                   |                             |             |
 | Rail Fence              |                             |             |
+| ROT5                    | monoalphabetic substitution |             |
 | ROT13                   | monoalphabetic substitution |             |
+| ROT18                   | monoalphabetic substitution |             |
+| ROT47                   | monoalphabetic substitution |             |
 | Scytale                 |                             |             |
 | Vigenère                |                             |             |
 

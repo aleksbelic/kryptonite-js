@@ -1,0 +1,55 @@
+import * as caesar from './caesar.js';
+
+/**
+ * [ROT13 cipher](https://en.wikipedia.org/wiki/ROT13) encryption.
+ * @param plaintext - text to be encrypted
+ * @param [caseSensitive=true] - if correct input of uppercase and lowercase chars matters
+ * @param [includeForeignChars=true] - if unknown char should be omitted in ciphertext
+ * @returns ciphertext
+ * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
+ * @example
+ * encrypt('abc')
+ * // returns 'nop'
+ * encrypt('Abc', true)
+ * // returns 'Nop'
+ * encrypt('Abc', false)
+ * // returns 'nop'
+ * encrypt('ab!c', true, true)
+ * // returns 'no!p'
+ * encrypt('ab!c', true, false)
+ * // returns 'nop'
+ */
+export const encrypt = (
+  plaintext: string,
+  caseSensitive = true,
+  includeForeignChars = true
+): string => {
+  return caesar.encrypt(plaintext, 13, caseSensitive, includeForeignChars);
+};
+
+/**
+ * [ROT13 cipher](https://en.wikipedia.org/wiki/ROT13) decryption.
+ * @param ciphertext - text to be decrypted
+ * @param [caseSensitive=true] - if correct input of uppercase and lowercase chars matters
+ * @param [includeForeignChars=true] - if unknown char should be omitted in ciphertext
+ * @returns plaintext
+ * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
+ * @example
+ * decrypt('nop')
+ * // returns 'abc'
+ * decrypt('Nop', true)
+ * // returns 'Abc'
+ * decrypt('Nop', false)
+ * // returns 'abc'
+ * decrypt('no!p', true, true)
+ * // returns 'ab!c'
+ * decrypt('no!p', true, false)
+ * // returns 'abc'
+ */
+export const decrypt = (
+  ciphertext: string,
+  caseSensitive = true,
+  includeForeignChars = true
+): string => {
+  return encrypt(ciphertext, caseSensitive, includeForeignChars);
+};
