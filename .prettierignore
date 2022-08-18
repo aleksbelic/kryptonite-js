@@ -1,6 +1,6 @@
+.github/
 node_modules/
 dist/
 coverage/
-
-src/globales.ts
-dist/src/globales.js
+src/globals.ts
+dist/src/globals.js

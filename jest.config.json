@@ -1,5 +1,5 @@
 {
   "verbose": true,
   "collectCoverage": true,
-  "testMatch": ["**/__tests__/**/*.js", "**/?(*.)+(spec|test).js"]
+  "testMatch": ["**/tests/**/*.js", "**/?(*.)+(spec|test).js"]
 }
