@@ -1,5 +1,5 @@
-import {encrypt, decrypt} from '../src/ciphers/caesar.js';
-import {ALPHABET_SR_CYR} from '../src/globals.js';
+import {encrypt, decrypt} from '../../src/ciphers/caesar.js';
+import {ALPHABET_SR_CYR} from '../../src/globals.js';
 
 describe('Caesar cipher - encryption', () => {
   test('Shift', () => {
@@ -27,6 +27,9 @@ describe('Caesar cipher - encryption', () => {
     expect(() => encrypt('a', 1, undefined, undefined, ['a'])).toThrowError(
       'Alphabet needs be at least 2 characters long.'
     );
+    expect(() =>
+      encrypt('abc', 1, undefined, undefined, ['c', 'b', 'a', 'c', 'd'])
+    ).toThrowError('Alphabet must not contain duplicates.');
     expect(
       encrypt(
         'Ако не почнеш, нећеш ни завршити',
@@ -64,28 +67,39 @@ describe('Caesar cipher - decryption', () => {
   });
 
   test('Case sensitive', () => {
-    expect(decrypt('Ohcl uv mlhy vm pjl jvsk ILLY', 7, true)).toEqual(
-      'Have no fear of ice cold BEER'
-    );
-    expect(decrypt('Hega w xkoo', 22, false)).toEqual('like a boss');
+    expect(decrypt('BCd', 1, true)).toEqual('ABc');
+    expect(decrypt('bCd', 1, false)).toEqual('abc');
   });
 
-  test('Include foreign chars', () => {});
+  test('Include foreign chars', () => {
+    expect(decrypt('bc!d', 1, true, true)).toEqual('ab!c');
+    expect(decrypt('bc!d', 1, true, false)).toEqual('abc');
+  });
 
   test('Custom alphabet', () => {
     expect(() => decrypt('a', 1, undefined, undefined, ['a'])).toThrowError(
       'Alphabet needs be at least 2 characters long.'
     );
+    expect(() =>
+      decrypt('bcd', 1, undefined, undefined, ['c', 'b', 'a', 'c', 'd'])
+    ).toThrowError('Alphabet must not contain duplicates.');
     expect(
       decrypt(
-        'Фа овењачр уљче фабљ, гљч е ше ебљољ.',
-        13,
+        'Јтч хњ џчжхњи, хњвњи хр пјлширбр',
+        10,
         true,
         true,
         ALPHABET_SR_CYR
       )
-    ).toEqual('Ко другоме јаму копа, сам у њу упада.');
+    ).toEqual('Ако не почнеш, нећеш ни завршити');
   });
 
-  test('Random', () => {});
+  test('Random', () => {
+    expect(decrypt('T slgp yz topl hsle T lx oztyr', -15)).toEqual(
+      'I have no idea what I am doing'
+    );
+    expect(decrypt('Qjen wx onja xo rln lxum KNNA', 9)).toEqual(
+      'Have no fear of ice cold BEER'
+    );
+  });
 });

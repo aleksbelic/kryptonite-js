@@ -3,11 +3,11 @@ import {isUpperCase} from '../helpers.js';
 
 /**
  * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) encryption.
- * @param plaintext text to be encrypted
- * @param shift number of left or right alphabet rotations
- * @param caseSensitive if correct input of uppercase and lowercase chars matters
- * @param includeForeignChars if unknown char should be omitted in ciphertext
- * @param alphabet alphabet being used
+ * @param plaintext - text to be encrypted
+ * @param shift - number of left or right alphabet rotations
+ * @param [caseSensitive=true] - if correct input of uppercase and lowercase chars matters
+ * @param [includeForeignChars=true] - if unknown char should be omitted in ciphertext
+ * @param [alphabet=ALPHABET_EN] - alphabet being used
  * @returns ciphertext
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
@@ -31,15 +31,22 @@ export const encrypt = (
   includeForeignChars = true,
   alphabet = ALPHABET_EN
 ): string => {
+  // check alphabet
   if (alphabet.length < 2) {
     throw Error('Alphabet needs be at least 2 characters long.');
   }
+  if (alphabet.toString() !== [...new Set(alphabet)].toString()) {
+    throw Error('Alphabet must not contain duplicates.');
+  }
 
-  let ciphertext = '';
-  while (shift < 0) {
+  if (Math.abs(shift) > alphabet.length) {
+    shift %= alphabet.length;
+  }
+  if (shift < 0) {
     shift = alphabet.length + shift;
   }
 
+  let ciphertext = '';
   let currentChar: string,
     currentCharIndexInAlphabet: number,
     isCurrentCharUpperCase: boolean,
@@ -71,17 +78,25 @@ export const encrypt = (
 
 /**
  * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) decryption.
- * @param ciphertext text to be decrypted
- * @param shift number of left or right alphabet rotations
- * @param caseSensitive if correct input of uppercase and lowercase chars matters
- * @param includeForeignChars if unknown char should be omitted in ciphertext
- * @param alphabet alphabet being used
+ * @param ciphertext - text to be decrypted
+ * @param shift - number of left or right alphabet rotations
+ * @param [caseSensitive=true] - if correct input of uppercase and lowercase chars matters
+ * @param [includeForeignChars=true] - if unknown char should be omitted in ciphertext
+ * @param [alphabet=ALPHABET_EN] - alphabet being used
  * @returns plaintext
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * decrypt('bcd', 1)
  * // returns 'abc'
  * decrypt('zab', -1)
+ * // returns 'abc'
+ * decrypt('Bcd', 1, true)
+ * // returns 'Abc'
+ * decrypt('Bcd', 1, false)
+ * // returns 'abc'
+ * decrypt('bc!d', 1, true, true)
+ * // returns 'ab!c'
+ * decrypt('bc!d', 1, true, false)
  * // returns 'abc'
  */
 export const decrypt = (
