@@ -47,17 +47,13 @@ export const encrypt = (
   }
 
   let ciphertext = '';
-  let currentChar: string,
-    currentCharIndexInAlphabet: number,
+  let currentCharIndexInAlphabet: number,
     isCurrentCharUpperCase: boolean,
-    encryptedCurrentChar: string;
+    currentCharEncrypted: string;
 
-  for (let i = 0; i < plaintext.length; i++) {
-    currentChar = plaintext[i];
+  for (const currentChar of plaintext) {
     isCurrentCharUpperCase = isUpperCase(currentChar);
-    currentCharIndexInAlphabet = alphabet.indexOf(
-      currentChar.toLocaleLowerCase()
-    );
+    currentCharIndexInAlphabet = alphabet.indexOf(currentChar.toLowerCase());
 
     if (currentCharIndexInAlphabet === -1) {
       if (includeForeignChars) {
@@ -66,12 +62,12 @@ export const encrypt = (
       continue;
     }
 
-    encryptedCurrentChar =
+    currentCharEncrypted =
       alphabet[(currentCharIndexInAlphabet + shift) % alphabet.length];
     if (caseSensitive && isCurrentCharUpperCase) {
-      encryptedCurrentChar = encryptedCurrentChar.toLocaleUpperCase();
+      currentCharEncrypted = currentCharEncrypted.toUpperCase();
     }
-    ciphertext += encryptedCurrentChar;
+    ciphertext += currentCharEncrypted;
   }
   return ciphertext;
 };
