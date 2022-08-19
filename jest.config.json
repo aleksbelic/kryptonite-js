@@ -1,5 +1,6 @@
 {
   "verbose": true,
   "collectCoverage": true,
-  "testMatch": ["**/tests/**/*.js", "**/?(*.)+(spec|test).js"]
+  "passWithNoTests": false,
+  "testRegex": ["/dist/__tests__/.*\\.test\\.js$"]
 }
