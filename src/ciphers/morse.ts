@@ -8,7 +8,12 @@ import {morseCodeMap} from '../globals.js';
  * @param [space='/'] - character used for spacing between the words
  * @returns ciphertext
  * @example
- * TODO
+ * encrypt('abc')
+ * //returns '.- -... -.-.'
+ * encrypt('Ab cd')
+ * // returns '.- -... / -.-. -..'
+ * encrypt('x y z', 'o', '=', '#')
+ * // returns '=oo= # =o== # ==oo'
  */
 export const encrypt = (
   plaintext: string,

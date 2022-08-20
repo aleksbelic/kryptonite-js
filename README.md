@@ -1,7 +1,7 @@
 # Kryptonite-Core
 
 ![testing workflow](https://github.com/aleksbelic/kryptonite-core/actions/workflows/tests.yml/badge.svg)
-[![GitHub license](https://img.shields.io/github/license/aleksbelic/kryptonite-core?style=flat-square)](https://raw.githubusercontent.com/aleksbelic/kryptonite-core/release/1.0.0/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/aleksbelic/kryptonite-core)](https://raw.githubusercontent.com/aleksbelic/kryptonite-core/release/1.0.0/LICENSE)
 
 TypeScript Crypto Lib.
 
@@ -13,7 +13,7 @@ TypeScript Crypto Lib.
 | Bacon's (v1, v2)        |                             |             |
 | Caesar                  | monoalphabetic substitution |   &#9989;   |
 | M-94 (CSP-488 for Navy) |                             |             |
-| Morse                   |                             |             |
+| Morse code              | monoalphabetic substitution |             |
 | Polybius square         |                             |             |
 | Porta                   |                             |             |
 | Rail Fence              |                             |             |

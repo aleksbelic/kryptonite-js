@@ -12,16 +12,19 @@ describe('Morse code - encryption', () => {
       '.-.-.- --..-- ..--.. .----. -.-.-- -..-. -.--. -.--.- .-... ---... -.-.-. -...- .-.-. -....- ..--.- .-..-. ...-..- .--.-.'
     );
   });
+
   test('Unknown char', () => {
     expect(() => encrypt('aßc')).toThrowError(
       "Character 'ß' is not defined in Morse code."
     );
   });
+
   test('Whitespace', () => {
     expect(encrypt('The quick brown fox jumps over the lazy dog')).toEqual(
       '- .... . / --.- ..- .. -.-. -.- / -... .-. --- .-- -. / ..-. --- -..- / .--- ..- -- .--. ... / --- ...- . .-. / - .... . / .-.. .- --.. -.-- / -.. --- --.'
     );
   });
+
   test('Custom short mark, long mark & space', () => {
     expect(
       encrypt(
@@ -33,5 +36,11 @@ describe('Morse code - encryption', () => {
     ).toEqual(
       'X?XX XX XX?X X * XX XXX * X?XX XX ?X? X * X? * ?XXX ??? ?XX? * ??? XX?X * ?X?X XXXX ??? ?X?X ??? X?XX X? ? X XXX X?X?X? * ?X?? ??? XX? * ?X X XXX? X X?X * ?X? ?X ??? X?? * X?? XXXX X? ? * ?X?? ??? XX? X????X X?X X * ??X ??? ?X ?X X? * ??X X ? X?X?X?'
     );
+  });
+
+  test('Random', () => {
+    expect(encrypt('abc')).toEqual('.- -... -.-.');
+    expect(encrypt('Ab cd')).toEqual('.- -... / -.-. -..');
+    expect(encrypt('x y z', 'o', '=', '#')).toEqual('=oo= # =o== # ==oo');
   });
 });
