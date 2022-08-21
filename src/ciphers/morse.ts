@@ -1,4 +1,5 @@
 import {morseCodeMap} from '../globals.js';
+import {getMapKeyByValue} from '../helpers.js';
 
 /**
  * [Morse code](https://en.wikipedia.org/wiki/Morse_code) encryption.
@@ -7,6 +8,7 @@ import {morseCodeMap} from '../globals.js';
  * @param [long='-'] - character used for long mark
  * @param [space='/'] - character used for spacing between the words
  * @returns ciphertext
+ * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * encrypt('abc')
  * //returns '.- -... -.-.'
@@ -15,12 +17,21 @@ import {morseCodeMap} from '../globals.js';
  * encrypt('x y z', 'o', '=', '#')
  * // returns '=oo= # =o== # ==oo'
  */
-export const encrypt = (
+export function encrypt(
   plaintext: string,
   short = '.',
   long = '-',
   space = '/'
-): string => {
+): string {
+  if (
+    [short, long, space].join('') !==
+    [...new Set([short, long, space])].join('')
+  ) {
+    throw Error(
+      'Please use different characters for short mark, long mark & spacing between the words.'
+    );
+  }
+
   let ciphertextWord;
   const cipertextArray: string[] = [];
   for (const currentWord of plaintext.toLowerCase().split(/\s/g)) {
@@ -39,4 +50,55 @@ export const encrypt = (
     cipertextArray.push(ciphertextWord.join(' '));
   }
   return cipertextArray.join(` ${space} `);
-};
+}
+
+/**
+ * [Morse code](https://en.wikipedia.org/wiki/Morse_code) decryption.
+ * @param ciphertext - text to be decrypted
+ * @param [short='.'] - character used for short mark
+ * @param [long='-'] - character used for long mark
+ * @param [space='/'] - character used for spacing between the words
+ * @returns plaintext
+ * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
+ * @example
+ * decrypt('.- -... -.-.')
+ * // returns 'abc'
+ * decrypt('.- -... / -.-. -..')
+ * // returns 'ab cd'
+ * decrypt('=oo= # =o== # ==oo', 'o', '=', '#')
+ * // returns 'x y z'
+ */
+export function decrypt(
+  ciphertext: string,
+  short = '.',
+  long = '-',
+  space = '/'
+): string {
+  if (
+    [short, long, space].join('') !==
+    [...new Set([short, long, space])].join('')
+  ) {
+    throw Error(
+      'Please use different characters for short mark, long mark & spacing between the words.'
+    );
+  }
+
+  const plaintextArray: string[] = [];
+  let plaintextWord: string[];
+  let currentCharDecrypted: string | undefined;
+  for (const ciphertextWord of ciphertext.split(` ${space} `)) {
+    plaintextWord = [];
+    for (const ciphertextChar of ciphertextWord.split(' ')) {
+      currentCharDecrypted = getMapKeyByValue(
+        morseCodeMap,
+        ciphertextChar.replaceAll(short, '.').replaceAll(long, '-')
+      );
+      if (currentCharDecrypted === undefined) {
+        throw Error(`Character '${ciphertextChar}' could not be decrypted.`);
+      }
+      plaintextWord.push(currentCharDecrypted);
+    }
+    plaintextArray.push(plaintextWord.join(''));
+  }
+  return plaintextArray.join(' ');
+}

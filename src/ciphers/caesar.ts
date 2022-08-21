@@ -24,13 +24,13 @@ import {isUpperCase} from '../helpers.js';
  * encrypt('ab!c', 1, true, false)
  * // returns 'bcd'
  */
-export const encrypt = (
+export function encrypt(
   plaintext: string,
   shift: number,
   caseSensitive = true,
   includeForeignChars = true,
   alphabet = ALPHABET_EN
-): string => {
+): string {
   // check alphabet
   if (alphabet.length < 2) {
     throw Error('Alphabet needs be at least 2 characters long.');
@@ -70,7 +70,7 @@ export const encrypt = (
     ciphertext += currentCharEncrypted;
   }
   return ciphertext;
-};
+}
 
 /**
  * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) decryption.
@@ -95,13 +95,13 @@ export const encrypt = (
  * decrypt('bc!d', 1, true, false)
  * // returns 'abc'
  */
-export const decrypt = (
+export function decrypt(
   ciphertext: string,
   shift: number,
   caseSensitive = true,
   includeForeignChars = true,
   alphabet = ALPHABET_EN
-): string => {
+): string {
   encrypt;
   return encrypt(
     ciphertext,
@@ -110,4 +110,4 @@ export const decrypt = (
     includeForeignChars,
     alphabet
   );
-};
+}

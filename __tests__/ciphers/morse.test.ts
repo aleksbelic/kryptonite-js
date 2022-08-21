@@ -1,4 +1,4 @@
-import {encrypt} from '../../src/ciphers/morse';
+import {encrypt, decrypt} from '../../src/ciphers/morse';
 
 describe('Morse code - encryption', () => {
   test('ITU Standard', () => {
@@ -16,6 +16,12 @@ describe('Morse code - encryption', () => {
   test('Unknown char', () => {
     expect(() => encrypt('aßc')).toThrowError(
       "Character 'ß' is not defined in Morse code."
+    );
+  });
+
+  test('Non-unique short mark, long mark or spacing.', () => {
+    expect(() => encrypt('abc abc', 'x', 'x', 'y')).toThrowError(
+      'Please use different characters for short mark, long mark & spacing between the words.'
     );
   });
 
@@ -42,5 +48,25 @@ describe('Morse code - encryption', () => {
     expect(encrypt('abc')).toEqual('.- -... -.-.');
     expect(encrypt('Ab cd')).toEqual('.- -... / -.-. -..');
     expect(encrypt('x y z', 'o', '=', '#')).toEqual('=oo= # =o== # ==oo');
+  });
+});
+
+describe('Morse code - decryption', () => {
+  test('Non-unique short mark, long mark or spacing.', () => {
+    expect(() => decrypt('x= =xxx =x=x', 'x', '=', 'x')).toThrowError(
+      'Please use different characters for short mark, long mark & spacing between the words.'
+    );
+  });
+
+  test('Unknown char', () => {
+    expect(() => decrypt('.- -... -.-.-.-.-')).toThrowError(
+      "Character '-.-.-.-.-' could not be decrypted."
+    );
+  });
+
+  test('Random', () => {
+    expect(decrypt('.- -... -.-.')).toEqual('abc');
+    expect(decrypt('.- -... / -.-. -..')).toEqual('ab cd');
+    expect(decrypt('=oo= # =o== # ==oo', 'o', '=', '#')).toEqual('x y z');
   });
 });

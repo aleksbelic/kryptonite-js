@@ -13,7 +13,7 @@ TypeScript Crypto Lib.
 | Bacon's (v1, v2)        |                             |             |
 | Caesar                  | monoalphabetic substitution |   &#9989;   |
 | M-94 (CSP-488 for Navy) |                             |             |
-| Morse code              | monoalphabetic substitution |             |
+| Morse code              | monoalphabetic substitution |   &#9989;   |
 | Polybius square         |                             |             |
 | Porta                   |                             |             |
 | Rail Fence              |                             |             |
