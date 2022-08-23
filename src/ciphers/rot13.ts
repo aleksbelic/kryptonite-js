@@ -19,13 +19,13 @@ import * as caesar from './caesar.js';
  * encrypt('ab!c', true, false)
  * // returns 'nop'
  */
-export const encrypt = (
+export function encrypt(
   plaintext: string,
   caseSensitive = true,
   includeForeignChars = true
-): string => {
+): string {
   return caesar.encrypt(plaintext, 13, caseSensitive, includeForeignChars);
-};
+}
 
 /**
  * [ROT13 cipher](https://en.wikipedia.org/wiki/ROT13) decryption.
@@ -46,10 +46,10 @@ export const encrypt = (
  * decrypt('no!p', true, false)
  * // returns 'abc'
  */
-export const decrypt = (
+export function decrypt(
   ciphertext: string,
   caseSensitive = true,
   includeForeignChars = true
-): string => {
+): string {
   return encrypt(ciphertext, caseSensitive, includeForeignChars);
-};
+}

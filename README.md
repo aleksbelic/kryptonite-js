@@ -15,14 +15,14 @@ TypeScript Crypto Lib.
 | M-94 (CSP-488 for Navy) |                             |             |
 | Morse code              | monoalphabetic substitution |   &#9989;   |
 | Polybius square         |                             |             |
-| Porta                   |                             |             |
+| Porta                   | polyalphabetic substitution |             |
 | Rail Fence              |                             |             |
 | ROT5                    | monoalphabetic substitution |             |
 | ROT13                   | monoalphabetic substitution |   &#9989;   |
 | ROT18                   | monoalphabetic substitution |             |
 | ROT47                   | monoalphabetic substitution |             |
 | Scytale                 |                             |             |
-| Vigenère                |                             |             |
+| Vigenère                | polyalphabetic substitution |             |
 
 ## Development
 
