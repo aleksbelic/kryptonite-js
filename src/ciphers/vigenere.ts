@@ -1,5 +1,12 @@
 import {ALPHABET_EN} from '../globals.js';
 
+/**
+ *
+ * @param plaintext
+ * @param key
+ * @param alphabet
+ * @returns
+ */
 export function encrypt(
   plaintext: string,
   key: string,
@@ -22,6 +29,13 @@ export function encrypt(
   return ciphertext;
 }
 
+/**
+ *
+ * @param ciphertext
+ * @param key
+ * @param alphabet
+ * @returns
+ */
 export function decrypt(
   ciphertext: string,
   key: string,
@@ -36,10 +50,10 @@ export function decrypt(
   for (let i = 0; i < ciphertext.length; i++) {
     currentDecryptedCharIndex =
       alphabet.indexOf(ciphertext[i]) - alphabet.indexOf(key[i % key.length]);
-    if (currentDecryptedCharIndex < 0) {
-      currentDecryptedCharIndex += alphabet.length;
-    }
-    plaintext += alphabet[currentDecryptedCharIndex % alphabet.length];
+    plaintext +=
+      alphabet[
+        (currentDecryptedCharIndex += alphabet.length) % alphabet.length
+      ];
   }
   return plaintext;
 }

@@ -34,3 +34,8 @@ export function getMapKeyByValue(
   }
   return [...map].find(([k, v]) => v === value)?.[0];
 }
+
+export function getCharsFromText(text: string): string[] {
+  // TODO
+  return [];
+}

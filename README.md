@@ -9,7 +9,7 @@ TypeScript Crypto Lib.
 
 | Cipher                  | Description                 | Implemented |
 | :---------------------- | :-------------------------- | :---------: |
-| Atbash                  |                             |             |
+| Atbash                  | monoalphabetic substitution |   &#9989;   |
 | Bacon's (v1, v2)        |                             |             |
 | Caesar                  | monoalphabetic substitution |   &#9989;   |
 | M-94 (CSP-488 for Navy) |                             |             |
@@ -22,7 +22,7 @@ TypeScript Crypto Lib.
 | ROT18                   | monoalphabetic substitution |             |
 | ROT47                   | monoalphabetic substitution |             |
 | Scytale                 |                             |             |
-| Vigenère                | polyalphabetic substitution |             |
+| Vigenère                | polyalphabetic substitution |   &#9989;   |
 
 ## Development
 
