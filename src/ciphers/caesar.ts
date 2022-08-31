@@ -5,7 +5,7 @@ import {isUpperCase} from '../helpers.js';
  * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) encryption.
  * @param plaintext - text to be encrypted
  * @param shift - number of left or right alphabet rotations
- * @param [caseSensitive=true] - if correct input of uppercase and lowercase chars matters
+ * @param [caseSensitive=true] - if correct input of uppercase and lowercase matters
  * @param [includeForeignChars=true] - if unknown char should be omitted in ciphertext
  * @param [alphabet=ALPHABET_EN] - alphabet being used
  * @returns ciphertext
@@ -76,8 +76,8 @@ export function encrypt(
  * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) decryption.
  * @param ciphertext - text to be decrypted
  * @param shift - number of left or right alphabet rotations
- * @param [caseSensitive=true] - if correct input of uppercase and lowercase chars matters
- * @param [includeForeignChars=true] - if unknown char should be omitted in ciphertext
+ * @param [caseSensitive=true] - if correct input of uppercase and lowercase matters
+ * @param [includeForeignChars=true] - if unknown char should be included in plaintext
  * @param [alphabet=ALPHABET_EN] - alphabet being used
  * @returns plaintext
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
