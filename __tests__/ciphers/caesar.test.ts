@@ -25,11 +25,11 @@ describe('Caesar cipher - encryption', () => {
 
   test('Custom alphabet', () => {
     expect(() => encrypt('a', 1, undefined, undefined, ['a'])).toThrowError(
-      'Alphabet needs be at least 2 characters long.'
+      'Invalid alphabet: alphabet needs be at least 2 characters long.'
     );
     expect(() =>
       encrypt('abc', 1, undefined, undefined, ['c', 'b', 'a', 'c', 'd'])
-    ).toThrowError('Alphabet must not contain duplicates.');
+    ).toThrowError('Invalid alphabet: alphabet must not contain duplicates.');
     expect(
       encrypt(
         'Ако не почнеш, нећеш ни завршити',
@@ -78,11 +78,11 @@ describe('Caesar cipher - decryption', () => {
 
   test('Custom alphabet', () => {
     expect(() => decrypt('a', 1, undefined, undefined, ['a'])).toThrowError(
-      'Alphabet needs be at least 2 characters long.'
+      'Invalid alphabet: alphabet needs be at least 2 characters long.'
     );
     expect(() =>
       decrypt('bcd', 1, undefined, undefined, ['c', 'b', 'a', 'c', 'd'])
-    ).toThrowError('Alphabet must not contain duplicates.');
+    ).toThrowError('Invalid alphabet: alphabet must not contain duplicates.');
     expect(
       decrypt(
         'Јтч хњ џчжхњи, хњвњи хр пјлширбр',

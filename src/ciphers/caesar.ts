@@ -1,13 +1,13 @@
 import {ALPHABET_EN} from '../globals.js';
-import {isUpperCase} from '../helpers.js';
+import {checkAlphabet, getShiftedChar, isUpperCase} from '../helpers.js';
 
 /**
  * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) encryption.
- * @param plaintext - text to be encrypted
- * @param shift - number of left or right alphabet rotations
- * @param [caseSensitive=true] - if correct input of uppercase and lowercase matters
- * @param [includeForeignChars=true] - if unknown char should be omitted in ciphertext
- * @param [alphabet=ALPHABET_EN] - alphabet being used
+ * @param plaintext text to be encrypted
+ * @param shift number of left or right alphabet rotations
+ * @param [caseSensitive=true] if correct input of upper case and lower case matters
+ * @param [includeForeignChars=true] if unknown char should be omitted in ciphertext
+ * @param [alphabet=ALPHABET_EN] used alphabet
  * @returns ciphertext
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
@@ -31,13 +31,7 @@ export function encrypt(
   includeForeignChars = true,
   alphabet = ALPHABET_EN
 ): string {
-  // check alphabet
-  if (alphabet.length < 2) {
-    throw Error('Alphabet needs be at least 2 characters long.');
-  }
-  if (alphabet.toString() !== [...new Set(alphabet)].toString()) {
-    throw Error('Alphabet must not contain duplicates.');
-  }
+  checkAlphabet(alphabet);
 
   if (Math.abs(shift) > alphabet.length) {
     shift %= alphabet.length;
@@ -46,39 +40,36 @@ export function encrypt(
     shift = alphabet.length + shift;
   }
 
-  let ciphertext = '';
-  let currentCharIndexInAlphabet: number,
-    isCurrentCharUpperCase: boolean,
-    currentCharEncrypted: string;
+  let ciphertext = '',
+    currentCharEncrypted: string | undefined;
 
   for (const currentChar of plaintext) {
-    isCurrentCharUpperCase = isUpperCase(currentChar);
-    currentCharIndexInAlphabet = alphabet.indexOf(currentChar.toLowerCase());
-
-    if (currentCharIndexInAlphabet === -1) {
+    currentCharEncrypted = getShiftedChar(
+      currentChar.toLowerCase(),
+      shift,
+      alphabet
+    );
+    if (currentCharEncrypted === undefined) {
       if (includeForeignChars) {
         ciphertext += currentChar;
       }
       continue;
-    }
-
-    currentCharEncrypted =
-      alphabet[(currentCharIndexInAlphabet + shift) % alphabet.length];
-    if (caseSensitive && isCurrentCharUpperCase) {
+    } else if (caseSensitive && isUpperCase(currentChar)) {
       currentCharEncrypted = currentCharEncrypted.toUpperCase();
     }
     ciphertext += currentCharEncrypted;
   }
+
   return ciphertext;
 }
 
 /**
  * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) decryption.
- * @param ciphertext - text to be decrypted
- * @param shift - number of left or right alphabet rotations
- * @param [caseSensitive=true] - if correct input of uppercase and lowercase matters
- * @param [includeForeignChars=true] - if unknown char should be included in plaintext
- * @param [alphabet=ALPHABET_EN] - alphabet being used
+ * @param ciphertext text to be decrypted
+ * @param shift number of left or right alphabet rotations
+ * @param [caseSensitive=true] if correct input of upper case and lower case matters
+ * @param [includeForeignChars=true] if unknown char should be included in plaintext
+ * @param [alphabet=ALPHABET_EN] used alphabet
  * @returns plaintext
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
