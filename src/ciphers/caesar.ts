@@ -33,13 +33,6 @@ export function encrypt(
 ): string {
   checkAlphabet(alphabet);
 
-  if (Math.abs(shift) > alphabet.length) {
-    shift %= alphabet.length;
-  }
-  if (shift < 0) {
-    shift = alphabet.length + shift;
-  }
-
   let ciphertext = '',
     currentCharEncrypted: string | undefined;
 

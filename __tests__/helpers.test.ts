@@ -1,4 +1,9 @@
-import {checkAlphabet, getMapKeyByValue, isUpperCase} from '../src/helpers.js';
+import {
+  checkAlphabet,
+  getMapKeyByValue,
+  getShiftedChar,
+  isUpperCase,
+} from '../src/helpers.js';
 
 describe('Helper functions', () => {
   test('Is Upper Case', () => {
@@ -22,7 +27,7 @@ describe('Helper functions', () => {
     expect(() =>
       // @ts-expect-error - function param with false type
       getMapKeyByValue('abc', 'alpha')
-    ).toThrowError('Invalid param - please provide an intance of Map.');
+    ).toThrowError('Invalid param: please provide an intance of Map.');
   });
 
   test('Check Alphabet', () => {
@@ -57,4 +62,11 @@ describe('Helper functions', () => {
     );
     expect(() => checkAlphabet(['a', 'b'])).toBeTruthy();
   });
+});
+
+test('Get Shifted Char', () => {
+  expect(getShiftedChar('a', 1)).toBe('b');
+  expect(getShiftedChar('a', -1)).toBe('z');
+  expect(getShiftedChar('A', 1)).toBe('b');
+  expect(getShiftedChar('A', -1)).toBe('z');
 });

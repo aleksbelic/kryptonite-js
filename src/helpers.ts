@@ -18,7 +18,7 @@ export function isUpperCase(text: string): boolean {
 /**
  * Returns key for the specified value in some given map.
  * @param map
- * @param value - value whose key we're looking for
+ * @param value value whose key we're looking for
  * @returns key
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
@@ -32,7 +32,7 @@ export function getMapKeyByValue(
   value: string
 ): string | undefined {
   if (!(map instanceof Map)) {
-    throw Error('Invalid param - please provide an intance of Map.');
+    throw Error('Invalid param: please provide an intance of Map.');
   }
   return [...map].find(([k, v]) => v === value)?.[0];
 }
@@ -49,29 +49,43 @@ export function getCharsFromText(text: string): string[] {
 }
 
 /**
- * TODO
- * @param char - letter in alphabet whose shifted pair we're looking for
- * @param shift - number of left or right alphabet rotations
- * @param alphabet - used alphabet
+ * Returns shifted pair-letter for given char, rotation number & alphabet.
+ * @param char letter in alphabet whose shifted pair we're looking for
+ * @param shift number of left or right alphabet rotations
+ * @param alphabet used alphabet
  * @returns shifted character
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
+ * @example
+ * getShiftedChar('a', 1)
+ * // returns 'b'
+ * getShiftedChar('a', -1)
+ * // returns 'z'
  */
 export function getShiftedChar(
   char: string,
   shift: number,
   alphabet = ALPHABET_EN
 ): string | undefined {
+  if (Math.abs(shift) > alphabet.length) {
+    shift %= alphabet.length;
+  }
+  if (shift < 0) {
+    shift = alphabet.length + shift;
+  }
+
   let shiftedChar: string | undefined = undefined;
   const charIndexInAlphabet = alphabet.indexOf(char.toLowerCase());
+
   if (charIndexInAlphabet !== -1) {
     shiftedChar = alphabet[(charIndexInAlphabet + shift) % alphabet.length];
   }
+
   return shiftedChar;
 }
 
 /**
  * Checks if user defined alphabet is valid.
- * @param alphabet - user defined alphabet being checked
+ * @param alphabet user defined alphabet being checked
  * @returns true
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  */

@@ -3,10 +3,10 @@ import {getMapKeyByValue} from '../helpers.js';
 
 /**
  * [Morse code](https://en.wikipedia.org/wiki/Morse_code) encryption.
- * @param plaintext - text to be encrypted
- * @param [short='.'] - character used for short mark
- * @param [long='-'] - character used for long mark
- * @param [space='/'] - character used for spacing between the words
+ * @param plaintext text to be encrypted
+ * @param [short='.'] character used for short mark
+ * @param [long='-'] character used for long mark
+ * @param [space='/'] character used for spacing between the words
  * @returns ciphertext
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
@@ -54,10 +54,10 @@ export function encrypt(
 
 /**
  * [Morse code](https://en.wikipedia.org/wiki/Morse_code) decryption.
- * @param ciphertext - text to be decrypted
- * @param [short='.'] - character used for short mark
- * @param [long='-'] - character used for long mark
- * @param [space='/'] - character used for spacing between the words
+ * @param ciphertext text to be decrypted
+ * @param [short='.'] character used for short mark
+ * @param [long='-'] character used for long mark
+ * @param [space='/'] character used for spacing between the words
  * @returns plaintext
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example

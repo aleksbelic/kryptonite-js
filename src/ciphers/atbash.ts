@@ -3,10 +3,10 @@ import {isUpperCase} from '../helpers.js';
 
 /**
  * [Atbash cipher](https://en.wikipedia.org/wiki/Atbash) encryption.
- * @param plaintext - text to encrypt
- * @param [caseSensitive=true] - if correct input of upper case and lower case matters
- * @param [includeForeignChars=true] - if unknown char should be included in ciphertext
- * @param [alphabet=ALPHABET_EN] - alphabet used for encryption process
+ * @param plaintext text to encrypt
+ * @param [caseSensitive=true] if correct input of upper case and lower case matters
+ * @param [includeForeignChars=true] if unknown char should be included in ciphertext
+ * @param [alphabet=ALPHABET_EN] alphabet used for encryption process
  * @returns ciphertext
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
@@ -53,10 +53,10 @@ export function encrypt(
 
 /**
  * [Atbash cipher](https://en.wikipedia.org/wiki/Atbash) decryption.
- * @param ciphertext - text to decrypt
- * @param [caseSensitive=true] - if correct input of upper case and lower case matters
- * @param [includeForeignChars=true] - if unknown char should be included in plaintext
- * @param [alphabet=ALPHABET_EN] - alphabet used for decryption process
+ * @param ciphertext text to decrypt
+ * @param [caseSensitive=true] if correct input of upper case and lower case matters
+ * @param [includeForeignChars=true] if unknown char should be included in plaintext
+ * @param [alphabet=ALPHABET_EN] alphabet used for decryption process
  * @returns plaintext
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example

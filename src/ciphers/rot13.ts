@@ -2,9 +2,9 @@ import * as caesar from './caesar.js';
 
 /**
  * [ROT13 cipher](https://en.wikipedia.org/wiki/ROT13) encryption.
- * @param plaintext - text to be encrypted
- * @param [caseSensitive=true] - if correct input of upper case and lower case matters
- * @param [includeForeignChars=true] - if unknown char should be included in ciphertext
+ * @param plaintext text to be encrypted
+ * @param [caseSensitive=true] if correct input of upper case and lower case matters
+ * @param [includeForeignChars=true] if unknown char should be included in ciphertext
  * @returns ciphertext
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
@@ -29,9 +29,9 @@ export function encrypt(
 
 /**
  * [ROT13 cipher](https://en.wikipedia.org/wiki/ROT13) decryption.
- * @param ciphertext - text to be decrypted
- * @param [caseSensitive=true] - if correct input of upper case and lower case matters
- * @param [includeForeignChars=true] - if unknown char should be included in plaintext
+ * @param ciphertext text to be decrypted
+ * @param [caseSensitive=true] if correct input of upper case and lower case matters
+ * @param [includeForeignChars=true] if unknown char should be included in plaintext
  * @returns plaintext
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
