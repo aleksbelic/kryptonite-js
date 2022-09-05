@@ -28,6 +28,8 @@ describe('Atbash cipher - encryption', () => {
     expect(encrypt('aBc!D', true, false)).toEqual('zYxW');
     expect(encrypt('aBc!D', false, true)).toEqual('zyx!w');
     expect(encrypt('aBc!D', true, true)).toEqual('zYx!W');
+    expect(encrypt('abcd abcd')).toEqual('zyxw zyxw');
+    expect(encrypt('abcd abcd', undefined, false)).toEqual('zyxwzyxw');
   });
 });
 
@@ -55,9 +57,11 @@ describe('Atbash cipher - decryption', () => {
   });
 
   test('Various', () => {
-    expect(encrypt('zYx!W', false, false)).toEqual('abcd');
-    expect(encrypt('zYx!W', true, false)).toEqual('aBcD');
-    expect(encrypt('zYx!W', false, true)).toEqual('abc!d');
-    expect(encrypt('zYx!W', true, true)).toEqual('aBc!D');
+    expect(decrypt('zYx!W', false, false)).toEqual('abcd');
+    expect(decrypt('zYx!W', true, false)).toEqual('aBcD');
+    expect(decrypt('zYx!W', false, true)).toEqual('abc!d');
+    expect(decrypt('zYx!W', true, true)).toEqual('aBc!D');
+    expect(decrypt('zyxw zyxw')).toEqual('abcd abcd');
+    expect(decrypt('zyxw zyxw', undefined, false)).toEqual('abcdabcd');
   });
 });

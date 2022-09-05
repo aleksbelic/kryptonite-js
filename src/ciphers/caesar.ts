@@ -91,3 +91,54 @@ export function decrypt(
     alphabet
   );
 }
+
+/**
+ * Prints decrypted plaintext for given ciphertext, shift & alphabet.
+ * @param ciphertext text to be decrypted
+ * @param shift number of left or right alphabet rotations
+ * @param [caseSensitive=true] if correct input of upper case and lower case matters
+ * @param [includeForeignChars=true] if unknown char should be omitted in ciphertext
+ * @param [alphabet=ALPHABET_EN] used alphabet
+ * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
+ * @example
+ * printShift('abc', 1)
+ * // prints 'bcd'
+ */
+export function printShift(
+  ciphertext: string,
+  shift: number,
+  caseSensitive = true,
+  includeForeignChars = true,
+  alphabet = ALPHABET_EN
+): void {
+  console.log(
+    encrypt(ciphertext, shift, caseSensitive, includeForeignChars, alphabet)
+  );
+}
+
+/**
+ * Prints decrypted plaintext of given ciphertext with all possible shifts.
+ * @param ciphertext text to be decrypted
+ * @param [caseSensitive=true] if correct input of upper case and lower case matters
+ * @param [includeForeignChars=true] if unknown char should be omitted in ciphertext
+ * @param [alphabet=ALPHABET_EN] used alphabet
+ * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
+ * @example
+ * printAllShifts('a', undefined, undefined, ['a', 'b', 'c'])
+ * // prints
+ * 'a'
+ * 'b'
+ * 'c'
+ */
+export function printAllShifts(
+  ciphertext: string,
+  caseSensitive = true,
+  includeForeignChars = true,
+  alphabet = ALPHABET_EN
+): void {
+  for (let shift = 0; shift < alphabet.length; shift++) {
+    console.log(
+      encrypt(ciphertext, shift, caseSensitive, includeForeignChars, alphabet)
+    );
+  }
+}
