@@ -41,7 +41,7 @@ describe('Caesar cipher - encryption', () => {
     ).toEqual('Јтч хњ џчжхњи, хњвњи хр пјлширбр');
   });
 
-  test('Random', () => {
+  test('Various', () => {
     expect(
       encrypt(
         'Ignavi coram morte quidem animam trahunt, audaces autem illam non saltem advertunt.',
@@ -94,7 +94,7 @@ describe('Caesar cipher - decryption', () => {
     ).toEqual('Ако не почнеш, нећеш ни завршити');
   });
 
-  test('Random', () => {
+  test('Various', () => {
     expect(decrypt('T slgp yz topl hsle T lx oztyr', -15)).toEqual(
       'I have no idea what I am doing'
     );

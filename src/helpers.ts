@@ -50,9 +50,9 @@ export function getCharsFromText(text: string): string[] {
 
 /**
  * Returns shifted pair-letter for given char, rotation number & alphabet.
- * @param char letter in alphabet whose shifted pair we're looking for
+ * @param char letter in alphabet whose shifted pair we're looking for, case insensitive
  * @param shift number of left or right alphabet rotations
- * @param alphabet used alphabet
+ * @param [alphabet=ALPHABET_EN] used alphabet
  * @returns shifted character
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example

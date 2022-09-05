@@ -1,5 +1,5 @@
 import {ALPHABET_EN} from '../globals.js';
-import {isUpperCase} from '../helpers.js';
+import {checkAlphabet, getShiftedChar, isUpperCase} from '../helpers.js';
 
 /**
  * [Atbash cipher](https://en.wikipedia.org/wiki/Atbash) encryption.
@@ -25,25 +25,23 @@ export function encrypt(
   includeForeignChars = true,
   alphabet = ALPHABET_EN
 ): string {
+  checkAlphabet(alphabet);
+
   let ciphertext = '',
-    currentCharIndexInAlphabet: number,
-    isCurrentCharUpperCase: boolean,
-    currentCharEncrypted: string;
+    shift: number,
+    currentCharEncrypted: string | undefined;
 
   for (const currentChar of plaintext) {
-    isCurrentCharUpperCase = isUpperCase(currentChar);
-    currentCharIndexInAlphabet = alphabet.indexOf(currentChar.toLowerCase());
+    shift =
+      alphabet.length - 2 * alphabet.indexOf(currentChar.toLowerCase()) - 1;
+    currentCharEncrypted = getShiftedChar(currentChar, shift, alphabet);
 
-    if (currentCharIndexInAlphabet === -1) {
+    if (currentCharEncrypted === undefined) {
       if (includeForeignChars) {
         ciphertext += currentChar;
       }
       continue;
-    }
-
-    currentCharEncrypted =
-      alphabet[alphabet.length - currentCharIndexInAlphabet - 1];
-    if (caseSensitive && isCurrentCharUpperCase) {
+    } else if (caseSensitive && isUpperCase(currentChar)) {
       currentCharEncrypted = currentCharEncrypted.toUpperCase();
     }
     ciphertext += currentCharEncrypted;

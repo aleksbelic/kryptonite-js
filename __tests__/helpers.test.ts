@@ -62,11 +62,11 @@ describe('Helper functions', () => {
     );
     expect(() => checkAlphabet(['a', 'b'])).toBeTruthy();
   });
-});
 
-test('Get Shifted Char', () => {
-  expect(getShiftedChar('a', 1)).toBe('b');
-  expect(getShiftedChar('a', -1)).toBe('z');
-  expect(getShiftedChar('A', 1)).toBe('b');
-  expect(getShiftedChar('A', -1)).toBe('z');
+  test('Get Shifted Char', () => {
+    expect(getShiftedChar('a', 1)).toBe('b');
+    expect(getShiftedChar('a', -1)).toBe('z');
+    expect(getShiftedChar('A', 1)).toBe('b');
+    expect(getShiftedChar('A', -1)).toBe('z');
+  });
 });

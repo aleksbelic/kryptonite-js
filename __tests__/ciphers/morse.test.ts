@@ -44,7 +44,7 @@ describe('Morse code - encryption', () => {
     );
   });
 
-  test('Random', () => {
+  test('Various', () => {
     expect(encrypt('abc')).toEqual('.- -... -.-.');
     expect(encrypt('Ab cd')).toEqual('.- -... / -.-. -..');
     expect(encrypt('x y z', 'o', '=', '#')).toEqual('=oo= # =o== # ==oo');
@@ -64,7 +64,7 @@ describe('Morse code - decryption', () => {
     );
   });
 
-  test('Random', () => {
+  test('Various', () => {
     expect(decrypt('.- -... -.-.')).toEqual('abc');
     expect(decrypt('.- -... / -.-. -..')).toEqual('ab cd');
     expect(decrypt('=oo= # =o== # ==oo', 'o', '=', '#')).toEqual('x y z');

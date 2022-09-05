@@ -1,11 +1,11 @@
 import {ALPHABET_EN} from '../globals.js';
 
 /**
- * TODO
- * @param plaintext
- * @param key
- * @param alphabet
- * @returns
+ * [Vigenère cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher) encryption.
+ * @param plaintext text to be encrypted
+ * @param key word used to switch cipher alphabets every letter
+ * @param alphabet used alphabet
+ * @returns ciphertext
  */
 export function encrypt(
   plaintext: string,
@@ -30,11 +30,11 @@ export function encrypt(
 }
 
 /**
- *
- * @param ciphertext
- * @param key
- * @param alphabet
- * @returns
+ * [Vigenère cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher) decryption.
+ * @param ciphertext text to be decrypted
+ * @param key word used to switch cipher alphabets every letter
+ * @param alphabet used alphabet
+ * @returns plaintext
  */
 export function decrypt(
   ciphertext: string,

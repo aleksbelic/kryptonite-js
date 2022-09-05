@@ -37,11 +37,7 @@ export function encrypt(
     currentCharEncrypted: string | undefined;
 
   for (const currentChar of plaintext) {
-    currentCharEncrypted = getShiftedChar(
-      currentChar.toLowerCase(),
-      shift,
-      alphabet
-    );
+    currentCharEncrypted = getShiftedChar(currentChar, shift, alphabet);
     if (currentCharEncrypted === undefined) {
       if (includeForeignChars) {
         ciphertext += currentChar;
