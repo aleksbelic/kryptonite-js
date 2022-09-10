@@ -17,7 +17,7 @@ TypeScript Crypto Lib.
 | Polybius square         |                             |             |
 | Porta                   | polyalphabetic substitution |             |
 | Rail Fence              |                             |             |
-| ROT5                    | monoalphabetic substitution |             |
+| ROT5                    | monoalphabetic substitution |   &#9989;   |
 | ROT13                   | monoalphabetic substitution |   &#9989;   |
 | ROT18                   | monoalphabetic substitution |             |
 | ROT47                   | monoalphabetic substitution |             |
