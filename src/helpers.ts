@@ -38,14 +38,27 @@ export function getMapKeyByValue(
 }
 
 /**
- *
+ * Returns an array of unique chars for specified text.
  * @param text
- * @returns
+ * @param [caseSensitive=false] if upper/lower case makes difference
+ * @returns array of unique chars
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
+ * @example
+ * getUniqueCharsFromText('abba');
+ * // returns ['a', 'b']
+ * getUniqueCharsFromText('ABba', true);
+ * // returns ['A', 'B', 'b', 'a']
+ * getUniqueCharsFromText('Today was a good day');
+ * // returns ['T', 'o', 'd', 'a', 'y', ' ', 'w', 's', 'g']
  */
-export function getCharsFromText(text: string): string[] {
-  // TODO
-  return [];
+export function getUniqueCharsFromText(
+  text: string,
+  caseSensitive = false
+): string[] {
+  if (!caseSensitive) {
+    text = text.toLowerCase();
+  }
+  return [...new Set(text)];
 }
 
 /**

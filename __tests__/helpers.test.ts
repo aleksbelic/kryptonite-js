@@ -2,11 +2,12 @@ import {
   checkAlphabet,
   getMapKeyByValue,
   getShiftedChar,
+  getUniqueCharsFromText,
   isUpperCase,
 } from '../src/helpers.js';
 
 describe('Helper functions', () => {
-  test('Is Upper Case', () => {
+  test('Is upper case', () => {
     expect(isUpperCase('a')).toEqual(false);
     expect(isUpperCase('A')).toEqual(true);
     expect(isUpperCase('abc')).toEqual(false);
@@ -14,7 +15,7 @@ describe('Helper functions', () => {
     expect(isUpperCase('aBc')).toEqual(false);
   });
 
-  test('Get Map Key by Value - undefined', () => {
+  test('Get map key by value - undefined', () => {
     const testMap: Map<string, string> = new Map([
       ['a', 'alpha'],
       ['b', 'beta'],
@@ -23,14 +24,14 @@ describe('Helper functions', () => {
     expect(getMapKeyByValue(testMap, 'gama')).toBeUndefined();
   });
 
-  test('Get Map Key by Value - no map given', () => {
+  test('Get map key by value - no map given', () => {
     expect(() =>
       // @ts-expect-error - function param with false type
       getMapKeyByValue('abc', 'alpha')
     ).toThrowError('Invalid param: please provide an intance of Map.');
   });
 
-  test('Check Alphabet', () => {
+  test('Check alphabet', () => {
     // @ts-expect-error - function param with false type
     expect(() => checkAlphabet(true)).toThrowError(
       'Invalid alphabet: please provide an array of single-letter chars.'
@@ -63,10 +64,27 @@ describe('Helper functions', () => {
     expect(() => checkAlphabet(['a', 'b'])).toBeTruthy();
   });
 
-  test('Get Shifted Char', () => {
+  test('Get shifted char', () => {
     expect(getShiftedChar('a', 1)).toBe('b');
     expect(getShiftedChar('a', -1)).toBe('z');
     expect(getShiftedChar('A', 1)).toBe('b');
     expect(getShiftedChar('A', -1)).toBe('z');
+  });
+
+  test('Get unique chars from text', () => {
+    expect(getUniqueCharsFromText('abba')).toEqual(['a', 'b']);
+    expect(getUniqueCharsFromText('ABba')).toEqual(['a', 'b']);
+    expect(getUniqueCharsFromText('ABba', true)).toEqual(['A', 'B', 'b', 'a']);
+    expect(getUniqueCharsFromText('Today was a good day', true)).toEqual([
+      'T',
+      'o',
+      'd',
+      'a',
+      'y',
+      ' ',
+      'w',
+      's',
+      'g',
+    ]);
   });
 });
