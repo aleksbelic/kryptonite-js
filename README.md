@@ -19,7 +19,7 @@ TypeScript Crypto Lib.
 | Rail Fence              |                             |             |
 | ROT5                    | monoalphabetic substitution |   &#9989;   |
 | ROT13                   | monoalphabetic substitution |   &#9989;   |
-| ROT18                   | monoalphabetic substitution |             |
+| ROT18                   | monoalphabetic substitution |   &#9989;   |
 | ROT47                   | monoalphabetic substitution |             |
 | Scytale                 |                             |             |
 | Vigenère                | polyalphabetic substitution |   &#9989;   |
