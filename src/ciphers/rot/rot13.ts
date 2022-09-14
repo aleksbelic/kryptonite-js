@@ -1,4 +1,4 @@
-import * as caesar from './caesar.js';
+import * as caesar from '../caesar.js';
 
 /**
  * [ROT13 cipher](https://en.wikipedia.org/wiki/ROT13) encryption.

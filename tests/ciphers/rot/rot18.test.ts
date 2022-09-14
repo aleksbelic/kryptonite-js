@@ -1,4 +1,4 @@
-import {encrypt, decrypt} from '../../src/ciphers/rot18.js';
+import {encrypt, decrypt} from '../../../src/ciphers/rot/rot18.js';
 
 describe('ROT18 cipher - encryption', () => {
   test('Shift', () => {
