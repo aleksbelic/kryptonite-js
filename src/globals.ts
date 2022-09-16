@@ -16,6 +16,12 @@ export const ALPHABET_SR_CYR = [
   'ј', 'к', 'л', 'љ', 'м', 'н', 'њ', 'о', 'п', 'р',
   'с', 'т', 'ћ', 'у', 'ф', 'х', 'ц', 'ч', 'џ', 'ш'
 ];
+export const ALPHABET_GR = [
+  'α', 'β', 'γ', 'δ', 'ε', 'ζ',
+  'η', 'θ', 'ι', 'κ', 'λ', 'μ',
+  'ν', 'ξ', 'ο', 'π', 'ρ', 'σ',
+  'τ', 'υ', 'φ', 'χ', 'ψ', 'ω'
+];
 
 export const morseCodeMap = new Map([
   // letters
@@ -40,4 +46,24 @@ export const morseCodeMap = new Map([
   [':', '---...'], [';', '-.-.-.'], ['=', '-...-'],
   ['+', '.-.-.'], ['-', '-....-'], ['_', '..--.-'],
   ['"', '.-..-.'], ['$', '...-..-'], ['@', '.--.-.']
+]);
+
+// 'i' & 'j', as well as 'u' & 'v' use the same code
+export const bacon1Map = new Map([
+  ['a', 'aaaaa'], ['b', 'aaaab'], ['c', 'aaaba'], ['d', 'aaabb'],
+  ['e', 'aabaa'], ['f', 'aabab'], ['g', 'aabba'], ['h', 'aabbb'],
+  ['i', 'abaaa'], ['j', 'abaaa'], ['k', 'abaab'], ['l', 'ababa'],
+  ['m', 'ababb'], ['n', 'abbaa'], ['o', 'abbab'], ['p', 'abbba'],
+  ['q', 'abbbb'], ['r', 'baaaa'], ['s', 'baaab'], ['t', 'baaba'],
+  ['u', 'baabb'], ['v', 'baabb'], ['w', 'babaa'], ['x', 'babab'],
+  ['y', 'babba'], ['z', 'babbb']
+]);
+export const bacon2Map = new Map([
+  ['a', 'aaaaa'], ['b', 'aaaab'], ['c', 'aaaba'], ['d', 'aaabb'],
+  ['e', 'aabaa'], ['f', 'aabab'], ['g', 'aabba'], ['h', 'aabbb'],
+  ['i', 'abaaa'], ['j', 'abaab'], ['k', 'ababa'], ['l', 'ababb'],
+  ['m', 'abbaa'], ['n', 'abbab'], ['o', 'abbba'], ['p', 'abbbb'],
+  ['q', 'baaaa'], ['r', 'baaab'], ['s', 'baaba'], ['t', 'baabb'],
+  ['u', 'babaa'], ['v', 'babab'], ['w', 'babba'], ['x', 'babbb'],
+  ['y', 'bbaaa'], ['z', 'bbaab']
 ]);
