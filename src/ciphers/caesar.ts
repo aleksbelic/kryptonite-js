@@ -6,7 +6,7 @@ import {checkAlphabet, getShiftedChar, isUpperCase} from '../helpers.js';
  * @param plaintext text to be encrypted
  * @param shift number of left or right alphabet rotations
  * @param [caseSensitive=true] if correct input of upper case and lower case matters
- * @param [includeForeignChars=true] if unknown char should be omitted in ciphertext
+ * @param [includeForeignChars=true] if unknown char should be included in ciphertext
  * @param [alphabet=ALPHABET_EN] used alphabet
  * @returns ciphertext
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
@@ -97,7 +97,7 @@ export function decrypt(
  * @param ciphertext text to be decrypted
  * @param shift number of left or right alphabet rotations
  * @param [caseSensitive=true] if correct input of upper case and lower case matters
- * @param [includeForeignChars=true] if unknown char should be omitted in ciphertext
+ * @param [includeForeignChars=true] if unknown char should be included in ciphertext
  * @param [alphabet=ALPHABET_EN] used alphabet
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
@@ -120,7 +120,7 @@ export function printShift(
  * Prints decrypted plaintext of given ciphertext with all possible shifts.
  * @param ciphertext text to be decrypted
  * @param [caseSensitive=true] if correct input of upper case and lower case matters
- * @param [includeForeignChars=true] if unknown char should be omitted in ciphertext
+ * @param [includeForeignChars=true] if unknown char should be included in ciphertext
  * @param [alphabet=ALPHABET_EN] used alphabet
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
