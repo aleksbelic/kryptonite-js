@@ -86,6 +86,10 @@ export function decrypt(ciphertext: string, version = 2) {
   return plaintext;
 }
 
+export function encryptInText(message: string, text: string) {
+  //TODO
+}
+
 export function encryptInRandomText(message: string) {
   //TODO
 }

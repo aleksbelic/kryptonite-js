@@ -1,27 +1,12 @@
-export const DIGITS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+export const ASCII_PRINTABLE_SPECIAL = [...' !"#$%&\'()*+,-./:;<=>?@`[\\~]^_{|}'];
+
+export const DIGITS = [...'1234567890'];
 
 // using ISO 639-1 language codes
-export const ALPHABET_EN = [
-  'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
-  'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-  'u', 'v', 'w', 'x', 'y', 'z'
-];
-export const ALPHABET_DE = [
-  'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
-  'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-  'u', 'v', 'w', 'x', 'y', 'z', 'ä', 'ö', 'ü', 'ß'
-];
-export const ALPHABET_SR_CYR = [
-  'а', 'б', 'в', 'г', 'д', 'ђ', 'е', 'ж', 'з', 'и',
-  'ј', 'к', 'л', 'љ', 'м', 'н', 'њ', 'о', 'п', 'р',
-  'с', 'т', 'ћ', 'у', 'ф', 'х', 'ц', 'ч', 'џ', 'ш'
-];
-export const ALPHABET_GR = [
-  'α', 'β', 'γ', 'δ', 'ε', 'ζ',
-  'η', 'θ', 'ι', 'κ', 'λ', 'μ',
-  'ν', 'ξ', 'ο', 'π', 'ρ', 'σ',
-  'τ', 'υ', 'φ', 'χ', 'ψ', 'ω'
-];
+export const ALPHABET_EN = [...'abcdefghijklmnopqrstuvwxyz'];
+export const ALPHABET_DE = [...'abcdefghijklmnopqrstuvwxyzäöüß'];
+export const ALPHABET_SR_CYR = [...'абвгдђежзијклљмнњопрстћуфхцчџш'];
+export const ALPHABET_GR = [...'αβγδεζηθικλμνξοπρστυφχψω'];
 
 export const morseCodeMap = new Map([
   // letters

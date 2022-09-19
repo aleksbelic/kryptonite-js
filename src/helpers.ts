@@ -132,3 +132,15 @@ export function checkAlphabet(alphabet: string[]): boolean | never {
   }
   return true;
 }
+
+/**
+ * Returns random printable ASCII char.
+ * @returns random printable ASCII char
+ * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
+ * @example
+ * getRandomAsciiChar()
+ * returns 'k'
+ */
+export function getRandomAsciiChar(): string {
+  return String.fromCharCode(Math.floor(Math.random() * 95) + 32);
+}

@@ -1,6 +1,8 @@
+import {ALPHABET_EN, ASCII_PRINTABLE_SPECIAL, DIGITS} from '../src/globals.js';
 import {
   checkAlphabet,
   getMapKeyByValue,
+  getRandomAsciiChar,
   getShiftedChar,
   getUniqueCharsFromText,
   isUpperCase,
@@ -86,5 +88,30 @@ describe('Helper functions', () => {
       's',
       'g',
     ]);
+  });
+
+  test('Get random ASCII char', () => {
+    const asciiChars = ASCII_PRINTABLE_SPECIAL.concat(DIGITS)
+      .concat(ALPHABET_EN)
+      .concat(ALPHABET_EN.map(lowerCaseChar => lowerCaseChar.toUpperCase()));
+    expect(getRandomAsciiChar()).toMatch(
+      /[a-zA-Z0-9 !"#$%\\'()*+,-./:;<=>?@`[~\]^_{|}]{1}/g
+    );
+
+    let randomAsciiChars = '';
+    for (let i = 0; i < 10000; i++) {
+      randomAsciiChars += getRandomAsciiChar();
+    }
+
+    for (const char of asciiChars) {
+      if (randomAsciiChars.indexOf(char) === -1) {
+        throw Error(
+          `Error: ASCII char '${char}' not found in randomly generated string.`
+        );
+      } else {
+        randomAsciiChars = randomAsciiChars.replaceAll(char, '');
+      }
+    }
+    expect(randomAsciiChars).toEqual('');
   });
 });
