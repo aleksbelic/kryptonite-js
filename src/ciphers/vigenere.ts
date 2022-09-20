@@ -12,11 +12,11 @@ import {isUpperCase} from '../helpers.js';
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * encrypt('My secret msg', 'mykey')
- * returns 'Yw ciadcd qqs'
+ * // returns 'Yw ciadcd qqs'
  * encrypt('My secret msg', 'mykey', false)
- * returns 'yw ciadcd qqs'
+ * // returns 'yw ciadcd qqs'
  * encrypt('My secret msg', 'mykey', undefined, false)
- * returns 'Ywciadcdqqs'
+ * // returns 'Ywciadcdqqs'
  */
 export function encrypt(
   plaintext: string,
@@ -67,11 +67,11 @@ export function encrypt(
  * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * decrypt('Yw ciadcd qqs', 'mykey')
- * returns 'My secret msg'
+ * // returns 'My secret msg'
  * decrypt('Yw ciadcd qqs', 'mykey', false)
- * returns 'my secret msg'
+ * // returns 'my secret msg'
  * decrypt('Yw ciadcd qqs', 'mykey', undefined, false)
- * returns 'Mysecretmsg'
+ * // returns 'Mysecretmsg'
  */
 export function decrypt(
   ciphertext: string,

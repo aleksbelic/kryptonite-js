@@ -1,4 +1,9 @@
-import {encrypt, decrypt} from '../src/ciphers/bacon.js';
+import {
+  encrypt,
+  decrypt,
+  encryptInText,
+  decryptInText,
+} from '../../src/ciphers/bacon.js';
 
 describe('Bacon cipher v1', () => {
   test('Encryption', () => {
@@ -32,6 +37,26 @@ describe('Bacon cipher v1', () => {
         1
       )
     ).toEqual('baconiinxuue');
+  });
+
+  test('Encrypt in text', () => {
+    expect(
+      encryptInText(
+        'jinx uve',
+        'The quick brown fox jumps over the lazy dog',
+        1
+      )
+    ).toEqual('tHe quiCk broWN foX jUmPS ovER The LAzy Dog');
+    expect(() => encryptInText('abc', 'some short text', 1)).toThrowError(
+      `Text should not contain less letters than encrypted message (${
+        'abc'.length * 5
+      }), please provide more letters.`
+    );
+  });
+  test('Decrypt in text', () => {
+    expect(
+      decryptInText('tHe quiCk broWN foX jUmPS ovER The LAzy Dog', 1)
+    ).toEqual('iinxuue');
   });
 });
 
@@ -78,11 +103,37 @@ describe('Bacon cipher v2', () => {
       )
     ).toEqual('baconjinxuve');
   });
+
+  test('Encrypt in text', () => {
+    expect(
+      encryptInText(
+        'jinx uve',
+        'The quick brown fox jumps over the lazy dog',
+        2
+      )
+    ).toEqual('tHe qUiCk broWN fOX jUMPS oVer ThE lAzy Dog');
+    expect(() => encryptInText('abc', 'some short text', 2)).toThrowError(
+      `Text should not contain less letters than encrypted message (${
+        'abc'.length * 5
+      }), please provide more letters.`
+    );
+  });
+  test('Decrypt in text', () => {
+    expect(
+      decryptInText('tHe qUiCk broWN fOX jUMPS oVer ThE lAzy Dog', 2)
+    ).toEqual('jinxuve');
+  });
 });
 
 test('Various', () => {
   expect(encrypt('Abc!', undefined, true)).toEqual('aaaaaaaaabaaaba!');
   expect(encrypt('Abc!', undefined, false)).toEqual('aaaaaaaaabaaaba');
+  expect(
+    encryptInText('abc', 'Find what you love and let it kill you.')
+  ).toEqual('find what yOu loVe and let it kill you.');
+  expect(decryptInText('find what yOu loVe and let it kill you.')).toEqual(
+    'abcaaa'
+  );
   expect(() => encrypt('abc', 3)).toThrowError(
     "Bacon cipher version '3' unknown - please select verson 1 or 2."
   );
