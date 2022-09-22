@@ -7,22 +7,22 @@ TypeScript Crypto Lib.
 
 ## Progress
 
-| Cipher                  | Description                 | Implemented |
-| :---------------------- | :-------------------------- | :---------: |
-| Atbash                  | monoalphabetic substitution |   &#9989;   |
-| Bacon's (v1, v2)        |                             |             |
-| Caesar                  | monoalphabetic substitution |   &#9989;   |
-| M-94 (CSP-488 for Navy) |                             |             |
-| Morse code              | monoalphabetic substitution |   &#9989;   |
-| Polybius square         |                             |             |
-| Porta                   | polyalphabetic substitution |             |
-| Rail Fence              |                             |             |
-| ROT5                    | monoalphabetic substitution |   &#9989;   |
-| ROT13                   | monoalphabetic substitution |   &#9989;   |
-| ROT18                   | monoalphabetic substitution |   &#9989;   |
-| ROT47                   | monoalphabetic substitution |             |
-| Scytale                 |                             |             |
-| Vigenère                | polyalphabetic substitution |   &#9989;   |
+| Cipher                  | Description                  | Implemented |
+| :---------------------- | :--------------------------- | :---------: |
+| Atbash                  | monoalphabetic substitution  |   &#9989;   |
+| Bacon's (v1, v2)        | substitution & steganography |   &#9989;   |
+| Caesar                  | monoalphabetic substitution  |   &#9989;   |
+| M-94 (CSP-488 for Navy) |                              |             |
+| Morse code              | monoalphabetic substitution  |   &#9989;   |
+| Polybius square         |                              |             |
+| Porta                   | polyalphabetic substitution  |             |
+| Rail Fence              |                              |             |
+| ROT5                    | monoalphabetic substitution  |   &#9989;   |
+| ROT13                   | monoalphabetic substitution  |   &#9989;   |
+| ROT18                   | monoalphabetic substitution  |   &#9989;   |
+| ROT47                   | monoalphabetic substitution  |             |
+| Scytale                 | transposition                |   &#9989;   |
+| Vigenère                | polyalphabetic substitution  |   &#9989;   |
 
 ## Development
 
