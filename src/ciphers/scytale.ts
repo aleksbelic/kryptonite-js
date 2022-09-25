@@ -25,7 +25,7 @@ export function encrypt(plaintext: string, columnCount = 4): string {
     cipherTextSubstring.padEnd(rowCount)
   );
 
-  return ciphertextArray.join('').trim();
+  return ciphertextArray.join('').trimEnd();
 }
 
 /**

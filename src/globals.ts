@@ -52,3 +52,20 @@ export const bacon2Map = new Map([
   ['u', 'babaa'], ['v', 'babab'], ['w', 'babba'], ['x', 'babbb'],
   ['y', 'bbaaa'], ['z', 'bbaab']
 ]);
+
+export const portaMap = new Map([
+  //      abcdefghijklmnopqrstuvwxyz
+  ['ab', 'nopqrstuvwxyzabcdefghijklm'],
+  ['cd', 'opqrstuvwxyznmabcdefghijkl'],
+  ['ef', 'pqrstuvwxyznolmabcdefghijk'],
+  ['gh', 'qrstuvwxyznopklmabcdefghij'],
+  ['ij', 'rstuvwxyznopqjklmabcdefghi'],
+  ['kl', 'stuvwxyznopqrijklmabcdefgh'],
+  ['mn', 'tuvwxyznopqrshijklmabcdefg'],
+  ['op', 'uvwxyznopqrstghijklmabcdef'],
+  ['qr', 'vwxyznopqrstufghijklmabcde'],
+  ['st', 'wxyznopqrstuvefghijklmabcd'],
+  ['uv', 'xyznopqrstuvwdefghijklmabc'],
+  ['wx', 'yznopqrstuvwxcdefghijklmab'],
+  ['yz', 'znopqrstuvwxybcdefghijklma']
+]);
