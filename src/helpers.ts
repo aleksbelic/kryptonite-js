@@ -144,3 +144,51 @@ export function checkAlphabet(alphabet: string[]): boolean | never {
 export function getRandomAsciiChar(): string {
   return String.fromCharCode(Math.floor(Math.random() * 95) + 32);
 }
+
+/**
+ * Returns count of existing chars found in provided text.
+ * caseSensitive
+ * ASC, DSC
+ */
+export function getCharCount(
+  text: string
+): Array<{char: string; count: number}> {
+  const charCountArray: Array<{char: string; count: number}> = [];
+  let charFound: boolean;
+  for (const textChar of text) {
+    charFound = false;
+    for (const charCountArrayItem of charCountArray) {
+      if (charCountArrayItem.char === textChar) {
+        charCountArrayItem.count++;
+        charFound = true;
+        break;
+      }
+    }
+    if (!charFound) {
+      charCountArray.push({char: textChar, count: 1});
+    }
+  }
+
+  return charCountArray;
+}
+
+/**
+ * Returns relative frequency of existing chars found in provided text.
+ * caseSensitive
+ * ASC, DSC
+ */
+export function getCharFrequency(
+  text: string
+): Array<{char: string; freq: number}> {
+  const charCountArray = getCharCount(text);
+  const charFrequencyArray: Array<{char: string; freq: number}> = [];
+
+  for (const charCountArrayItem of charCountArray) {
+    charFrequencyArray.push({
+      char: charCountArrayItem.char,
+      freq: charCountArrayItem.count / text.length,
+    });
+  }
+
+  return charFrequencyArray;
+}
