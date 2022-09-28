@@ -1,6 +1,7 @@
 import {ALPHABET_EN, ASCII_PRINTABLE_SPECIAL, DIGITS} from '../src/globals.js';
 import {
   checkAlphabet,
+  getCharCount,
   getMapKeyByValue,
   getRandomAsciiChar,
   getShiftedChar,
@@ -113,5 +114,46 @@ describe('Helper functions', () => {
       }
     }
     expect(randomAsciiChars).toEqual('');
+  });
+
+  test('Get char count from text', () => {
+    expect(getCharCount('Whatever works')).toEqual([
+      {char: 'w', count: 2},
+      {char: 'h', count: 1},
+      {char: 'a', count: 1},
+      {char: 't', count: 1},
+      {char: 'e', count: 2},
+      {char: 'v', count: 1},
+      {char: 'r', count: 2},
+      {char: 'o', count: 1},
+      {char: 'k', count: 1},
+      {char: 's', count: 1},
+    ]);
+    expect(getCharCount('Whatever works', true)).toEqual([
+      {char: 'W', count: 1},
+      {char: 'h', count: 1},
+      {char: 'a', count: 1},
+      {char: 't', count: 1},
+      {char: 'e', count: 2},
+      {char: 'v', count: 1},
+      {char: 'r', count: 2},
+      {char: 'w', count: 1},
+      {char: 'o', count: 1},
+      {char: 'k', count: 1},
+      {char: 's', count: 1},
+    ]);
+    expect(getCharCount('Whatever works', undefined, false)).toEqual([
+      {char: 'w', count: 2},
+      {char: 'h', count: 1},
+      {char: 'a', count: 1},
+      {char: 't', count: 1},
+      {char: 'e', count: 2},
+      {char: 'v', count: 1},
+      {char: 'r', count: 2},
+      {char: ' ', count: 1},
+      {char: 'o', count: 1},
+      {char: 'k', count: 1},
+      {char: 's', count: 1},
+    ]);
   });
 });

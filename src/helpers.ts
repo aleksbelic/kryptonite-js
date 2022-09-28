@@ -147,14 +147,40 @@ export function getRandomAsciiChar(): string {
 
 /**
  * Returns count of existing chars found in provided text.
- * caseSensitive
- * ASC, DSC
+ * @param text
+ * @param [caseSensitive=false] if correct input of upper case and lower case matters
+ * @param [onlyLetters=true] count only letters, skip special characters
+ * @returns count of existing chars found in provided text
+ * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
+ * @example
+ * getCharCount('This is some text.')
+ * returns
+[
+  { char: 't', count: 3 },
+  { char: 'h', count: 1 },
+  { char: 'i', count: 2 },
+  { char: 's', count: 3 },
+  { char: 'o', count: 1 },
+  { char: 'm', count: 1 },
+  { char: 'e', count: 2 },
+  { char: 'x', count: 1 }
+]
  */
 export function getCharCount(
-  text: string
+  text: string,
+  caseSensitive = false,
+  onlyLetters = true
 ): Array<{char: string; count: number}> {
+  if (onlyLetters) {
+    text = text.replace(/[^\p{Letter}]/gu, '');
+  }
+  if (!caseSensitive) {
+    text = text.toLowerCase();
+  }
+
   const charCountArray: Array<{char: string; count: number}> = [];
   let charFound: boolean;
+
   for (const textChar of text) {
     charFound = false;
     for (const charCountArrayItem of charCountArray) {
@@ -174,21 +200,75 @@ export function getCharCount(
 
 /**
  * Returns relative frequency of existing chars found in provided text.
- * caseSensitive
- * ASC, DSC
+ * @param text
+ * @param [caseSensitive=false] if correct input of upper case and lower case matters
+ * @param [onlyLetters=true] count only letters, skip special characters
+ * @returns count of existing chars found in provided text
+ * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
+ * @example
+ * getCharFrequency('This is some text.')
+ * returns
  */
 export function getCharFrequency(
-  text: string
+  text: string,
+  caseSensitive = false,
+  onlyLetters = true
 ): Array<{char: string; freq: number}> {
-  const charCountArray = getCharCount(text);
+  if (onlyLetters) {
+    text = text.replace(/[^\p{Letter}]/gu, '');
+  }
+  if (!caseSensitive) {
+    text = text.toLowerCase();
+  }
+
+  const charCountArray = getCharCount(text, caseSensitive, onlyLetters);
   const charFrequencyArray: Array<{char: string; freq: number}> = [];
 
   for (const charCountArrayItem of charCountArray) {
     charFrequencyArray.push({
       char: charCountArrayItem.char,
-      freq: charCountArrayItem.count / text.length,
+      freq: Number((charCountArrayItem.count / text.length).toFixed(4)),
     });
   }
 
   return charFrequencyArray;
+}
+
+/**
+ * TODO
+ */
+export function sortCharCountArray(
+  charCountArray: Array<{char: string; count: number}>,
+  sortType = 'dsc'
+): Array<{char: string; count: number}> {
+  let sortedCharCountArray: Array<{char: string; count: number}> = [];
+  if (sortType.toLowerCase() === 'dsc') {
+    sortedCharCountArray = charCountArray.sort(
+      (char1, char2) => char2.count - char1.count
+    );
+  } else if (sortType.toLowerCase() === 'asc') {
+    sortedCharCountArray = charCountArray.sort(
+      (char1, char2) => char1.count - char2.count
+    );
+  } else {
+    throw Error(`Invalid param: sort type '${sortType}' unknown.`);
+  }
+
+  return sortedCharCountArray;
+}
+
+/**
+ * TODO
+ * caseSensitive
+ * @param text
+ * @param replacementMap
+ */
+export function replaceChars(
+  text: string,
+  replacementMap: Map<string, string>
+): string {
+  replacementMap.forEach((replacement, original) => {
+    text = text.replaceAll(original, replacement);
+  });
+  return text;
 }

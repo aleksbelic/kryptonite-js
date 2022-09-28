@@ -69,3 +69,21 @@ export const portaMap = new Map([
   ['wx', 'yznopqrstuvwxcdefghijklmab'],
   ['yz', 'znopqrstuvwxybcdefghijklma']
 ]);
+
+
+// relative char frequencies
+export const CHAR_FREQUENCY_EN = [
+  { char: 'a', freq: 0.0817 }, { char: 'b', freq: 0.0150 },
+  { char: 'c', freq: 0.0278 }, { char: 'd', freq: 0.0425 },
+  { char: 'e', freq: 0.1270 }, { char: 'f', freq: 0.0223 },
+  { char: 'g', freq: 0.0202 }, { char: 'h', freq: 0.0609 },
+  { char: 'i', freq: 0.0697 }, { char: 'j', freq: 0.0015 },
+  { char: 'k', freq: 0.0077 }, { char: 'l', freq: 0.0403 },
+  { char: 'm', freq: 0.0241 }, { char: 'n', freq: 0.0675 },
+  { char: 'o', freq: 0.0751 }, { char: 'p', freq: 0.0193 },
+  { char: 'q', freq: 0.0010 }, { char: 'r', freq: 0.0599 },
+  { char: 's', freq: 0.0633 }, { char: 't', freq: 0.0906 },
+  { char: 'u', freq: 0.0276 }, { char: 'v', freq: 0.0098 },
+  { char: 'w', freq: 0.0236 }, { char: 'x', freq: 0.0015 },
+  { char: 'y', freq: 0.0197 }, { char: 'z', freq: 0.0007 }
+]
