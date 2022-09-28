@@ -70,7 +70,6 @@ export const portaMap = new Map([
   ['yz', 'znopqrstuvwxybcdefghijklma']
 ]);
 
-
 // relative char frequencies
 export const CHAR_FREQUENCY_EN = [
   { char: 'a', freq: 0.0817 }, { char: 'b', freq: 0.0150 },

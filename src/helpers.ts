@@ -258,10 +258,15 @@ export function sortCharCountArray(
 }
 
 /**
- * TODO
- * caseSensitive
+ * Replaces all chars found in provided map with their replacement pair.
  * @param text
- * @param replacementMap
+ * @param replacementMap map of replacement pairs
+ * @param caseSensitive // TODO
+ * @returns count of existing chars found in provided text
+ * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
+ * @example
+ * replaceChars('abc', new Map([['a', 'x'], ['b', 'y']]))
+ * returns 'xyc'
  */
 export function replaceChars(
   text: string,
