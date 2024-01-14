@@ -227,7 +227,7 @@ export function getCharFrequency(
   for (const charCountArrayItem of charCountArray) {
     charFrequencyArray.push({
       char: charCountArrayItem.char,
-      freq: Number((charCountArrayItem.count / text.length).toFixed(4)),
+      freq: Number((charCountArrayItem.count / text.length).toFixed(4))
     });
   }
 

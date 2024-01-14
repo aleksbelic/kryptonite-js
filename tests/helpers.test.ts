@@ -6,7 +6,7 @@ import {
   getRandomAsciiChar,
   getShiftedChar,
   getUniqueCharsFromText,
-  isUpperCase,
+  isUpperCase
 } from '../src/helpers.js';
 
 describe('Helper functions', () => {
@@ -21,7 +21,7 @@ describe('Helper functions', () => {
   test('Get map key by value - undefined', () => {
     const testMap: Map<string, string> = new Map([
       ['a', 'alpha'],
-      ['b', 'beta'],
+      ['b', 'beta']
     ]);
     expect(getMapKeyByValue(testMap, 'alpha')).toEqual('a');
     expect(getMapKeyByValue(testMap, 'gama')).toBeUndefined();
@@ -87,7 +87,7 @@ describe('Helper functions', () => {
       ' ',
       'w',
       's',
-      'g',
+      'g'
     ]);
   });
 
@@ -127,7 +127,7 @@ describe('Helper functions', () => {
       {char: 'r', count: 2},
       {char: 'o', count: 1},
       {char: 'k', count: 1},
-      {char: 's', count: 1},
+      {char: 's', count: 1}
     ]);
     expect(getCharCount('Whatever works', true)).toEqual([
       {char: 'W', count: 1},
@@ -140,7 +140,7 @@ describe('Helper functions', () => {
       {char: 'w', count: 1},
       {char: 'o', count: 1},
       {char: 'k', count: 1},
-      {char: 's', count: 1},
+      {char: 's', count: 1}
     ]);
     expect(getCharCount('Whatever works', undefined, false)).toEqual([
       {char: 'w', count: 2},
@@ -153,7 +153,7 @@ describe('Helper functions', () => {
       {char: ' ', count: 1},
       {char: 'o', count: 1},
       {char: 'k', count: 1},
-      {char: 's', count: 1},
+      {char: 's', count: 1}
     ]);
   });
 });
