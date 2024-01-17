@@ -9,7 +9,6 @@ import {isUpperCase} from '../helpers.js';
  * @param [includeForeignChars=true] if unknown char should be included in ciphertext
  * @param alphabet used alphabet
  * @returns ciphertext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * encrypt('My secret msg', 'mykey')
  * // returns 'Yw ciadcd qqs'
@@ -64,7 +63,6 @@ export function encrypt(
  * @param [includeForeignChars=true] if unknown char should be included in plaintext
  * @param alphabet used alphabet
  * @returns plaintext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * decrypt('Yw ciadcd qqs', 'mykey')
  * // returns 'My secret msg'

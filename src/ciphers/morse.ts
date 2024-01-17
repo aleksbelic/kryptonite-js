@@ -8,7 +8,6 @@ import {getMapKeyByValue} from '../helpers.js';
  * @param [long='-'] character used for long mark
  * @param [space='/'] character used for spacing between the words
  * @returns ciphertext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * encrypt('abc')
  * //returns '.- -... -.-.'
@@ -59,7 +58,6 @@ export function encrypt(
  * @param [long='-'] character used for long mark
  * @param [space='/'] character used for spacing between the words
  * @returns plaintext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * decrypt('.- -... -.-.')
  * // returns 'abc'

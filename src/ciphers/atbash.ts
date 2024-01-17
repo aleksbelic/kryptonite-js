@@ -8,7 +8,6 @@ import {checkAlphabet, getShiftedChar, isUpperCase} from '../helpers.js';
  * @param [includeForeignChars=true] if unknown char should be included in ciphertext
  * @param [alphabet=ALPHABET_EN] alphabet used for encryption process
  * @returns ciphertext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * encrypt('abc')
  * // returns 'zyx'
@@ -56,7 +55,6 @@ export function encrypt(
  * @param [includeForeignChars=true] if unknown char should be included in plaintext
  * @param [alphabet=ALPHABET_EN] alphabet used for decryption process
  * @returns plaintext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * decrypt('zyx')
  * // returns 'abc'

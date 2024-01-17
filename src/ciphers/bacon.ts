@@ -7,7 +7,6 @@ import {getMapKeyByValue, isUpperCase} from '../helpers.js';
  * @param [version=2] cipher version (1 or 2). 1st version uses the same code for letters 'i' & 'j' as well as for 'u' & v, while the 2nd version has unique code for each letter.
  * @param [includeForeignChars=true] if unknown char should be included in ciphertext
  * @returns ciphertext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * encrypt('abc')
  * // returns 'aaaaaaaaabaaaba'
@@ -50,7 +49,6 @@ export function encrypt(
  * @param ciphertext text to be decrypted
  * @param [version=2] cipher version (1 or 2). 1st version uses the same code for letters 'i' & 'j' as well as for 'u' & v, while the 2nd version has unique code for each letter.
  * @returns plaintext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * decrypt('aaaaaaaaabaaaba')
  * // returns 'abc'
@@ -92,7 +90,6 @@ export function decrypt(ciphertext: string, version = 2) {
  * @param text text used to hide encrypted message
  * @param [version=2] cipher version (1 or 2). 1st version uses the same code for letters 'i' & 'j' as well as for 'u' & v, while the 2nd version has unique code for each letter.
  * @returns specified text containing encrypted message
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * encryptInText('abc', 'Find what you love and let it kill you.')
  * // returns 'find what yOu loVe and let it kill you.'
@@ -138,7 +135,6 @@ export function encryptInText(
  * @param text text that contains hidden, encrypted message
  * @param [version=2] cipher version (1 or 2). 1st version uses the same code for letters 'i' & 'j' as well as for 'u' & v, while the 2nd version has unique code for each letter.
  * @returns plaintext hidden in specified text
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * decryptInText('find what yOu loVe and let it kill you.', 2)
  * // returns 'abcaaa'
@@ -165,7 +161,6 @@ export function encryptInRandomText() {
  * Checks if provided Bacon's cipher verion is valid.
  * @param version cipher version
  * @returns true if provided version is valid, throws error if invalid
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  */
 function checkVersion(version: number): boolean | never {
   if ([1, 2].indexOf(version) === -1) {

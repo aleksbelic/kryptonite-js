@@ -6,7 +6,6 @@ import * as caesar from '../caesar.js';
  * @param [caseSensitive=true] if correct input of upper case and lower case matters
  * @param [includeForeignChars=true] if unknown char should be included in ciphertext
  * @returns ciphertext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * encrypt('abc')
  * // returns 'nop'
@@ -33,7 +32,6 @@ export function encrypt(
  * @param [caseSensitive=true] if correct input of upper case and lower case matters
  * @param [includeForeignChars=true] if unknown char should be included in plaintext
  * @returns plaintext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * decrypt('nop')
  * // returns 'abc'

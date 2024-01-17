@@ -9,7 +9,6 @@ import {isUpperCase} from '../../helpers.js';
  * @param [caseSensitive=true] if correct input of upper case and lower case matters
  * @param [includeForeignChars=true] if unknown char should be included in ciphertext
  * @returns ciphertext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * encrypt('123aBc')
  * // returns '678nOp'
@@ -49,7 +48,6 @@ export function encrypt(
  * @param [caseSensitive=true] if correct input of upper case and lower case matters
  * @param [includeForeignChars=true] if unknown char should be included in plaintext
  * @returns plaintext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * decrypt('678nOp')
  * // returns '123aBc'

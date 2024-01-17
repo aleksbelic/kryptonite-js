@@ -6,7 +6,6 @@ import * as caesar from '../caesar.js';
  * @param plaintext text to be encrypted
  * @param [includeCharsOtherThanNumbers=true] if chars other than numbers should be included in ciphertext
  * @returns ciphertext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * encrypt('1234567890')
  * // returns '6789012345'
@@ -33,7 +32,6 @@ export function encrypt(
  * @param ciphertext text to be decrypted
  * @param [includeCharsOtherThanNumbers=true] if chars other than numbers should be included in plaintext
  * @returns plaintext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * decrypt('6789012345');
  * // returns '1234567890'

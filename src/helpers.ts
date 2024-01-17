@@ -4,7 +4,6 @@ import {ALPHABET_EN} from './globals.js';
  * Checks if given char or string is upper case.
  * @param text
  * @returns true if given char or string is upper case
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * isUpperCase('a');
  * // returns false
@@ -20,7 +19,6 @@ export function isUpperCase(text: string): boolean {
  * @param map
  * @param value value whose key we're looking for
  * @returns key
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * getMapKeyByValue(new Map([['a', 'alpha'],['b', 'beta']]),'alpha')
  * // returns 'a'
@@ -42,7 +40,6 @@ export function getMapKeyByValue(
  * @param text
  * @param [caseSensitive=false] if upper/lower case makes difference
  * @returns array of unique chars
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * getUniqueCharsFromText('abba');
  * // returns ['a', 'b']
@@ -67,7 +64,6 @@ export function getUniqueCharsFromText(
  * @param shift number of left or right alphabet rotations
  * @param [alphabet=ALPHABET_EN] used alphabet
  * @returns shifted character
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * getShiftedChar('a', 1)
  * // returns 'b'
@@ -100,7 +96,6 @@ export function getShiftedChar(
  * Checks if user defined alphabet is valid.
  * @param alphabet user defined alphabet being checked
  * @returns true
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  */
 export function checkAlphabet(alphabet: string[]): boolean | never {
   if (!Array.isArray(alphabet)) {
@@ -136,7 +131,6 @@ export function checkAlphabet(alphabet: string[]): boolean | never {
 /**
  * Returns random printable ASCII char.
  * @returns random printable ASCII char
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * getRandomAsciiChar()
  * returns 'k'
@@ -151,7 +145,6 @@ export function getRandomAsciiChar(): string {
  * @param [caseSensitive=false] if correct input of upper case and lower case matters
  * @param [onlyLetters=true] count only letters, skip special characters
  * @returns count of existing chars found in provided text
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * getCharCount('This is some text.')
  * returns
@@ -204,7 +197,6 @@ export function getCharCount(
  * @param [caseSensitive=false] if correct input of upper case and lower case matters
  * @param [onlyLetters=true] count only letters, skip special characters
  * @returns count of existing chars found in provided text
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * getCharFrequency('This is some text.')
  * returns
@@ -263,7 +255,6 @@ export function sortCharCountArray(
  * @param replacementMap map of replacement pairs
  * @param caseSensitive // TODO
  * @returns count of existing chars found in provided text
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * replaceChars('abc', new Map([['a', 'x'], ['b', 'y']]))
  * returns 'xyc'

@@ -3,7 +3,6 @@
  * @param plaintext text to be encrypted
  * @param [columnCount=4] number of text columns created by wounding plaintext around a scytale
  * @returns ciphertext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * encrypt('abcdef', 2)
  * // returns 'acebdf'
@@ -33,7 +32,6 @@ export function encrypt(plaintext: string, columnCount = 4): string {
  * @param ciphertext text to be decrypted
  * @param columnCount [columnCount=4] number of text columns created by wounding ciphertext around a scytale
  * @returns plaintext
- * @author Aleksandar Belic Aleksanchez <aleks.belic@gmail.com>
  * @example
  * decrypt('acebdf', 2)
  * // returns 'abcdef'
