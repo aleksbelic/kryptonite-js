@@ -3,9 +3,9 @@
 ![testing workflow](https://github.com/aleksbelic/kryptonite-core/actions/workflows/tests.yml/badge.svg)
 [![GitHub license](https://img.shields.io/github/license/aleksbelic/kryptonite-core)](https://raw.githubusercontent.com/aleksbelic/kryptonite-core/release/1.0.0/LICENSE)
 
-TypeScript Crypto Lib.
+TypeScript cryptographic library.
 
-## Progress
+## Content
 
 | Cipher                  | Description                  | Implemented |
 | :---------------------- | :--------------------------- | :---------: |
@@ -60,3 +60,12 @@ $ npx eslint .
 ```
 
 Linting config can be found in `.eslintrc.json`.
+
+## Testing
+
+Unit tests are run by [Jest](https://jestjs.io/) testing framework.
+Test results also include test-coverage.
+
+```
+$ npm run test
+```
