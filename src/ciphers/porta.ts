@@ -24,13 +24,18 @@ import {isUpperCase} from '../helpers.js';
  */
 export function encrypt(
   plaintext: string,
-  key: string,
-  caseSensitive = true,
-  includeForeignChars = true
-): string {
-  if (key.length === 0) {
-    throw Error('Invalid param: key cannot be an empty string.');
+  options: {
+    key: string;
+    caseSensitive?: boolean;
+    includeForeignChars?: boolean;
   }
+): string {
+  if (options.key === '')
+    throw Error('Invalid param: key cannot be an empty string.');
+
+  const caseSensitive = options.caseSensitive ?? true;
+  const includeForeignChars = options.includeForeignChars ?? true;
+
   if (!includeForeignChars) {
     plaintext = plaintext.replace(/[^a-zA-Z]/g, '');
   }
@@ -42,7 +47,7 @@ export function encrypt(
 
   Array.from(plaintext).forEach((currentChar, index) => {
     substitutionMapAlphabet = currentCharEncrypted = undefined;
-    keyChar = key.charAt(index % key.length);
+    keyChar = options.key.charAt(index % options.key.length);
 
     for (const mapKey of portaMap.keys()) {
       if (mapKey.indexOf(keyChar.toLowerCase()) !== -1) {
@@ -101,9 +106,15 @@ export function encrypt(
  */
 export function decrypt(
   ciphertext: string,
-  key: string,
-  caseSensitive = true,
-  includeForeignChars = true
+  options: {
+    key: string;
+    caseSensitive?: boolean;
+    includeForeignChars?: boolean;
+  }
 ): string {
-  return encrypt(ciphertext, key, caseSensitive, includeForeignChars);
+  return encrypt(ciphertext, {
+    key: options.key,
+    caseSensitive: options.caseSensitive ?? true,
+    includeForeignChars: options.includeForeignChars ?? true
+  });
 }
