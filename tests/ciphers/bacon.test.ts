@@ -1,3 +1,4 @@
+import {describe, expect, test} from '@jest/globals';
 import {
   encrypt,
   decrypt,
@@ -47,7 +48,7 @@ describe('Bacon cipher v1', () => {
         1
       )
     ).toEqual('tHe quiCk broWN foX jUmPS ovER The LAzy Dog');
-    expect(() => encryptInText('abc', 'some short text', 1)).toThrowError(
+    expect(() => encryptInText('abc', 'some short text', 1)).toThrow(
       `Text should not contain less letters than encrypted message (${
         'abc'.length * 5
       }), please provide more letters.`
@@ -112,7 +113,7 @@ describe('Bacon cipher v2', () => {
         2
       )
     ).toEqual('tHe qUiCk broWN fOX jUMPS oVer ThE lAzy Dog');
-    expect(() => encryptInText('abc', 'some short text', 2)).toThrowError(
+    expect(() => encryptInText('abc', 'some short text', 2)).toThrow(
       `Text should not contain less letters than encrypted message (${
         'abc'.length * 5
       }), please provide more letters.`
@@ -134,7 +135,7 @@ test('Various', () => {
   expect(decryptInText('find what yOu loVe and let it kill you.')).toEqual(
     'abcaaa'
   );
-  expect(() => encrypt('abc', 3)).toThrowError(
+  expect(() => encrypt('abc', 3)).toThrow(
     "Bacon cipher version '3' unknown - please select verson 1 or 2."
   );
 });

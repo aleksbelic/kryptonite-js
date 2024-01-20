@@ -1,3 +1,4 @@
+import {describe, expect, test} from '@jest/globals';
 import {encrypt, decrypt} from '../../src/ciphers/scytale.js';
 import {ALPHABET_EN} from '../../src/globals.js';
 
@@ -21,7 +22,7 @@ describe('Scytale cipher', () => {
     expect(encrypt([...ALPHABET_EN].join(''), 5)).toEqual(
       'afkpuzbglqv chmrw dinsx ejoty'
     );
-    expect(() => encrypt('abcdef', 0)).toThrowError(
+    expect(() => encrypt('abcdef', 0)).toThrow(
       'Invalid param: number of columns must be a positive integer.'
     );
   });
@@ -44,10 +45,10 @@ describe('Scytale cipher', () => {
     expect(decrypt('afkpuzbglqv chmrw dinsx ejoty', 5)).toEqual(
       [...ALPHABET_EN].join('')
     );
-    expect(() => decrypt('abcdef', 0)).toThrowError(
+    expect(() => decrypt('abcdef', 0)).toThrow(
       'Invalid param: number of columns must be a positive integer.'
     );
-    expect(() => decrypt('', 1)).toThrowError(
+    expect(() => decrypt('', 1)).toThrow(
       'Invalid param: no ciphertext provided.'
     );
   });

@@ -1,3 +1,4 @@
+import {describe, expect, test} from '@jest/globals';
 import {encrypt, decrypt} from '../../../src/ciphers/rot/rot13.js';
 
 describe('ROT13 cipher - encryption', () => {

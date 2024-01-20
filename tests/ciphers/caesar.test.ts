@@ -1,4 +1,10 @@
-import {encrypt, decrypt} from '../../src/ciphers/caesar.js';
+import {describe, expect, jest, test} from '@jest/globals';
+import {
+  encrypt,
+  decrypt,
+  printShift,
+  printAllShifts
+} from '../../src/ciphers/caesar.js';
 import {ALPHABET_SR_CYR} from '../../src/globals.js';
 
 describe('Caesar cipher - encryption', () => {
@@ -24,12 +30,12 @@ describe('Caesar cipher - encryption', () => {
   });
 
   test('Custom alphabet', () => {
-    expect(() => encrypt('a', 1, undefined, undefined, ['a'])).toThrowError(
-      'Invalid alphabet: alphabet needs be at least 2 characters long.'
+    expect(() => encrypt('a', 1, undefined, undefined, ['a'])).toThrow(
+      'Invalid alphabet: it needs to be at least 2 characters long.'
     );
     expect(() =>
       encrypt('abc', 1, undefined, undefined, ['c', 'b', 'a', 'c', 'd'])
-    ).toThrowError('Invalid alphabet: alphabet must not contain duplicates.');
+    ).toThrow('Invalid alphabet: it must not contain duplicates.');
     expect(
       encrypt(
         'Ако не почнеш, нећеш ни завршити',
@@ -77,12 +83,12 @@ describe('Caesar cipher - decryption', () => {
   });
 
   test('Custom alphabet', () => {
-    expect(() => decrypt('a', 1, undefined, undefined, ['a'])).toThrowError(
-      'Invalid alphabet: alphabet needs be at least 2 characters long.'
+    expect(() => decrypt('a', 1, undefined, undefined, ['a'])).toThrow(
+      'Invalid alphabet: it needs to be at least 2 characters long.'
     );
     expect(() =>
       decrypt('bcd', 1, undefined, undefined, ['c', 'b', 'a', 'c', 'd'])
-    ).toThrowError('Invalid alphabet: alphabet must not contain duplicates.');
+    ).toThrow('Invalid alphabet: it must not contain duplicates.');
     expect(
       decrypt(
         'Јтч хњ џчжхњи, хњвњи хр пјлширбр',
@@ -101,5 +107,35 @@ describe('Caesar cipher - decryption', () => {
     expect(decrypt('Qjen wx onja xo rln lxum KNNA', 9)).toEqual(
       'Have no fear of ice cold BEER'
     );
+  });
+});
+
+describe('Caesar cipher - console.log output', () => {
+  test('Print shift', () => {
+    const consoleLogSpy = jest.spyOn(global.console, 'log');
+
+    printShift('abc', 1);
+
+    expect(consoleLogSpy).toHaveBeenCalled();
+    expect(consoleLogSpy).toHaveBeenCalledTimes(1);
+    expect(consoleLogSpy).toHaveBeenCalledWith('bcd');
+    expect(consoleLogSpy.mock.calls).toContainEqual(['bcd']);
+
+    consoleLogSpy.mockRestore();
+  });
+
+  test('Print all shift', () => {
+    const consoleLogSpy = jest.spyOn(global.console, 'log');
+
+    printAllShifts('a', undefined, undefined, ['a', 'b', 'c']);
+
+    expect(consoleLogSpy).toHaveBeenCalled();
+    expect(consoleLogSpy).toHaveBeenCalledTimes(3);
+    expect(consoleLogSpy).toHaveBeenNthCalledWith(1, 'a');
+    expect(consoleLogSpy).toHaveBeenNthCalledWith(2, 'b');
+    expect(consoleLogSpy).toHaveBeenNthCalledWith(3, 'c');
+    expect(consoleLogSpy.mock.calls).toEqual([['a'], ['b'], ['c']]);
+
+    consoleLogSpy.mockRestore();
   });
 });

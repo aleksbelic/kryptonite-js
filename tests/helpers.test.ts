@@ -1,3 +1,4 @@
+import {describe, expect, test} from '@jest/globals';
 import {ALPHABET_EN, ASCII_PRINTABLE_SPECIAL, DIGITS} from '../src/globals.js';
 import {
   checkAlphabet,
@@ -31,38 +32,38 @@ describe('Helper functions', () => {
     expect(() =>
       // @ts-expect-error - function param with false type
       getMapKeyByValue('abc', 'alpha')
-    ).toThrowError('Invalid param: please provide an intance of Map.');
+    ).toThrow('Invalid param: please provide an intance of Map.');
   });
 
   test('Check alphabet', () => {
     // @ts-expect-error - function param with false type
-    expect(() => checkAlphabet(true)).toThrowError(
+    expect(() => checkAlphabet(true)).toThrow(
       'Invalid alphabet: please provide an array of single-letter chars.'
     );
     // @ts-expect-error - function param with false type
-    expect(() => checkAlphabet([1, 2])).toThrowError(
-      'Invalid alphabet: alphabet should contain only single-letter chars.'
+    expect(() => checkAlphabet([1, 2])).toThrow(
+      'Invalid alphabet: it should contain only single-letter chars.'
     );
-    expect(() => checkAlphabet([])).toThrowError(
-      'Invalid alphabet: alphabet needs be at least 2 characters long.'
+    expect(() => checkAlphabet([])).toThrow(
+      'Invalid alphabet: it needs to be at least 2 characters long.'
     );
-    expect(() => checkAlphabet([''])).toThrowError(
-      'Invalid alphabet: alphabet needs be at least 2 characters long.'
+    expect(() => checkAlphabet([''])).toThrow(
+      'Invalid alphabet: it needs to be at least 2 characters long.'
     );
-    expect(() => checkAlphabet(['', ''])).toThrowError(
-      'Invalid alphabet: alphabet should contain only single-letter chars.'
+    expect(() => checkAlphabet(['', ''])).toThrow(
+      'Invalid alphabet: it should contain only single-letter chars.'
     );
-    expect(() => checkAlphabet(['a'])).toThrowError(
-      'Invalid alphabet: alphabet needs be at least 2 characters long.'
+    expect(() => checkAlphabet(['a'])).toThrow(
+      'Invalid alphabet: it needs to be at least 2 characters long.'
     );
-    expect(() => checkAlphabet(['a', 'a'])).toThrowError(
-      'Invalid alphabet: alphabet must not contain duplicates.'
+    expect(() => checkAlphabet(['a', 'a'])).toThrow(
+      'Invalid alphabet: it must not contain duplicates.'
     );
-    expect(() => checkAlphabet(['a', 'A'])).toThrowError(
-      'Invalid alphabet: alphabet must not contain duplicates.'
+    expect(() => checkAlphabet(['a', 'A'])).toThrow(
+      'Invalid alphabet: it must not contain duplicates.'
     );
-    expect(() => checkAlphabet([' ', 'x'])).toThrowError(
-      'Invalid alphabet: alphabet should contain only single-letter chars.'
+    expect(() => checkAlphabet([' ', 'x'])).toThrow(
+      'Invalid alphabet: it should contain only single-letter chars.'
     );
     expect(() => checkAlphabet(['a', 'b'])).toBeTruthy();
   });

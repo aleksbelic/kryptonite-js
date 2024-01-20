@@ -1,3 +1,4 @@
+import {describe, expect, test} from '@jest/globals';
 import {decrypt, encrypt} from '../../src/ciphers/rail-fence';
 
 describe('Rail fence', () => {

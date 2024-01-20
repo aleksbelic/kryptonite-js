@@ -1,3 +1,4 @@
+import {describe, expect, test} from '@jest/globals';
 import {encrypt, decrypt} from '../../src/ciphers/morse';
 
 describe('Morse code - encryption', () => {
@@ -14,13 +15,13 @@ describe('Morse code - encryption', () => {
   });
 
   test('Unknown char', () => {
-    expect(() => encrypt('aßc')).toThrowError(
+    expect(() => encrypt('aßc')).toThrow(
       "Character 'ß' is not defined in Morse code."
     );
   });
 
   test('Non-unique short mark, long mark or spacing.', () => {
-    expect(() => encrypt('abc abc', 'x', 'x', 'y')).toThrowError(
+    expect(() => encrypt('abc abc', 'x', 'x', 'y')).toThrow(
       'Please use different characters for short mark, long mark & spacing between the words.'
     );
   });
@@ -53,13 +54,13 @@ describe('Morse code - encryption', () => {
 
 describe('Morse code - decryption', () => {
   test('Non-unique short mark, long mark or spacing.', () => {
-    expect(() => decrypt('x= =xxx =x=x', 'x', '=', 'x')).toThrowError(
+    expect(() => decrypt('x= =xxx =x=x', 'x', '=', 'x')).toThrow(
       'Please use different characters for short mark, long mark & spacing between the words.'
     );
   });
 
   test('Unknown char', () => {
-    expect(() => decrypt('.- -... -.-.-.-.-')).toThrowError(
+    expect(() => decrypt('.- -... -.-.-.-.-')).toThrow(
       "Character '-.-.-.-.-' could not be decrypted."
     );
   });

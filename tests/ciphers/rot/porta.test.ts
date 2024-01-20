@@ -1,3 +1,4 @@
+import {describe, expect, test} from '@jest/globals';
 import {encrypt, decrypt} from '../../../src/ciphers/porta.js';
 
 describe('Porta cipher', () => {
@@ -8,10 +9,10 @@ describe('Porta cipher', () => {
     expect(encrypt('aB_c', 'key')).toEqual('sQ_u');
     expect(encrypt('aB_c', 'key', undefined, false)).toEqual('sQo');
     expect(encrypt('aB_c', 'key', false, false)).toEqual('sqo');
-    expect(() => encrypt('abc', '')).toThrowError(
+    expect(() => encrypt('abc', '')).toThrow(
       'Invalid param: key cannot be an empty string.'
     );
-    expect(() => encrypt('abc', '_')).toThrowError(
+    expect(() => encrypt('abc', '_')).toThrow(
       `No substitution alphabet provided for key char '_'.`
     );
   });
@@ -23,10 +24,10 @@ describe('Porta cipher', () => {
     expect(decrypt('sQ_u', 'key')).toEqual('aB_c');
     expect(decrypt('sQ_o', 'key', undefined, false)).toEqual('aBc');
     expect(decrypt('sQ_o', 'key', false, false)).toEqual('abc');
-    expect(() => decrypt('sqo', '')).toThrowError(
+    expect(() => decrypt('sqo', '')).toThrow(
       'Invalid param: key cannot be an empty string.'
     );
-    expect(() => decrypt('sqo', '_')).toThrowError(
+    expect(() => decrypt('sqo', '_')).toThrow(
       `No substitution alphabet provided for key char '_'.`
     );
   });

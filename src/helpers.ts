@@ -103,11 +103,11 @@ export function checkAlphabet(alphabet: string[]): boolean | never {
       'Invalid alphabet: please provide an array of single-letter chars.'
     );
   }
+
   if (alphabet.length < 2) {
-    throw Error(
-      'Invalid alphabet: alphabet needs be at least 2 characters long.'
-    );
+    throw Error('Invalid alphabet: it needs to be at least 2 characters long.');
   }
+
   for (const char of alphabet) {
     if (
       typeof char !== 'string' ||
@@ -115,16 +115,18 @@ export function checkAlphabet(alphabet: string[]): boolean | never {
       char.length !== char.trim().length
     ) {
       throw Error(
-        'Invalid alphabet: alphabet should contain only single-letter chars.'
+        'Invalid alphabet: it should contain only single-letter chars.'
       );
     }
   }
+
   if (
     alphabet.toString().toLowerCase() !==
     [...new Set(alphabet.map(char => char.toLowerCase()))].toString()
   ) {
-    throw Error('Invalid alphabet: alphabet must not contain duplicates.');
+    throw Error('Invalid alphabet: it must not contain duplicates.');
   }
+
   return true;
 }
 
@@ -133,7 +135,7 @@ export function checkAlphabet(alphabet: string[]): boolean | never {
  * @returns random printable ASCII char
  * @example
  * getRandomAsciiChar()
- * returns 'k'
+ * // returns 'k'
  */
 export function getRandomAsciiChar(): string {
   return String.fromCharCode(Math.floor(Math.random() * 95) + 32);
@@ -147,7 +149,7 @@ export function getRandomAsciiChar(): string {
  * @returns count of existing chars found in provided text
  * @example
  * getCharCount('This is some text.')
- * returns
+ * // returns
 [
   { char: 't', count: 3 },
   { char: 'h', count: 1 },
@@ -167,6 +169,7 @@ export function getCharCount(
   if (onlyLetters) {
     text = text.replace(/[^\p{Letter}]/gu, '');
   }
+
   if (!caseSensitive) {
     text = text.toLowerCase();
   }
@@ -209,12 +212,13 @@ export function getCharFrequency(
   if (onlyLetters) {
     text = text.replace(/[^\p{Letter}]/gu, '');
   }
+
   if (!caseSensitive) {
     text = text.toLowerCase();
   }
 
   const charCountArray = getCharCount(text, caseSensitive, onlyLetters);
-  const charFrequencyArray: Array<{char: string; freq: number}> = [];
+  const charFrequencyArray: {char: string; freq: number}[] = [];
 
   for (const charCountArrayItem of charCountArray) {
     charFrequencyArray.push({
@@ -257,7 +261,7 @@ export function sortCharCountArray(
  * @returns count of existing chars found in provided text
  * @example
  * replaceChars('abc', new Map([['a', 'x'], ['b', 'y']]))
- * returns 'xyc'
+ * // returns 'xyc'
  */
 export function replaceChars(
   text: string,
@@ -266,5 +270,6 @@ export function replaceChars(
   replacementMap.forEach((replacement, original) => {
     text = text.replaceAll(original, replacement);
   });
+
   return text;
 }

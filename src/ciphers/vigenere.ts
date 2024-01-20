@@ -19,14 +19,18 @@ import {isUpperCase} from '../helpers.js';
  */
 export function encrypt(
   plaintext: string,
-  key: string,
-  caseSensitive = true,
-  includeForeignChars = true,
-  alphabet = ALPHABET_EN
-): string {
-  if (key === '') {
-    throw Error('No key provided.');
+  options: {
+    key: string;
+    caseSensitive?: boolean;
+    includeForeignChars?: boolean;
+    alphabet?: string[];
   }
+): string {
+  if (options.key === '') throw Error('No key provided.');
+
+  const caseSensitive = options.caseSensitive ?? true;
+  const includeForeignChars = options.includeForeignChars ?? true;
+  const alphabet = options.alphabet ?? ALPHABET_EN;
 
   let ciphertext = '',
     currentChar: string,
@@ -44,7 +48,7 @@ export function encrypt(
     currentCharEncrypted =
       alphabet[
         (alphabet.indexOf(currentChar.toLowerCase()) +
-          alphabet.indexOf(key[j % key.length])) %
+          alphabet.indexOf(options.key[j % options.key.length])) %
           alphabet.length
       ];
     ciphertext +=
@@ -52,6 +56,7 @@ export function encrypt(
         ? currentCharEncrypted.toUpperCase()
         : currentCharEncrypted;
   }
+
   return ciphertext;
 }
 
@@ -73,14 +78,18 @@ export function encrypt(
  */
 export function decrypt(
   ciphertext: string,
-  key: string,
-  caseSensitive = true,
-  includeForeignChars = true,
-  alphabet = ALPHABET_EN
-): string {
-  if (key === '') {
-    throw Error('No key provided.');
+  options: {
+    key: string;
+    caseSensitive?: boolean;
+    includeForeignChars?: boolean;
+    alphabet?: string[];
   }
+): string {
+  if (options.key === '') throw Error('No key provided.');
+
+  const caseSensitive = options.caseSensitive ?? true;
+  const includeForeignChars = options.includeForeignChars ?? true;
+  const alphabet = options.alphabet ?? ALPHABET_EN;
 
   let plaintext = '',
     currentChar: string,
@@ -98,7 +107,7 @@ export function decrypt(
     }
     currentCharDecryptedIndex =
       alphabet.indexOf(currentChar.toLowerCase()) -
-      alphabet.indexOf(key[j % key.length]);
+      alphabet.indexOf(options.key[j % options.key.length]);
     currentCharDecrypted =
       alphabet[(currentCharDecryptedIndex + alphabet.length) % alphabet.length];
     plaintext +=
@@ -106,5 +115,6 @@ export function decrypt(
         ? currentCharDecrypted.toUpperCase()
         : currentCharDecrypted;
   }
+
   return plaintext;
 }
