@@ -1,5 +1,5 @@
 import {describe, expect, test} from '@jest/globals';
-import {ALPHABET_EN, ASCII_PRINTABLE_SPECIAL, DIGITS} from '../src/globals.js';
+import {ALPHABET_EN, ASCII_PRINTABLE_SPECIAL, DIGITS} from '../src/globals';
 import {
   checkAlphabet,
   getCharCount,
@@ -8,7 +8,7 @@ import {
   getShiftedChar,
   getUniqueCharsFromText,
   isUpperCase
-} from '../src/helpers.js';
+} from '../src/helpers';
 
 describe('Helper functions', () => {
   test('Is upper case', () => {

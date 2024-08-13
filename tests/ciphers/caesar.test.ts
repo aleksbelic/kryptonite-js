@@ -4,8 +4,8 @@ import {
   decrypt,
   printShift,
   printAllShifts
-} from '../../src/ciphers/caesar.js';
-import {ALPHABET_SR_CYR} from '../../src/globals.js';
+} from '../../src/ciphers/caesar';
+import {ALPHABET_SR_CYR} from '../../src/globals';
 
 describe('Caesar cipher - encryption', () => {
   test('Shift', () => {

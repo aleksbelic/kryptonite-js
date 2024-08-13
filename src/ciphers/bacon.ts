@@ -1,5 +1,5 @@
-import {bacon1Map, bacon2Map} from '../globals.js';
-import {getMapKeyByValue, isUpperCase} from '../helpers.js';
+import {bacon1Map, bacon2Map} from '../globals';
+import {getMapKeyByValue, isUpperCase} from '../helpers';
 
 /**
  * [Bacon's cipher](https://en.wikipedia.org/wiki/Bacon%27s_cipher) encryption.

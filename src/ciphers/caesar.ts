@@ -1,5 +1,5 @@
-import {ALPHABET_EN} from '../globals.js';
-import {checkAlphabet, getShiftedChar, isUpperCase} from '../helpers.js';
+import {ALPHABET_EN} from '../globals';
+import {checkAlphabet, getShiftedChar, isUpperCase} from '../helpers';
 
 /**
  * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) encryption.
@@ -80,7 +80,6 @@ export function decrypt(
   includeForeignChars = true,
   alphabet = ALPHABET_EN
 ): string {
-  encrypt;
   return encrypt(
     ciphertext,
     alphabet.length - shift,

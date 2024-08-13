@@ -1,5 +1,5 @@
-import {ALPHABET_EN, portaMap} from '../globals.js';
-import {isUpperCase} from '../helpers.js';
+import {ALPHABET_EN, portaMap} from '../globals';
+import {isUpperCase} from '../helpers';
 
 /**
  * [Porta cipher](http://practicalcryptography.com/ciphers/porta-cipher) encryption.

@@ -1,5 +1,5 @@
 import {describe, expect, test} from '@jest/globals';
-import {encrypt, decrypt} from '../../../src/ciphers/porta.js';
+import {encrypt, decrypt} from '../../../src/ciphers/porta';
 
 describe('Porta cipher', () => {
   test('Encryption', () => {

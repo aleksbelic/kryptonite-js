@@ -1,5 +1,5 @@
 import {describe, expect, test} from '@jest/globals';
-import {encrypt, decrypt} from '../../../src/ciphers/rot/rot5.js';
+import {encrypt, decrypt} from '../../../src/ciphers/rot/rot5';
 
 describe('ROT5 cipher - encryption', () => {
   test('Shift', () => {

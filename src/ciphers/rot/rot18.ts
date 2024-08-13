@@ -1,7 +1,7 @@
-import * as rot5 from './rot5.js';
-import * as rot13 from './rot13.js';
-import {ALPHABET_EN, DIGITS} from '../../globals.js';
-import {isUpperCase} from '../../helpers.js';
+import * as rot5 from './rot5';
+import * as rot13 from './rot13';
+import {ALPHABET_EN, DIGITS} from '../../globals';
+import {isUpperCase} from '../../helpers';
 
 /**
  * Variant of [ROT13 cipher](https://en.wikipedia.org/wiki/ROT13) encryption that applies to both digits and letters.

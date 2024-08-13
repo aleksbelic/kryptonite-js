@@ -4,7 +4,7 @@ import {
   decrypt,
   encryptInText,
   decryptInText
-} from '../../src/ciphers/bacon.js';
+} from '../../src/ciphers/bacon';
 
 describe('Bacon cipher v1', () => {
   test('Encryption', () => {

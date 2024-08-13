@@ -1,5 +1,5 @@
-import {morseCodeMap} from '../globals.js';
-import {getMapKeyByValue} from '../helpers.js';
+import {morseCodeMap} from '../globals';
+import {getMapKeyByValue} from '../helpers';
 
 /**
  * [Morse code](https://en.wikipedia.org/wiki/Morse_code) encryption.

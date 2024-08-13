@@ -3,4 +3,3 @@ node_modules/
 dist/
 coverage/
 src/globals.ts
-dist/src/globals.js

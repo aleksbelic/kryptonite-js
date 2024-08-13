@@ -1,6 +1,6 @@
 import {describe, expect, test} from '@jest/globals';
-import {encrypt, decrypt} from '../../src/ciphers/scytale.js';
-import {ALPHABET_EN} from '../../src/globals.js';
+import {encrypt, decrypt} from '../../src/ciphers/scytale';
+import {ALPHABET_EN} from '../../src/globals';
 
 describe('Scytale cipher', () => {
   test('Encryption', () => {

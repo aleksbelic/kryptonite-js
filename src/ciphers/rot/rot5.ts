@@ -1,5 +1,5 @@
-import {DIGITS} from '../../globals.js';
-import * as caesar from '../caesar.js';
+import {DIGITS} from '../../globals';
+import * as caesar from '../caesar';
 
 /**
  * Variant of [ROT13 cipher](https://en.wikipedia.org/wiki/ROT13) encryption that applies to numeric digits.

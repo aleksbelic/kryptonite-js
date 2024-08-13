@@ -1,5 +1,5 @@
-import {ALPHABET_EN} from '../globals.js';
-import {isUpperCase} from '../helpers.js';
+import {ALPHABET_EN} from '../globals';
+import {isUpperCase} from '../helpers';
 
 /**
  * [Vigenère cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher) encryption.

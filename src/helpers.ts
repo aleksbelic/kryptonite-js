@@ -1,4 +1,4 @@
-import {ALPHABET_EN} from './globals.js';
+import {ALPHABET_EN} from './globals';
 
 /**
  * Checks if given char or string is upper case.
@@ -15,10 +15,10 @@ export function isUpperCase(text: string): boolean {
 }
 
 /**
- * Returns key for the specified value in some given map.
+ * Returns key of the specified value for given map.
  * @param map
  * @param value value whose key we're looking for
- * @returns key
+ * @returns key for given value or undefined if value not found in map
  * @example
  * getMapKeyByValue(new Map([['a', 'alpha'],['b', 'beta']]),'alpha')
  * // returns 'a'
@@ -32,7 +32,12 @@ export function getMapKeyByValue(
   if (!(map instanceof Map)) {
     throw Error('Invalid param: please provide an intance of Map.');
   }
-  return [...map].find(([k, v]) => v === value)?.[0];
+
+  for (const [k, v] of map) {
+    if (v === value) return k;
+  }
+
+  return undefined;
 }
 
 /**

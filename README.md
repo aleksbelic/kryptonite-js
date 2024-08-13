@@ -59,7 +59,7 @@ which is an alias for:
 $ npx eslint .
 ```
 
-Linting config can be found in `.eslintrc.json`.
+Linting config can be found in `eslint.config.mjs`.
 
 ## Testing
 

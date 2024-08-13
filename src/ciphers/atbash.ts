@@ -1,5 +1,5 @@
-import {ALPHABET_EN} from '../globals.js';
-import {checkAlphabet, getShiftedChar, isUpperCase} from '../helpers.js';
+import {ALPHABET_EN} from '../globals';
+import {checkAlphabet, getShiftedChar, isUpperCase} from '../helpers';
 
 /**
  * [Atbash cipher](https://en.wikipedia.org/wiki/Atbash) encryption.
