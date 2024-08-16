@@ -1,5 +1,5 @@
-import {ALPHABET_EN, portaMap} from '../globals';
-import {isUpperCase} from '../helpers';
+import { ALPHABET_EN, portaMap } from '../globals';
+import { isUpperCase } from '../helpers';
 
 /**
  * [Porta cipher](http://practicalcryptography.com/ciphers/porta-cipher) encryption.
@@ -23,64 +23,66 @@ import {isUpperCase} from '../helpers';
  * returns 'sqo'
  */
 export function encrypt(
-  plaintext: string,
-  options: {
-    key: string;
-    caseSensitive?: boolean;
-    includeForeignChars?: boolean;
-  }
+    plaintext: string,
+    options: {
+        key: string;
+        caseSensitive?: boolean;
+        includeForeignChars?: boolean;
+    },
 ): string {
-  if (options.key === '')
-    throw Error('Invalid param: key cannot be an empty string.');
+    if (options.key === '')
+        throw Error('Invalid param: key cannot be an empty string.');
 
-  const caseSensitive = options.caseSensitive ?? true;
-  const includeForeignChars = options.includeForeignChars ?? true;
+    const caseSensitive = options.caseSensitive ?? true;
+    const includeForeignChars = options.includeForeignChars ?? true;
 
-  if (!includeForeignChars) {
-    plaintext = plaintext.replace(/[^a-zA-Z]/g, '');
-  }
-
-  let ciphertext = '',
-    keyChar: string,
-    substitutionMapAlphabet: string | undefined,
-    currentCharEncrypted: string | undefined;
-
-  Array.from(plaintext).forEach((currentChar, index) => {
-    substitutionMapAlphabet = currentCharEncrypted = undefined;
-    keyChar = options.key.charAt(index % options.key.length);
-
-    for (const mapKey of portaMap.keys()) {
-      if (mapKey.indexOf(keyChar.toLowerCase()) !== -1) {
-        substitutionMapAlphabet = portaMap.get(mapKey);
-        break;
-      }
+    if (!includeForeignChars) {
+        plaintext = plaintext.replace(/[^a-zA-Z]/g, '');
     }
 
-    if (substitutionMapAlphabet === undefined) {
-      throw Error(
-        `No substitution alphabet provided for key char '${keyChar}'.`
-      );
-    } else {
-      currentCharEncrypted =
-        substitutionMapAlphabet[ALPHABET_EN.indexOf(currentChar.toLowerCase())];
-      if (currentCharEncrypted === undefined) {
-        if (includeForeignChars) {
-          currentCharEncrypted = currentChar;
-        } else {
-          throw Error(
-            `No substitution found for '${currentChar}' using key char '${keyChar}' in substitution alphabet.`
-          );
+    let ciphertext = '',
+        keyChar: string,
+        substitutionMapAlphabet: string | undefined,
+        currentCharEncrypted: string | undefined;
+
+    Array.from(plaintext).forEach((currentChar, index) => {
+        substitutionMapAlphabet = currentCharEncrypted = undefined;
+        keyChar = options.key.charAt(index % options.key.length);
+
+        for (const mapKey of portaMap.keys()) {
+            if (mapKey.indexOf(keyChar.toLowerCase()) !== -1) {
+                substitutionMapAlphabet = portaMap.get(mapKey);
+                break;
+            }
         }
-      }
-    }
 
-    ciphertext +=
-      isUpperCase(currentChar) && caseSensitive
-        ? currentCharEncrypted.toUpperCase()
-        : currentCharEncrypted;
-  });
+        if (substitutionMapAlphabet === undefined) {
+            throw Error(
+                `No substitution alphabet provided for key char '${keyChar}'.`,
+            );
+        } else {
+            currentCharEncrypted =
+                substitutionMapAlphabet[
+                    ALPHABET_EN.indexOf(currentChar.toLowerCase())
+                ];
+            if (currentCharEncrypted === undefined) {
+                if (includeForeignChars) {
+                    currentCharEncrypted = currentChar;
+                } else {
+                    throw Error(
+                        `No substitution found for '${currentChar}' using key char '${keyChar}' in substitution alphabet.`,
+                    );
+                }
+            }
+        }
 
-  return ciphertext;
+        ciphertext +=
+            isUpperCase(currentChar) && caseSensitive
+                ? currentCharEncrypted.toUpperCase()
+                : currentCharEncrypted;
+    });
+
+    return ciphertext;
 }
 
 /**
@@ -105,16 +107,16 @@ export function encrypt(
  * // returns 'abc'
  */
 export function decrypt(
-  ciphertext: string,
-  options: {
-    key: string;
-    caseSensitive?: boolean;
-    includeForeignChars?: boolean;
-  }
+    ciphertext: string,
+    options: {
+        key: string;
+        caseSensitive?: boolean;
+        includeForeignChars?: boolean;
+    },
 ): string {
-  return encrypt(ciphertext, {
-    key: options.key,
-    caseSensitive: options.caseSensitive ?? true,
-    includeForeignChars: options.includeForeignChars ?? true
-  });
+    return encrypt(ciphertext, {
+        key: options.key,
+        caseSensitive: options.caseSensitive ?? true,
+        includeForeignChars: options.includeForeignChars ?? true,
+    });
 }

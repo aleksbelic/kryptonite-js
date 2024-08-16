@@ -1,4 +1,4 @@
-import {DIGITS} from '../../globals';
+import { DIGITS } from '../../globals';
 import * as caesar from '../caesar';
 
 /**
@@ -15,16 +15,16 @@ import * as caesar from '../caesar';
  * // returns '678'
  */
 export function encrypt(
-  plaintext: string,
-  includeCharsOtherThanNumbers = true
+    plaintext: string,
+    includeCharsOtherThanNumbers = true,
 ): string {
-  return caesar.encrypt(
-    plaintext,
-    5,
-    true,
-    includeCharsOtherThanNumbers,
-    DIGITS
-  );
+    return caesar.encrypt(
+        plaintext,
+        5,
+        true,
+        includeCharsOtherThanNumbers,
+        DIGITS,
+    );
 }
 
 /**
@@ -41,8 +41,8 @@ export function encrypt(
  * // returns '123'
  */
 export function decrypt(
-  ciphertext: string,
-  includeCharsOtherThanNumbers = true
+    ciphertext: string,
+    includeCharsOtherThanNumbers = true,
 ): string {
-  return encrypt(ciphertext, includeCharsOtherThanNumbers);
+    return encrypt(ciphertext, includeCharsOtherThanNumbers);
 }

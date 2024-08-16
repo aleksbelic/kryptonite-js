@@ -8,24 +8,24 @@
  * // returns 'WECRUOERDSOEERNTNEAIVDAC'
  */
 export function encrypt(plaintext: string, railCount = 3): string {
-  plaintext = plaintext.replace(/\s/g, '');
-  const ciphertextRails: string[] = new Array(railCount).fill('');
+    plaintext = plaintext.replace(/\s/g, '');
+    const ciphertextRails: string[] = new Array(railCount).fill('');
 
-  let railIndex = 0;
-  let direction = 1;
-  for (const currentChar of plaintext.split('')) {
-    ciphertextRails[railIndex] += currentChar;
-    if (railCount === 1) {
-      direction = 0;
-    } else if (railIndex === 0) {
-      direction = 1;
-    } else if (railIndex === railCount - 1) {
-      direction = -1;
+    let railIndex = 0;
+    let direction = 1;
+    for (const currentChar of plaintext.split('')) {
+        ciphertextRails[railIndex] += currentChar;
+        if (railCount === 1) {
+            direction = 0;
+        } else if (railIndex === 0) {
+            direction = 1;
+        } else if (railIndex === railCount - 1) {
+            direction = -1;
+        }
+        railIndex += direction;
     }
-    railIndex += direction;
-  }
 
-  return ciphertextRails.join('');
+    return ciphertextRails.join('');
 }
 
 /**
@@ -38,50 +38,50 @@ export function encrypt(plaintext: string, railCount = 3): string {
  * // returns 'WEAREDISCOVEREDFLEEATONCE'
  */
 export function decrypt(ciphertext: string, railCount = 3): string {
-  let plaintext = '';
-  const ciphertextRails: string[] = new Array(railCount).fill('');
-  const ciphertextRailsLengths: number[] = new Array(railCount).fill(0);
+    let plaintext = '';
+    const ciphertextRails: string[] = new Array(railCount).fill('');
+    const ciphertextRailsLengths: number[] = new Array(railCount).fill(0);
 
-  let railIndex = 0;
-  let direction = 1;
-  for (let i = 0; i < ciphertext.length; i++) {
-    ciphertextRailsLengths[railIndex] += 1;
-    if (railCount === 1) {
-      direction = 0;
-    } else if (railIndex === 0) {
-      direction = 1;
-    } else if (railIndex === railCount - 1) {
-      direction = -1;
+    let railIndex = 0;
+    let direction = 1;
+    for (let i = 0; i < ciphertext.length; i++) {
+        ciphertextRailsLengths[railIndex] += 1;
+        if (railCount === 1) {
+            direction = 0;
+        } else if (railIndex === 0) {
+            direction = 1;
+        } else if (railIndex === railCount - 1) {
+            direction = -1;
+        }
+        railIndex += direction;
     }
-    railIndex += direction;
-  }
 
-  let tempCiphertext = ciphertext;
-  for (const [
-    railIndex,
-    ciphertextRailsLength
-  ] of ciphertextRailsLengths.entries()) {
-    ciphertextRails[railIndex] = tempCiphertext.substring(
-      0,
-      ciphertextRailsLength
-    );
-    tempCiphertext = tempCiphertext.slice(ciphertextRailsLength);
-  }
-
-  railIndex = 0;
-  direction = 1;
-  for (let i = 0; i < ciphertext.length; i++) {
-    plaintext += ciphertextRails[railIndex][0];
-    ciphertextRails[railIndex] = ciphertextRails[railIndex].slice(1);
-    if (railCount === 1) {
-      direction = 0;
-    } else if (railIndex === 0) {
-      direction = 1;
-    } else if (railIndex === railCount - 1) {
-      direction = -1;
+    let tempCiphertext = ciphertext;
+    for (const [
+        railIndex,
+        ciphertextRailsLength,
+    ] of ciphertextRailsLengths.entries()) {
+        ciphertextRails[railIndex] = tempCiphertext.substring(
+            0,
+            ciphertextRailsLength,
+        );
+        tempCiphertext = tempCiphertext.slice(ciphertextRailsLength);
     }
-    railIndex += direction;
-  }
 
-  return plaintext;
+    railIndex = 0;
+    direction = 1;
+    for (let i = 0; i < ciphertext.length; i++) {
+        plaintext += ciphertextRails[railIndex][0];
+        ciphertextRails[railIndex] = ciphertextRails[railIndex].slice(1);
+        if (railCount === 1) {
+            direction = 0;
+        } else if (railIndex === 0) {
+            direction = 1;
+        } else if (railIndex === railCount - 1) {
+            direction = -1;
+        }
+        railIndex += direction;
+    }
+
+    return plaintext;
 }

@@ -1,32 +1,32 @@
 {
-  "name": "kryptonite-core",
-  "version": "1.0.0",
-  "description": "TypeScript cryptographic library",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "build": "tsc",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "pretty": "npx prettier --write .",
-    "lint": "npx eslint ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aleksbelic/kryptonite-core.git"
-  },
-  "author": "Aleksandar Belic Aleksanchez",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/aleksbelic/kryptonite-core/issues"
-  },
-  "homepage": "https://github.com/aleksbelic/kryptonite-core#readme",
-  "devDependencies": {
-    "@jest/globals": "^29.7.0",
-    "@typescript-eslint/eslint-plugin": "^8.1.0",
-    "@typescript-eslint/parser": "^8.1.0",
-    "eslint": "^9.9.0",
-    "jest": "^29.7.0",
-    "prettier": "^3.3.3",
-    "typescript": "^5.5.4"
-  }
+    "name": "kryptonite-core",
+    "version": "1.0.0",
+    "description": "TypeScript cryptographic library",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "build": "tsc",
+        "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+        "pretty": "npx prettier --write .",
+        "lint": "npx eslint ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/aleksbelic/kryptonite-core.git"
+    },
+    "author": "Aleksandar Belic Aleksanchez",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/aleksbelic/kryptonite-core/issues"
+    },
+    "homepage": "https://github.com/aleksbelic/kryptonite-core#readme",
+    "devDependencies": {
+        "@jest/globals": "^29.7.0",
+        "@typescript-eslint/eslint-plugin": "^8.1.0",
+        "@typescript-eslint/parser": "^8.1.0",
+        "eslint": "^9.9.0",
+        "jest": "^29.7.0",
+        "prettier": "^3.3.3",
+        "typescript": "^5.5.4"
+    }
 }

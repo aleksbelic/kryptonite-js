@@ -1,5 +1,5 @@
-import {ALPHABET_EN} from '../globals';
-import {checkAlphabet, getShiftedChar, isUpperCase} from '../helpers';
+import { ALPHABET_EN } from '../globals';
+import { checkAlphabet, getShiftedChar, isUpperCase } from '../helpers';
 
 /**
  * [Atbash cipher](https://en.wikipedia.org/wiki/Atbash) encryption.
@@ -19,33 +19,35 @@ import {checkAlphabet, getShiftedChar, isUpperCase} from '../helpers';
  * // returns 'шћчћшш'
  */
 export function encrypt(
-  plaintext: string,
-  caseSensitive = true,
-  includeForeignChars = true,
-  alphabet = ALPHABET_EN
+    plaintext: string,
+    caseSensitive = true,
+    includeForeignChars = true,
+    alphabet = ALPHABET_EN,
 ): string {
-  checkAlphabet(alphabet);
+    checkAlphabet(alphabet);
 
-  let ciphertext = '',
-    shift: number,
-    currentCharEncrypted: string | undefined;
+    let ciphertext = '',
+        shift: number,
+        currentCharEncrypted: string | undefined;
 
-  for (const currentChar of plaintext) {
-    shift =
-      alphabet.length - 2 * alphabet.indexOf(currentChar.toLowerCase()) - 1;
-    currentCharEncrypted = getShiftedChar(currentChar, shift, alphabet);
+    for (const currentChar of plaintext) {
+        shift =
+            alphabet.length -
+            2 * alphabet.indexOf(currentChar.toLowerCase()) -
+            1;
+        currentCharEncrypted = getShiftedChar(currentChar, shift, alphabet);
 
-    if (currentCharEncrypted === undefined) {
-      if (includeForeignChars) {
-        ciphertext += currentChar;
-      }
-      continue;
-    } else if (caseSensitive && isUpperCase(currentChar)) {
-      currentCharEncrypted = currentCharEncrypted.toUpperCase();
+        if (currentCharEncrypted === undefined) {
+            if (includeForeignChars) {
+                ciphertext += currentChar;
+            }
+            continue;
+        } else if (caseSensitive && isUpperCase(currentChar)) {
+            currentCharEncrypted = currentCharEncrypted.toUpperCase();
+        }
+        ciphertext += currentCharEncrypted;
     }
-    ciphertext += currentCharEncrypted;
-  }
-  return ciphertext;
+    return ciphertext;
 }
 
 /**
@@ -66,10 +68,10 @@ export function encrypt(
  * // returns 'ћшчшћћ'
  */
 export function decrypt(
-  ciphertext: string,
-  caseSensitive = true,
-  includeForeignChars = true,
-  alphabet = ALPHABET_EN
+    ciphertext: string,
+    caseSensitive = true,
+    includeForeignChars = true,
+    alphabet = ALPHABET_EN,
 ): string {
-  return encrypt(ciphertext, caseSensitive, includeForeignChars, alphabet);
+    return encrypt(ciphertext, caseSensitive, includeForeignChars, alphabet);
 }

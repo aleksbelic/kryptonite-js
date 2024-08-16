@@ -1,5 +1,5 @@
-import {ALPHABET_EN} from '../globals';
-import {isUpperCase} from '../helpers';
+import { ALPHABET_EN } from '../globals';
+import { isUpperCase } from '../helpers';
 
 /**
  * [Vigenère cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher) encryption.
@@ -18,46 +18,46 @@ import {isUpperCase} from '../helpers';
  * // returns 'Ywciadcdqqs'
  */
 export function encrypt(
-  plaintext: string,
-  options: {
-    key: string;
-    caseSensitive?: boolean;
-    includeForeignChars?: boolean;
-    alphabet?: string[];
-  }
+    plaintext: string,
+    options: {
+        key: string;
+        caseSensitive?: boolean;
+        includeForeignChars?: boolean;
+        alphabet?: string[];
+    },
 ): string {
-  if (options.key === '') throw Error('No key provided.');
+    if (options.key === '') throw Error('No key provided.');
 
-  const caseSensitive = options.caseSensitive ?? true;
-  const includeForeignChars = options.includeForeignChars ?? true;
-  const alphabet = options.alphabet ?? ALPHABET_EN;
+    const caseSensitive = options.caseSensitive ?? true;
+    const includeForeignChars = options.includeForeignChars ?? true;
+    const alphabet = options.alphabet ?? ALPHABET_EN;
 
-  let ciphertext = '',
-    currentChar: string,
-    currentCharEncrypted: string;
+    let ciphertext = '',
+        currentChar: string,
+        currentCharEncrypted: string;
 
-  for (let i = 0, j = 0; i < plaintext.length; i++, j++) {
-    currentChar = plaintext[i];
-    if (alphabet.indexOf(currentChar.toLowerCase()) === -1) {
-      if (includeForeignChars) {
-        ciphertext += currentChar;
-      }
-      --j;
-      continue;
+    for (let i = 0, j = 0; i < plaintext.length; i++, j++) {
+        currentChar = plaintext[i];
+        if (alphabet.indexOf(currentChar.toLowerCase()) === -1) {
+            if (includeForeignChars) {
+                ciphertext += currentChar;
+            }
+            --j;
+            continue;
+        }
+        currentCharEncrypted =
+            alphabet[
+                (alphabet.indexOf(currentChar.toLowerCase()) +
+                    alphabet.indexOf(options.key[j % options.key.length])) %
+                    alphabet.length
+            ];
+        ciphertext +=
+            caseSensitive && isUpperCase(currentChar)
+                ? currentCharEncrypted.toUpperCase()
+                : currentCharEncrypted;
     }
-    currentCharEncrypted =
-      alphabet[
-        (alphabet.indexOf(currentChar.toLowerCase()) +
-          alphabet.indexOf(options.key[j % options.key.length])) %
-          alphabet.length
-      ];
-    ciphertext +=
-      caseSensitive && isUpperCase(currentChar)
-        ? currentCharEncrypted.toUpperCase()
-        : currentCharEncrypted;
-  }
 
-  return ciphertext;
+    return ciphertext;
 }
 
 /**
@@ -77,44 +77,46 @@ export function encrypt(
  * // returns 'Mysecretmsg'
  */
 export function decrypt(
-  ciphertext: string,
-  options: {
-    key: string;
-    caseSensitive?: boolean;
-    includeForeignChars?: boolean;
-    alphabet?: string[];
-  }
+    ciphertext: string,
+    options: {
+        key: string;
+        caseSensitive?: boolean;
+        includeForeignChars?: boolean;
+        alphabet?: string[];
+    },
 ): string {
-  if (options.key === '') throw Error('No key provided.');
+    if (options.key === '') throw Error('No key provided.');
 
-  const caseSensitive = options.caseSensitive ?? true;
-  const includeForeignChars = options.includeForeignChars ?? true;
-  const alphabet = options.alphabet ?? ALPHABET_EN;
+    const caseSensitive = options.caseSensitive ?? true;
+    const includeForeignChars = options.includeForeignChars ?? true;
+    const alphabet = options.alphabet ?? ALPHABET_EN;
 
-  let plaintext = '',
-    currentChar: string,
-    currentCharDecryptedIndex: number,
-    currentCharDecrypted: string;
+    let plaintext = '',
+        currentChar: string,
+        currentCharDecryptedIndex: number,
+        currentCharDecrypted: string;
 
-  for (let i = 0, j = 0; i < ciphertext.length; i++, j++) {
-    currentChar = ciphertext[i];
-    if (alphabet.indexOf(currentChar.toLowerCase()) === -1) {
-      if (includeForeignChars) {
-        plaintext += currentChar;
-      }
-      --j;
-      continue;
+    for (let i = 0, j = 0; i < ciphertext.length; i++, j++) {
+        currentChar = ciphertext[i];
+        if (alphabet.indexOf(currentChar.toLowerCase()) === -1) {
+            if (includeForeignChars) {
+                plaintext += currentChar;
+            }
+            --j;
+            continue;
+        }
+        currentCharDecryptedIndex =
+            alphabet.indexOf(currentChar.toLowerCase()) -
+            alphabet.indexOf(options.key[j % options.key.length]);
+        currentCharDecrypted =
+            alphabet[
+                (currentCharDecryptedIndex + alphabet.length) % alphabet.length
+            ];
+        plaintext +=
+            caseSensitive && isUpperCase(currentChar)
+                ? currentCharDecrypted.toUpperCase()
+                : currentCharDecrypted;
     }
-    currentCharDecryptedIndex =
-      alphabet.indexOf(currentChar.toLowerCase()) -
-      alphabet.indexOf(options.key[j % options.key.length]);
-    currentCharDecrypted =
-      alphabet[(currentCharDecryptedIndex + alphabet.length) % alphabet.length];
-    plaintext +=
-      caseSensitive && isUpperCase(currentChar)
-        ? currentCharDecrypted.toUpperCase()
-        : currentCharDecrypted;
-  }
 
-  return plaintext;
+    return plaintext;
 }

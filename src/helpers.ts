@@ -1,4 +1,4 @@
-import {ALPHABET_EN} from './globals';
+import { ALPHABET_EN } from './globals';
 
 /**
  * Checks if given char or string is upper case.
@@ -11,7 +11,7 @@ import {ALPHABET_EN} from './globals';
  * // returns true
  */
 export function isUpperCase(text: string): boolean {
-  return text === text.toUpperCase();
+    return text === text.toUpperCase();
 }
 
 /**
@@ -26,18 +26,18 @@ export function isUpperCase(text: string): boolean {
  * // returns undefined
  */
 export function getMapKeyByValue(
-  map: Map<string, string>,
-  value: string
+    map: Map<string, string>,
+    value: string,
 ): string | undefined {
-  if (!(map instanceof Map)) {
-    throw Error('Invalid param: please provide an intance of Map.');
-  }
+    if (!(map instanceof Map)) {
+        throw Error('Invalid param: please provide an intance of Map.');
+    }
 
-  for (const [k, v] of map) {
-    if (v === value) return k;
-  }
+    for (const [k, v] of map) {
+        if (v === value) return k;
+    }
 
-  return undefined;
+    return undefined;
 }
 
 /**
@@ -54,13 +54,13 @@ export function getMapKeyByValue(
  * // returns ['T', 'o', 'd', 'a', 'y', ' ', 'w', 's', 'g']
  */
 export function getUniqueCharsFromText(
-  text: string,
-  caseSensitive = false
+    text: string,
+    caseSensitive = false,
 ): string[] {
-  if (!caseSensitive) {
-    text = text.toLowerCase();
-  }
-  return [...new Set(text)];
+    if (!caseSensitive) {
+        text = text.toLowerCase();
+    }
+    return [...new Set(text)];
 }
 
 /**
@@ -76,25 +76,25 @@ export function getUniqueCharsFromText(
  * // returns 'z'
  */
 export function getShiftedChar(
-  char: string,
-  shift: number,
-  alphabet = ALPHABET_EN
+    char: string,
+    shift: number,
+    alphabet = ALPHABET_EN,
 ): string | undefined {
-  if (Math.abs(shift) > alphabet.length) {
-    shift %= alphabet.length;
-  }
-  if (shift < 0) {
-    shift = alphabet.length + shift;
-  }
+    if (Math.abs(shift) > alphabet.length) {
+        shift %= alphabet.length;
+    }
+    if (shift < 0) {
+        shift = alphabet.length + shift;
+    }
 
-  let shiftedChar: string | undefined = undefined;
-  const charIndexInAlphabet = alphabet.indexOf(char.toLowerCase());
+    let shiftedChar: string | undefined = undefined;
+    const charIndexInAlphabet = alphabet.indexOf(char.toLowerCase());
 
-  if (charIndexInAlphabet !== -1) {
-    shiftedChar = alphabet[(charIndexInAlphabet + shift) % alphabet.length];
-  }
+    if (charIndexInAlphabet !== -1) {
+        shiftedChar = alphabet[(charIndexInAlphabet + shift) % alphabet.length];
+    }
 
-  return shiftedChar;
+    return shiftedChar;
 }
 
 /**
@@ -103,36 +103,38 @@ export function getShiftedChar(
  * @returns true
  */
 export function checkAlphabet(alphabet: string[]): boolean | never {
-  if (!Array.isArray(alphabet)) {
-    throw Error(
-      'Invalid alphabet: please provide an array of single-letter chars.'
-    );
-  }
-
-  if (alphabet.length < 2) {
-    throw Error('Invalid alphabet: it needs to be at least 2 characters long.');
-  }
-
-  for (const char of alphabet) {
-    if (
-      typeof char !== 'string' ||
-      char.length !== 1 ||
-      char.length !== char.trim().length
-    ) {
-      throw Error(
-        'Invalid alphabet: it should contain only single-letter chars.'
-      );
+    if (!Array.isArray(alphabet)) {
+        throw Error(
+            'Invalid alphabet: please provide an array of single-letter chars.',
+        );
     }
-  }
 
-  if (
-    alphabet.toString().toLowerCase() !==
-    [...new Set(alphabet.map(char => char.toLowerCase()))].toString()
-  ) {
-    throw Error('Invalid alphabet: it must not contain duplicates.');
-  }
+    if (alphabet.length < 2) {
+        throw Error(
+            'Invalid alphabet: it needs to be at least 2 characters long.',
+        );
+    }
 
-  return true;
+    for (const char of alphabet) {
+        if (
+            typeof char !== 'string' ||
+            char.length !== 1 ||
+            char.length !== char.trim().length
+        ) {
+            throw Error(
+                'Invalid alphabet: it should contain only single-letter chars.',
+            );
+        }
+    }
+
+    if (
+        alphabet.toString().toLowerCase() !==
+        [...new Set(alphabet.map(char => char.toLowerCase()))].toString()
+    ) {
+        throw Error('Invalid alphabet: it must not contain duplicates.');
+    }
+
+    return true;
 }
 
 /**
@@ -143,7 +145,7 @@ export function checkAlphabet(alphabet: string[]): boolean | never {
  * // returns 'k'
  */
 export function getRandomAsciiChar(): string {
-  return String.fromCharCode(Math.floor(Math.random() * 95) + 32);
+    return String.fromCharCode(Math.floor(Math.random() * 95) + 32);
 }
 
 /**
@@ -167,36 +169,36 @@ export function getRandomAsciiChar(): string {
 ]
  */
 export function getCharCount(
-  text: string,
-  caseSensitive = false,
-  onlyLetters = true
-): Array<{char: string; count: number}> {
-  if (onlyLetters) {
-    text = text.replace(/[^\p{Letter}]/gu, '');
-  }
-
-  if (!caseSensitive) {
-    text = text.toLowerCase();
-  }
-
-  const charCountArray: Array<{char: string; count: number}> = [];
-  let charFound: boolean;
-
-  for (const textChar of text) {
-    charFound = false;
-    for (const charCountArrayItem of charCountArray) {
-      if (charCountArrayItem.char === textChar) {
-        charCountArrayItem.count++;
-        charFound = true;
-        break;
-      }
+    text: string,
+    caseSensitive = false,
+    onlyLetters = true,
+): Array<{ char: string; count: number }> {
+    if (onlyLetters) {
+        text = text.replace(/[^\p{Letter}]/gu, '');
     }
-    if (!charFound) {
-      charCountArray.push({char: textChar, count: 1});
-    }
-  }
 
-  return charCountArray;
+    if (!caseSensitive) {
+        text = text.toLowerCase();
+    }
+
+    const charCountArray: Array<{ char: string; count: number }> = [];
+    let charFound: boolean;
+
+    for (const textChar of text) {
+        charFound = false;
+        for (const charCountArrayItem of charCountArray) {
+            if (charCountArrayItem.char === textChar) {
+                charCountArrayItem.count++;
+                charFound = true;
+                break;
+            }
+        }
+        if (!charFound) {
+            charCountArray.push({ char: textChar, count: 1 });
+        }
+    }
+
+    return charCountArray;
 }
 
 /**
@@ -210,52 +212,52 @@ export function getCharCount(
  * returns
  */
 export function getCharFrequency(
-  text: string,
-  caseSensitive = false,
-  onlyLetters = true
-): Array<{char: string; freq: number}> {
-  if (onlyLetters) {
-    text = text.replace(/[^\p{Letter}]/gu, '');
-  }
+    text: string,
+    caseSensitive = false,
+    onlyLetters = true,
+): Array<{ char: string; freq: number }> {
+    if (onlyLetters) {
+        text = text.replace(/[^\p{Letter}]/gu, '');
+    }
 
-  if (!caseSensitive) {
-    text = text.toLowerCase();
-  }
+    if (!caseSensitive) {
+        text = text.toLowerCase();
+    }
 
-  const charCountArray = getCharCount(text, caseSensitive, onlyLetters);
-  const charFrequencyArray: {char: string; freq: number}[] = [];
+    const charCountArray = getCharCount(text, caseSensitive, onlyLetters);
+    const charFrequencyArray: { char: string; freq: number }[] = [];
 
-  for (const charCountArrayItem of charCountArray) {
-    charFrequencyArray.push({
-      char: charCountArrayItem.char,
-      freq: Number((charCountArrayItem.count / text.length).toFixed(4))
-    });
-  }
+    for (const charCountArrayItem of charCountArray) {
+        charFrequencyArray.push({
+            char: charCountArrayItem.char,
+            freq: Number((charCountArrayItem.count / text.length).toFixed(4)),
+        });
+    }
 
-  return charFrequencyArray;
+    return charFrequencyArray;
 }
 
 /**
  * TODO
  */
 export function sortCharCountArray(
-  charCountArray: Array<{char: string; count: number}>,
-  sortType = 'dsc'
-): Array<{char: string; count: number}> {
-  let sortedCharCountArray: Array<{char: string; count: number}> = [];
-  if (sortType.toLowerCase() === 'dsc') {
-    sortedCharCountArray = charCountArray.sort(
-      (char1, char2) => char2.count - char1.count
-    );
-  } else if (sortType.toLowerCase() === 'asc') {
-    sortedCharCountArray = charCountArray.sort(
-      (char1, char2) => char1.count - char2.count
-    );
-  } else {
-    throw Error(`Invalid param: sort type '${sortType}' unknown.`);
-  }
+    charCountArray: Array<{ char: string; count: number }>,
+    sortType = 'dsc',
+): Array<{ char: string; count: number }> {
+    let sortedCharCountArray: Array<{ char: string; count: number }> = [];
+    if (sortType.toLowerCase() === 'dsc') {
+        sortedCharCountArray = charCountArray.sort(
+            (char1, char2) => char2.count - char1.count,
+        );
+    } else if (sortType.toLowerCase() === 'asc') {
+        sortedCharCountArray = charCountArray.sort(
+            (char1, char2) => char1.count - char2.count,
+        );
+    } else {
+        throw Error(`Invalid param: sort type '${sortType}' unknown.`);
+    }
 
-  return sortedCharCountArray;
+    return sortedCharCountArray;
 }
 
 /**
@@ -269,12 +271,12 @@ export function sortCharCountArray(
  * // returns 'xyc'
  */
 export function replaceChars(
-  text: string,
-  replacementMap: Map<string, string>
+    text: string,
+    replacementMap: Map<string, string>,
 ): string {
-  replacementMap.forEach((replacement, original) => {
-    text = text.replaceAll(original, replacement);
-  });
+    replacementMap.forEach((replacement, original) => {
+        text = text.replaceAll(original, replacement);
+    });
 
-  return text;
+    return text;
 }

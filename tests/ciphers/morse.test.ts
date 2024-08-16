@@ -1,73 +1,73 @@
-import {describe, expect, test} from '@jest/globals';
-import {encrypt, decrypt} from '../../src/ciphers/morse';
+import { describe, expect, test } from '@jest/globals';
+import { encrypt, decrypt } from '../../src/ciphers/morse';
 
 describe('Morse code - encryption', () => {
-  test('ITU Standard', () => {
-    expect(encrypt('abcdefghijklmnopqrstuvwxyz')).toEqual(
-      '.- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --..'
-    );
-    expect(encrypt('1234567890')).toEqual(
-      '.---- ..--- ...-- ....- ..... -.... --... ---.. ----. -----'
-    );
-    expect(encrypt('.,?\'!/()&:;=+-_"$@')).toEqual(
-      '.-.-.- --..-- ..--.. .----. -.-.-- -..-. -.--. -.--.- .-... ---... -.-.-. -...- .-.-. -....- ..--.- .-..-. ...-..- .--.-.'
-    );
-  });
+    test('ITU Standard', () => {
+        expect(encrypt('abcdefghijklmnopqrstuvwxyz')).toEqual(
+            '.- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --..',
+        );
+        expect(encrypt('1234567890')).toEqual(
+            '.---- ..--- ...-- ....- ..... -.... --... ---.. ----. -----',
+        );
+        expect(encrypt('.,?\'!/()&:;=+-_"$@')).toEqual(
+            '.-.-.- --..-- ..--.. .----. -.-.-- -..-. -.--. -.--.- .-... ---... -.-.-. -...- .-.-. -....- ..--.- .-..-. ...-..- .--.-.',
+        );
+    });
 
-  test('Unknown char', () => {
-    expect(() => encrypt('aßc')).toThrow(
-      "Character 'ß' is not defined in Morse code."
-    );
-  });
+    test('Unknown char', () => {
+        expect(() => encrypt('aßc')).toThrow(
+            "Character 'ß' is not defined in Morse code.",
+        );
+    });
 
-  test('Non-unique short mark, long mark or spacing.', () => {
-    expect(() => encrypt('abc abc', 'x', 'x', 'y')).toThrow(
-      'Please use different characters for short mark, long mark & spacing between the words.'
-    );
-  });
+    test('Non-unique short mark, long mark or spacing.', () => {
+        expect(() => encrypt('abc abc', 'x', 'x', 'y')).toThrow(
+            'Please use different characters for short mark, long mark & spacing between the words.',
+        );
+    });
 
-  test('Whitespace', () => {
-    expect(encrypt('The quick brown fox jumps over the lazy dog')).toEqual(
-      '- .... . / --.- ..- .. -.-. -.- / -... .-. --- .-- -. / ..-. --- -..- / .--- ..- -- .--. ... / --- ...- . .-. / - .... . / .-.. .- --.. -.-- / -.. --- --.'
-    );
-  });
+    test('Whitespace', () => {
+        expect(encrypt('The quick brown fox jumps over the lazy dog')).toEqual(
+            '- .... . / --.- ..- .. -.-. -.- / -... .-. --- .-- -. / ..-. --- -..- / .--- ..- -- .--. ... / --- ...- . .-. / - .... . / .-.. .- --.. -.-- / -.. --- --.',
+        );
+    });
 
-  test('Custom short mark, long mark & space', () => {
-    expect(
-      encrypt(
-        "Life is like a box of chocolates. You never know what you're gonna get.",
-        'X',
-        '?',
-        '*'
-      )
-    ).toEqual(
-      'X?XX XX XX?X X * XX XXX * X?XX XX ?X? X * X? * ?XXX ??? ?XX? * ??? XX?X * ?X?X XXXX ??? ?X?X ??? X?XX X? ? X XXX X?X?X? * ?X?? ??? XX? * ?X X XXX? X X?X * ?X? ?X ??? X?? * X?? XXXX X? ? * ?X?? ??? XX? X????X X?X X * ??X ??? ?X ?X X? * ??X X ? X?X?X?'
-    );
-  });
+    test('Custom short mark, long mark & space', () => {
+        expect(
+            encrypt(
+                "Life is like a box of chocolates. You never know what you're gonna get.",
+                'X',
+                '?',
+                '*',
+            ),
+        ).toEqual(
+            'X?XX XX XX?X X * XX XXX * X?XX XX ?X? X * X? * ?XXX ??? ?XX? * ??? XX?X * ?X?X XXXX ??? ?X?X ??? X?XX X? ? X XXX X?X?X? * ?X?? ??? XX? * ?X X XXX? X X?X * ?X? ?X ??? X?? * X?? XXXX X? ? * ?X?? ??? XX? X????X X?X X * ??X ??? ?X ?X X? * ??X X ? X?X?X?',
+        );
+    });
 
-  test('Various', () => {
-    expect(encrypt('abc')).toEqual('.- -... -.-.');
-    expect(encrypt('Ab cd')).toEqual('.- -... / -.-. -..');
-    expect(encrypt('x y z', 'o', '=', '#')).toEqual('=oo= # =o== # ==oo');
-  });
+    test('Various', () => {
+        expect(encrypt('abc')).toEqual('.- -... -.-.');
+        expect(encrypt('Ab cd')).toEqual('.- -... / -.-. -..');
+        expect(encrypt('x y z', 'o', '=', '#')).toEqual('=oo= # =o== # ==oo');
+    });
 });
 
 describe('Morse code - decryption', () => {
-  test('Non-unique short mark, long mark or spacing.', () => {
-    expect(() => decrypt('x= =xxx =x=x', 'x', '=', 'x')).toThrow(
-      'Please use different characters for short mark, long mark & spacing between the words.'
-    );
-  });
+    test('Non-unique short mark, long mark or spacing.', () => {
+        expect(() => decrypt('x= =xxx =x=x', 'x', '=', 'x')).toThrow(
+            'Please use different characters for short mark, long mark & spacing between the words.',
+        );
+    });
 
-  test('Unknown char', () => {
-    expect(() => decrypt('.- -... -.-.-.-.-')).toThrow(
-      "Character '-.-.-.-.-' could not be decrypted."
-    );
-  });
+    test('Unknown char', () => {
+        expect(() => decrypt('.- -... -.-.-.-.-')).toThrow(
+            "Character '-.-.-.-.-' could not be decrypted.",
+        );
+    });
 
-  test('Various', () => {
-    expect(decrypt('.- -... -.-.')).toEqual('abc');
-    expect(decrypt('.- -... / -.-. -..')).toEqual('ab cd');
-    expect(decrypt('=oo= # =o== # ==oo', 'o', '=', '#')).toEqual('x y z');
-  });
+    test('Various', () => {
+        expect(decrypt('.- -... -.-.')).toEqual('abc');
+        expect(decrypt('.- -... / -.-. -..')).toEqual('ab cd');
+        expect(decrypt('=oo= # =o== # ==oo', 'o', '=', '#')).toEqual('x y z');
+    });
 });

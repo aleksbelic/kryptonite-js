@@ -1,5 +1,5 @@
-import {ALPHABET_EN} from '../globals';
-import {checkAlphabet, getShiftedChar, isUpperCase} from '../helpers';
+import { ALPHABET_EN } from '../globals';
+import { checkAlphabet, getShiftedChar, isUpperCase } from '../helpers';
 
 /**
  * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) encryption.
@@ -24,31 +24,31 @@ import {checkAlphabet, getShiftedChar, isUpperCase} from '../helpers';
  * // returns 'bcd'
  */
 export function encrypt(
-  plaintext: string,
-  shift: number,
-  caseSensitive = true,
-  includeForeignChars = true,
-  alphabet = ALPHABET_EN
+    plaintext: string,
+    shift: number,
+    caseSensitive = true,
+    includeForeignChars = true,
+    alphabet = ALPHABET_EN,
 ): string {
-  checkAlphabet(alphabet);
+    checkAlphabet(alphabet);
 
-  let ciphertext = '',
-    currentCharEncrypted: string | undefined;
+    let ciphertext = '',
+        currentCharEncrypted: string | undefined;
 
-  for (const currentChar of plaintext) {
-    currentCharEncrypted = getShiftedChar(currentChar, shift, alphabet);
-    if (currentCharEncrypted === undefined) {
-      if (includeForeignChars) {
-        ciphertext += currentChar;
-      }
-      continue;
-    } else if (caseSensitive && isUpperCase(currentChar)) {
-      currentCharEncrypted = currentCharEncrypted.toUpperCase();
+    for (const currentChar of plaintext) {
+        currentCharEncrypted = getShiftedChar(currentChar, shift, alphabet);
+        if (currentCharEncrypted === undefined) {
+            if (includeForeignChars) {
+                ciphertext += currentChar;
+            }
+            continue;
+        } else if (caseSensitive && isUpperCase(currentChar)) {
+            currentCharEncrypted = currentCharEncrypted.toUpperCase();
+        }
+        ciphertext += currentCharEncrypted;
     }
-    ciphertext += currentCharEncrypted;
-  }
 
-  return ciphertext;
+    return ciphertext;
 }
 
 /**
@@ -74,19 +74,19 @@ export function encrypt(
  * // returns 'abc'
  */
 export function decrypt(
-  ciphertext: string,
-  shift: number,
-  caseSensitive = true,
-  includeForeignChars = true,
-  alphabet = ALPHABET_EN
+    ciphertext: string,
+    shift: number,
+    caseSensitive = true,
+    includeForeignChars = true,
+    alphabet = ALPHABET_EN,
 ): string {
-  return encrypt(
-    ciphertext,
-    alphabet.length - shift,
-    caseSensitive,
-    includeForeignChars,
-    alphabet
-  );
+    return encrypt(
+        ciphertext,
+        alphabet.length - shift,
+        caseSensitive,
+        includeForeignChars,
+        alphabet,
+    );
 }
 
 /**
@@ -101,15 +101,21 @@ export function decrypt(
  * // prints 'bcd'
  */
 export function printShift(
-  ciphertext: string,
-  shift: number,
-  caseSensitive = true,
-  includeForeignChars = true,
-  alphabet = ALPHABET_EN
+    ciphertext: string,
+    shift: number,
+    caseSensitive = true,
+    includeForeignChars = true,
+    alphabet = ALPHABET_EN,
 ): void {
-  console.log(
-    encrypt(ciphertext, shift, caseSensitive, includeForeignChars, alphabet)
-  );
+    console.log(
+        encrypt(
+            ciphertext,
+            shift,
+            caseSensitive,
+            includeForeignChars,
+            alphabet,
+        ),
+    );
 }
 
 /**
@@ -126,14 +132,20 @@ export function printShift(
  * 'c'
  */
 export function printAllShifts(
-  ciphertext: string,
-  caseSensitive = true,
-  includeForeignChars = true,
-  alphabet = ALPHABET_EN
+    ciphertext: string,
+    caseSensitive = true,
+    includeForeignChars = true,
+    alphabet = ALPHABET_EN,
 ): void {
-  for (let shift = 0; shift < alphabet.length; shift++) {
-    console.log(
-      encrypt(ciphertext, shift, caseSensitive, includeForeignChars, alphabet)
-    );
-  }
+    for (let shift = 0; shift < alphabet.length; shift++) {
+        console.log(
+            encrypt(
+                ciphertext,
+                shift,
+                caseSensitive,
+                includeForeignChars,
+                alphabet,
+            ),
+        );
+    }
 }

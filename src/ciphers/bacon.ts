@@ -1,5 +1,5 @@
-import {bacon1Map, bacon2Map} from '../globals';
-import {getMapKeyByValue, isUpperCase} from '../helpers';
+import { bacon1Map, bacon2Map } from '../globals';
+import { getMapKeyByValue, isUpperCase } from '../helpers';
 
 /**
  * [Bacon's cipher](https://en.wikipedia.org/wiki/Bacon%27s_cipher) encryption.
@@ -20,28 +20,28 @@ import {getMapKeyByValue, isUpperCase} from '../helpers';
  * // returns 'aaaaaaaaabaaaba'
  */
 export function encrypt(
-  plaintext: string,
-  version = 2,
-  includeForeignChars = true
+    plaintext: string,
+    version = 2,
+    includeForeignChars = true,
 ): string {
-  checkVersion(version);
-  const baconMap = version === 1 ? bacon1Map : bacon2Map;
+    checkVersion(version);
+    const baconMap = version === 1 ? bacon1Map : bacon2Map;
 
-  let ciphertext = '',
-    currentCharEncrypted: string | undefined;
-  for (const char of plaintext) {
-    if (baconMap.has(char.toLowerCase())) {
-      currentCharEncrypted = baconMap.get(char.toLowerCase());
-    } else if (includeForeignChars) {
-      currentCharEncrypted = char;
-    } else {
-      continue;
+    let ciphertext = '',
+        currentCharEncrypted: string | undefined;
+    for (const char of plaintext) {
+        if (baconMap.has(char.toLowerCase())) {
+            currentCharEncrypted = baconMap.get(char.toLowerCase());
+        } else if (includeForeignChars) {
+            currentCharEncrypted = char;
+        } else {
+            continue;
+        }
+
+        ciphertext += currentCharEncrypted;
     }
 
-    ciphertext += currentCharEncrypted;
-  }
-
-  return ciphertext;
+    return ciphertext;
 }
 
 /**
@@ -60,28 +60,31 @@ export function encrypt(
  * // returns 'abc'
  */
 export function decrypt(ciphertext: string, version = 2) {
-  checkVersion(version);
-  const baconMap = version === 1 ? bacon1Map : bacon2Map;
+    checkVersion(version);
+    const baconMap = version === 1 ? bacon1Map : bacon2Map;
 
-  let plaintext = '',
-    fiveBaconChars = '',
-    currentCharDecrypted: string | undefined;
+    let plaintext = '',
+        fiveBaconChars = '',
+        currentCharDecrypted: string | undefined;
 
-  ciphertext = ciphertext.toLowerCase().replace(/[^ab]/g, '');
-  for (const char of ciphertext) {
-    if (fiveBaconChars.length < 5) {
-      fiveBaconChars += char;
-      if (fiveBaconChars.length === 5) {
-        currentCharDecrypted = getMapKeyByValue(baconMap, fiveBaconChars);
-        if (currentCharDecrypted !== undefined) {
-          plaintext += currentCharDecrypted;
+    ciphertext = ciphertext.toLowerCase().replace(/[^ab]/g, '');
+    for (const char of ciphertext) {
+        if (fiveBaconChars.length < 5) {
+            fiveBaconChars += char;
+            if (fiveBaconChars.length === 5) {
+                currentCharDecrypted = getMapKeyByValue(
+                    baconMap,
+                    fiveBaconChars,
+                );
+                if (currentCharDecrypted !== undefined) {
+                    plaintext += currentCharDecrypted;
+                }
+                fiveBaconChars = '';
+            }
         }
-        fiveBaconChars = '';
-      }
     }
-  }
 
-  return plaintext;
+    return plaintext;
 }
 
 /**
@@ -95,39 +98,39 @@ export function decrypt(ciphertext: string, version = 2) {
  * // returns 'find what yOu loVe and let it kill you.'
  */
 export function encryptInText(
-  message: string,
-  text: string,
-  version = 2
+    message: string,
+    text: string,
+    version = 2,
 ): string {
-  const encryptedMsg = encrypt(message, version, false);
-  const lettersInText = text.replaceAll(/[\W\d]/g, '').length;
-  if (encryptedMsg.length > lettersInText) {
-    throw Error(
-      `Text should not contain less letters than encrypted message (${encryptedMsg.length}), please provide more letters.`
-    );
-  }
-  let textWithEncryptedMsg = '',
-    currentTextChar: string;
-  for (
-    let encryptedMsgIndex = 0, textIndex = 0;
-    textIndex < text.length;
-    textIndex++
-  ) {
-    currentTextChar = text.charAt(textIndex).toLowerCase();
-    if (encryptedMsgIndex === encryptedMsg.length) {
-      textWithEncryptedMsg += text.substring(textIndex);
-      break;
-    } else if (currentTextChar.match(/[^\W\d]/g)) {
-      currentTextChar =
-        encryptedMsg.charAt(encryptedMsgIndex) === 'a'
-          ? currentTextChar
-          : currentTextChar.toUpperCase();
-      encryptedMsgIndex++;
+    const encryptedMsg = encrypt(message, version, false);
+    const lettersInText = text.replaceAll(/[\W\d]/g, '').length;
+    if (encryptedMsg.length > lettersInText) {
+        throw Error(
+            `Text should not contain less letters than encrypted message (${encryptedMsg.length}), please provide more letters.`,
+        );
     }
-    textWithEncryptedMsg += currentTextChar;
-  }
+    let textWithEncryptedMsg = '',
+        currentTextChar: string;
+    for (
+        let encryptedMsgIndex = 0, textIndex = 0;
+        textIndex < text.length;
+        textIndex++
+    ) {
+        currentTextChar = text.charAt(textIndex).toLowerCase();
+        if (encryptedMsgIndex === encryptedMsg.length) {
+            textWithEncryptedMsg += text.substring(textIndex);
+            break;
+        } else if (currentTextChar.match(/[^\W\d]/g)) {
+            currentTextChar =
+                encryptedMsg.charAt(encryptedMsgIndex) === 'a'
+                    ? currentTextChar
+                    : currentTextChar.toUpperCase();
+            encryptedMsgIndex++;
+        }
+        textWithEncryptedMsg += currentTextChar;
+    }
 
-  return textWithEncryptedMsg;
+    return textWithEncryptedMsg;
 }
 
 /**
@@ -140,12 +143,12 @@ export function encryptInText(
  * // returns 'abcaaa'
  */
 export function decryptInText(text: string, version = 2): string {
-  text = text.replace(/[\W\d]/g, '');
-  let encryptedMsg = '';
-  for (const char of text) {
-    encryptedMsg += isUpperCase(char) ? 'b' : 'a';
-  }
-  return decrypt(encryptedMsg, version);
+    text = text.replace(/[\W\d]/g, '');
+    let encryptedMsg = '';
+    for (const char of text) {
+        encryptedMsg += isUpperCase(char) ? 'b' : 'a';
+    }
+    return decrypt(encryptedMsg, version);
 }
 
 /*
@@ -154,7 +157,7 @@ aaaaa aaaaB aaaBa aaaaa aaaaa aaaaa
 */
 
 export function encryptInRandomText() {
-  // TODO
+    // TODO
 }
 
 /**
@@ -163,10 +166,10 @@ export function encryptInRandomText() {
  * @returns true if provided version is valid, throws error if invalid
  */
 function checkVersion(version: number): boolean | never {
-  if ([1, 2].indexOf(version) === -1) {
-    throw Error(
-      `Bacon cipher version '${version}' unknown - please select verson 1 or 2.`
-    );
-  }
-  return true;
+    if ([1, 2].indexOf(version) === -1) {
+        throw Error(
+            `Bacon cipher version '${version}' unknown - please select verson 1 or 2.`,
+        );
+    }
+    return true;
 }

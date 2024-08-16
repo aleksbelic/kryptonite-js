@@ -10,21 +10,23 @@
  * // returns 'afb c d e'
  */
 export function encrypt(plaintext: string, columnCount = 4): string {
-  if (columnCount < 1) {
-    throw Error('Invalid param: number of columns must be a positive integer.');
-  }
+    if (columnCount < 1) {
+        throw Error(
+            'Invalid param: number of columns must be a positive integer.',
+        );
+    }
 
-  let ciphertextArray: string[] = new Array(columnCount).fill('');
-  const rowCount = Math.ceil(plaintext.length / columnCount);
+    let ciphertextArray: string[] = new Array(columnCount).fill('');
+    const rowCount = Math.ceil(plaintext.length / columnCount);
 
-  Array.from(plaintext).forEach((char, index) => {
-    ciphertextArray[index % columnCount] += char;
-  });
-  ciphertextArray = ciphertextArray.map(cipherTextSubstring =>
-    cipherTextSubstring.padEnd(rowCount)
-  );
+    Array.from(plaintext).forEach((char, index) => {
+        ciphertextArray[index % columnCount] += char;
+    });
+    ciphertextArray = ciphertextArray.map(cipherTextSubstring =>
+        cipherTextSubstring.padEnd(rowCount),
+    );
 
-  return ciphertextArray.join('').trimEnd();
+    return ciphertextArray.join('').trimEnd();
 }
 
 /**
@@ -39,11 +41,13 @@ export function encrypt(plaintext: string, columnCount = 4): string {
  * // returns 'abcdef'
  */
 export function decrypt(ciphertext: string, columnCount = 4): string {
-  if (columnCount < 1) {
-    throw Error('Invalid param: number of columns must be a positive integer.');
-  } else if (ciphertext.length === 0) {
-    throw Error('Invalid param: no ciphertext provided.');
-  }
-  const rowCount = Math.ceil(ciphertext.length / columnCount);
-  return encrypt(ciphertext, rowCount);
+    if (columnCount < 1) {
+        throw Error(
+            'Invalid param: number of columns must be a positive integer.',
+        );
+    } else if (ciphertext.length === 0) {
+        throw Error('Invalid param: no ciphertext provided.');
+    }
+    const rowCount = Math.ceil(ciphertext.length / columnCount);
+    return encrypt(ciphertext, rowCount);
 }

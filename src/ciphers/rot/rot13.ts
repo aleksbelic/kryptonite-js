@@ -19,11 +19,11 @@ import * as caesar from '../caesar';
  * // returns 'nop'
  */
 export function encrypt(
-  plaintext: string,
-  caseSensitive = true,
-  includeForeignChars = true
+    plaintext: string,
+    caseSensitive = true,
+    includeForeignChars = true,
 ): string {
-  return caesar.encrypt(plaintext, 13, caseSensitive, includeForeignChars);
+    return caesar.encrypt(plaintext, 13, caseSensitive, includeForeignChars);
 }
 
 /**
@@ -45,9 +45,9 @@ export function encrypt(
  * // returns 'abc'
  */
 export function decrypt(
-  ciphertext: string,
-  caseSensitive = true,
-  includeForeignChars = true
+    ciphertext: string,
+    caseSensitive = true,
+    includeForeignChars = true,
 ): string {
-  return encrypt(ciphertext, caseSensitive, includeForeignChars);
+    return encrypt(ciphertext, caseSensitive, includeForeignChars);
 }
