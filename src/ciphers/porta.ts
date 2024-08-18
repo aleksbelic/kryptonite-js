@@ -31,7 +31,7 @@ export function encrypt(
     },
 ): string {
     if (options.key === '')
-        throw Error('Invalid param: key cannot be an empty string.');
+        throw new Error('Invalid param: key cannot be an empty string.');
 
     const caseSensitive = options.caseSensitive ?? true;
     const includeForeignChars = options.includeForeignChars ?? true;
@@ -57,7 +57,7 @@ export function encrypt(
         }
 
         if (substitutionMapAlphabet === undefined) {
-            throw Error(
+            throw new Error(
                 `No substitution alphabet provided for key char '${keyChar}'.`,
             );
         } else {
@@ -69,7 +69,7 @@ export function encrypt(
                 if (includeForeignChars) {
                     currentCharEncrypted = currentChar;
                 } else {
-                    throw Error(
+                    throw new Error(
                         `No substitution found for '${currentChar}' using key char '${keyChar}' in substitution alphabet.`,
                     );
                 }

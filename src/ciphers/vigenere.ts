@@ -26,7 +26,7 @@ export function encrypt(
         alphabet?: string[];
     },
 ): string {
-    if (options.key === '') throw Error('No key provided.');
+    if (options.key === '') throw new Error('No key provided.');
 
     const caseSensitive = options.caseSensitive ?? true;
     const includeForeignChars = options.includeForeignChars ?? true;
@@ -85,7 +85,7 @@ export function decrypt(
         alphabet?: string[];
     },
 ): string {
-    if (options.key === '') throw Error('No key provided.');
+    if (options.key === '') throw new Error('No key provided.');
 
     const caseSensitive = options.caseSensitive ?? true;
     const includeForeignChars = options.includeForeignChars ?? true;

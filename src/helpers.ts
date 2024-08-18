@@ -2,11 +2,14 @@ import { ALPHABET_EN } from './globals';
 
 /**
  * Checks if given char or string is upper case.
+ *
  * @param text
  * @returns true if given char or string is upper case
+ *
  * @example
  * isUpperCase('a');
  * // returns false
+ *
  * isUpperCase('A');
  * // returns true
  */
@@ -16,12 +19,15 @@ export function isUpperCase(text: string): boolean {
 
 /**
  * Returns key of the specified value for given map.
+ *
  * @param map
  * @param value value whose key we're looking for
  * @returns key for given value or undefined if value not found in map
+ *
  * @example
  * getMapKeyByValue(new Map([['a', 'alpha'],['b', 'beta']]),'alpha')
  * // returns 'a'
+ *
  * getMapKeyByValue(new Map([['a', 'alpha'],['b', 'beta']]),'gama')
  * // returns undefined
  */
@@ -30,7 +36,7 @@ export function getMapKeyByValue(
     value: string,
 ): string | undefined {
     if (!(map instanceof Map)) {
-        throw Error('Invalid param: please provide an intance of Map.');
+        throw new Error('Invalid param: please provide an intance of Map.');
     }
 
     for (const [k, v] of map) {
@@ -42,14 +48,18 @@ export function getMapKeyByValue(
 
 /**
  * Returns an array of unique chars for specified text.
+ *
  * @param text
  * @param [caseSensitive=false] if upper/lower case makes difference
  * @returns array of unique chars
+ *
  * @example
  * getUniqueCharsFromText('abba');
  * // returns ['a', 'b']
+ *
  * getUniqueCharsFromText('ABba', true);
  * // returns ['A', 'B', 'b', 'a']
+ *
  * getUniqueCharsFromText('Today was a good day');
  * // returns ['T', 'o', 'd', 'a', 'y', ' ', 'w', 's', 'g']
  */
@@ -65,13 +75,16 @@ export function getUniqueCharsFromText(
 
 /**
  * Returns shifted pair-letter for given char, rotation number & alphabet.
+ *
  * @param char letter in alphabet whose shifted pair we're looking for, case insensitive
  * @param shift number of left or right alphabet rotations
  * @param [alphabet=ALPHABET_EN] used alphabet
  * @returns shifted character
+ *
  * @example
  * getShiftedChar('a', 1)
  * // returns 'b'
+ *
  * getShiftedChar('a', -1)
  * // returns 'z'
  */
@@ -99,18 +112,19 @@ export function getShiftedChar(
 
 /**
  * Checks if user defined alphabet is valid.
- * @param alphabet user defined alphabet being checked
- * @returns true
+ *
+ * @param {string[]} alphabet user defined alphabet being checked
+ * @returns {boolean} true
  */
 export function checkAlphabet(alphabet: string[]): boolean | never {
     if (!Array.isArray(alphabet)) {
-        throw Error(
+        throw new Error(
             'Invalid alphabet: please provide an array of single-letter chars.',
         );
     }
 
     if (alphabet.length < 2) {
-        throw Error(
+        throw new Error(
             'Invalid alphabet: it needs to be at least 2 characters long.',
         );
     }
@@ -121,7 +135,7 @@ export function checkAlphabet(alphabet: string[]): boolean | never {
             char.length !== 1 ||
             char.length !== char.trim().length
         ) {
-            throw Error(
+            throw new Error(
                 'Invalid alphabet: it should contain only single-letter chars.',
             );
         }
@@ -131,7 +145,7 @@ export function checkAlphabet(alphabet: string[]): boolean | never {
         alphabet.toString().toLowerCase() !==
         [...new Set(alphabet.map(char => char.toLowerCase()))].toString()
     ) {
-        throw Error('Invalid alphabet: it must not contain duplicates.');
+        throw new Error('Invalid alphabet: it must not contain duplicates.');
     }
 
     return true;
@@ -139,7 +153,9 @@ export function checkAlphabet(alphabet: string[]): boolean | never {
 
 /**
  * Returns random printable ASCII char.
+ *
  * @returns random printable ASCII char
+ *
  * @example
  * getRandomAsciiChar()
  * // returns 'k'
@@ -150,10 +166,12 @@ export function getRandomAsciiChar(): string {
 
 /**
  * Returns count of existing chars found in provided text.
+ * 
  * @param text
  * @param [caseSensitive=false] if correct input of upper case and lower case matters
  * @param [onlyLetters=true] count only letters, skip special characters
  * @returns count of existing chars found in provided text
+ * 
  * @example
  * getCharCount('This is some text.')
  * // returns
@@ -203,10 +221,12 @@ export function getCharCount(
 
 /**
  * Returns relative frequency of existing chars found in provided text.
+ *
  * @param text
  * @param [caseSensitive=false] if correct input of upper case and lower case matters
  * @param [onlyLetters=true] count only letters, skip special characters
  * @returns count of existing chars found in provided text
+ *
  * @example
  * getCharFrequency('This is some text.')
  * returns
@@ -254,7 +274,7 @@ export function sortCharCountArray(
             (char1, char2) => char1.count - char2.count,
         );
     } else {
-        throw Error(`Invalid param: sort type '${sortType}' unknown.`);
+        throw new Error(`Invalid param: sort type '${sortType}' unknown.`);
     }
 
     return sortedCharCountArray;
@@ -262,10 +282,12 @@ export function sortCharCountArray(
 
 /**
  * Replaces all chars found in provided map with their replacement pair.
+ *
  * @param text
  * @param replacementMap map of replacement pairs
  * @param caseSensitive // TODO
  * @returns count of existing chars found in provided text
+ *
  * @example
  * replaceChars('abc', new Map([['a', 'x'], ['b', 'y']]))
  * // returns 'xyc'

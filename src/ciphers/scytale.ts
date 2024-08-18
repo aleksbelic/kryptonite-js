@@ -11,7 +11,7 @@
  */
 export function encrypt(plaintext: string, columnCount = 4): string {
     if (columnCount < 1) {
-        throw Error(
+        throw new Error(
             'Invalid param: number of columns must be a positive integer.',
         );
     }
@@ -42,11 +42,11 @@ export function encrypt(plaintext: string, columnCount = 4): string {
  */
 export function decrypt(ciphertext: string, columnCount = 4): string {
     if (columnCount < 1) {
-        throw Error(
+        throw new Error(
             'Invalid param: number of columns must be a positive integer.',
         );
     } else if (ciphertext.length === 0) {
-        throw Error('Invalid param: no ciphertext provided.');
+        throw new Error('Invalid param: no ciphertext provided.');
     }
     const rowCount = Math.ceil(ciphertext.length / columnCount);
     return encrypt(ciphertext, rowCount);

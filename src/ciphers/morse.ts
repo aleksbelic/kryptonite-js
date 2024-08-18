@@ -3,30 +3,39 @@ import { getMapKeyByValue } from '../helpers';
 
 /**
  * [Morse code](https://en.wikipedia.org/wiki/Morse_code) encryption.
- * @param plaintext text to be encrypted
- * @param [short='.'] character used for short mark
- * @param [long='-'] character used for long mark
- * @param [space='/'] character used for spacing between the words
- * @returns ciphertext
+ *
+ * @param {string} plaintext text to be encrypted
+ * @param {Object} [options] optional encoding options
+ * @param {string} [options.short] symbol to represent short signals (e.g., dots (".") in Morse code)
+ * @param {string} [options.long] symbol to represent long signals (e.g., dashes ("-") in Morse code)
+ * @param {string} [options.space] symbol to represent spaces between words
+ * @returns {string} ciphertext, the encrypted text
+ *
  * @example
  * encrypt('abc')
  * //returns '.- -... -.-.'
+ *
  * encrypt('Ab cd')
  * // returns '.- -... / -.-. -..'
- * encrypt('x y z', 'o', '=', '#')
+ *
+ * encrypt('x y z', { short: 'o', long: '=', space: '#' })
  * // returns '=oo= # =o== # ==oo'
  */
 export function encrypt(
     plaintext: string,
-    short = '.',
-    long = '-',
-    space = '/',
+    options?: {
+        short?: string;
+        long?: string;
+        space?: string;
+    },
 ): string {
+    const { short = '.', long = '-', space = '/' } = options || {};
+
     if (
         [short, long, space].join('') !==
         [...new Set([short, long, space])].join('')
     ) {
-        throw Error(
+        throw new Error(
             'Please use different characters for short mark, long mark & spacing between the words.',
         );
     }
@@ -37,7 +46,7 @@ export function encrypt(
         ciphertextWord = [];
         for (const currentChar of currentWord) {
             if (morseCodeMap.get(currentChar) === undefined) {
-                throw Error(
+                throw new Error(
                     `Character '${currentChar}' is not defined in Morse code.`,
                 );
             }
@@ -55,30 +64,39 @@ export function encrypt(
 
 /**
  * [Morse code](https://en.wikipedia.org/wiki/Morse_code) decryption.
- * @param ciphertext text to be decrypted
- * @param [short='.'] character used for short mark
- * @param [long='-'] character used for long mark
- * @param [space='/'] character used for spacing between the words
- * @returns plaintext
+ *
+ * @param {string} ciphertext text to be decrypted
+ * @param {Object} [options] optional decoding options
+ * @param {string} [options.short] symbol to represent short signals (e.g., dots in Morse code)
+ * @param {string} [options.long] symbol to represent long signals (e.g., dashes in Morse code)
+ * @param {string} [options.space] symbol to represent spaces between words
+ * @returns {string} plaintext, the decrypted text
+ *
  * @example
  * decrypt('.- -... -.-.')
  * // returns 'abc'
+ *
  * decrypt('.- -... / -.-. -..')
  * // returns 'ab cd'
- * decrypt('=oo= # =o== # ==oo', 'o', '=', '#')
+ *
+ * decrypt('=oo= # =o== # ==oo', { short: 'o', long: '=', space: '#' })
  * // returns 'x y z'
  */
 export function decrypt(
     ciphertext: string,
-    short = '.',
-    long = '-',
-    space = '/',
+    options?: {
+        short?: string;
+        long?: string;
+        space?: string;
+    },
 ): string {
+    const { short = '.', long = '-', space = '/' } = options || {};
+
     if (
         [short, long, space].join('') !==
         [...new Set([short, long, space])].join('')
     ) {
-        throw Error(
+        throw new Error(
             'Please use different characters for short mark, long mark & spacing between the words.',
         );
     }
@@ -94,7 +112,7 @@ export function decrypt(
                 ciphertextChar.replaceAll(short, '.').replaceAll(long, '-'),
             );
             if (currentCharDecrypted === undefined) {
-                throw Error(
+                throw new Error(
                     `Character '${ciphertextChar}' could not be decrypted.`,
                 );
             }

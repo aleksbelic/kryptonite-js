@@ -3,28 +3,42 @@ import { checkAlphabet, getShiftedChar, isUpperCase } from '../helpers';
 
 /**
  * [Atbash cipher](https://en.wikipedia.org/wiki/Atbash) encryption.
- * @param plaintext text to encrypt
- * @param [caseSensitive=true] if correct input of upper case and lower case matters
- * @param [includeForeignChars=true] if unknown char should be included in ciphertext
- * @param [alphabet=ALPHABET_EN] alphabet used for encryption process
- * @returns ciphertext
+ *
+ * @param {string} plaintext text to encrypt
+ * @param {Object} [options] optional configuration for encryption
+ * @param {boolean} [options.caseSensitive] if correct input of upper case and lower case matters
+ * @param {boolean} [options.includeForeignChars] if unknown char should be included in ciphertext
+ * @param {string[]} [options.alphabet] alphabet used for encryption process
+ * @returns {string} ciphertext, the encrypted text
+ *
  * @example
  * encrypt('abc')
  * // returns 'zyx'
- * encrypt('Abc', true)
+ *
+ * encrypt('Abc', { caseSensitive: true })
  * // returns 'Zyx'
- * encrypt('abc#d', undefined, true)
+ *
+ * encrypt('abc#d', { includeForeignChars: true })
  * // returns 'zyx#w'
- * encrypt('ћшчшћћ', undefined, undefined, ['ш', 'ч', 'ћ'])
+ *
+ * encrypt('ћшчшћћ', { alphabet: ['ш', 'ч', 'ћ'] })
  * // returns 'шћчћшш'
  */
 export function encrypt(
     plaintext: string,
-    caseSensitive = true,
-    includeForeignChars = true,
-    alphabet = ALPHABET_EN,
+    options?: {
+        caseSensitive?: boolean;
+        includeForeignChars?: boolean;
+        alphabet?: string[];
+    },
 ): string {
-    checkAlphabet(alphabet);
+    const {
+        caseSensitive = true,
+        includeForeignChars = true,
+        alphabet = ALPHABET_EN,
+    } = options || {};
+
+    checkAlphabet(alphabet!);
 
     let ciphertext = '',
         shift: number,
@@ -52,26 +66,44 @@ export function encrypt(
 
 /**
  * [Atbash cipher](https://en.wikipedia.org/wiki/Atbash) decryption.
- * @param ciphertext text to decrypt
- * @param [caseSensitive=true] if correct input of upper case and lower case matters
- * @param [includeForeignChars=true] if unknown char should be included in plaintext
- * @param [alphabet=ALPHABET_EN] alphabet used for decryption process
- * @returns plaintext
+ *
+ * @param {string} ciphertext text to decrypt
+ * @param {Object} [options] optional configuration for decryption
+ * @param {boolean} [options.caseSensitive] if correct input of upper case and lower case matters
+ * @param {boolean} [options.includeForeignChars=true] if unknown char should be included in plaintext
+ * @param {string[]} [options.alphabet] alphabet used for decryption process
+ * @returns {string} plaintext, the decrypted text
+ *
  * @example
  * decrypt('zyx')
  * // returns 'abc'
- * decrypt('Zyx', true)
+ *
+ * decrypt('Zyx', { caseSensitive: true })
  * // returns 'Abc'
- * decrypt('zyx#w', undefined, true)
+ *
+ * decrypt('zyx#w', { includeForeignChars: true })
  * // returns 'abc#d'
- * decrypt('шћчћшш', undefined, undefined, ['ш', 'ч', 'ћ'])
+ *
+ * decrypt('шћчћшш', { alphabet: ['ш', 'ч', 'ћ'] })
  * // returns 'ћшчшћћ'
  */
 export function decrypt(
     ciphertext: string,
-    caseSensitive = true,
-    includeForeignChars = true,
-    alphabet = ALPHABET_EN,
+    options?: {
+        caseSensitive?: boolean;
+        includeForeignChars?: boolean;
+        alphabet?: string[];
+    },
 ): string {
-    return encrypt(ciphertext, caseSensitive, includeForeignChars, alphabet);
+    const {
+        caseSensitive = true,
+        includeForeignChars = true,
+        alphabet = ALPHABET_EN,
+    } = options || {};
+
+    return encrypt(ciphertext, {
+        caseSensitive,
+        includeForeignChars,
+        alphabet,
+    });
 }

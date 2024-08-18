@@ -114,7 +114,7 @@ describe('Helper functions', () => {
 
         for (const char of asciiChars) {
             if (randomAsciiChars.indexOf(char) === -1) {
-                throw Error(
+                throw new Error(
                     `Error: ASCII char '${char}' not found in randomly generated string.`,
                 );
             } else {

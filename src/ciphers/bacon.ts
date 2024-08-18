@@ -105,7 +105,7 @@ export function encryptInText(
     const encryptedMsg = encrypt(message, version, false);
     const lettersInText = text.replaceAll(/[\W\d]/g, '').length;
     if (encryptedMsg.length > lettersInText) {
-        throw Error(
+        throw new Error(
             `Text should not contain less letters than encrypted message (${encryptedMsg.length}), please provide more letters.`,
         );
     }
@@ -167,7 +167,7 @@ export function encryptInRandomText() {
  */
 function checkVersion(version: number): boolean | never {
     if ([1, 2].indexOf(version) === -1) {
-        throw Error(
+        throw new Error(
             `Bacon cipher version '${version}' unknown - please select verson 1 or 2.`,
         );
     }
