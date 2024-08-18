@@ -2,7 +2,7 @@ import { DIGITS } from '../../globals';
 import * as caesar from '../caesar';
 
 /**
- * Variant of [ROT13 cipher](https://en.wikipedia.org/wiki/ROT13) encryption that applies to numeric digits.
+ * Variant of [ROT13 cipher](https://en.wikipedia.org/wiki/ROT13) encryption that applies to numeric digits
  *
  * @param plaintext text to be encrypted
  * @param [includeCharsOtherThanNumbers=true] if chars other than numbers should be included in ciphertext
@@ -22,13 +22,12 @@ export function encrypt(
     plaintext: string,
     includeCharsOtherThanNumbers = true,
 ): string {
-    return caesar.encrypt(
-        plaintext,
-        5,
-        true,
-        includeCharsOtherThanNumbers,
-        DIGITS,
-    );
+    return caesar.encrypt(plaintext, {
+        shift: 5,
+        caseSensitive: true,
+        includeForeignChars: includeCharsOtherThanNumbers,
+        alphabet: DIGITS,
+    });
 }
 
 /**

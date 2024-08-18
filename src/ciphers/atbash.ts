@@ -4,12 +4,12 @@ import { checkAlphabet, getShiftedChar, isUpperCase } from '../helpers';
 /**
  * [Atbash cipher](https://en.wikipedia.org/wiki/Atbash) encryption.
  *
- * @param {string} plaintext text to encrypt
- * @param {Object} [options] optional configuration for encryption
- * @param {boolean} [options.caseSensitive] if correct input of upper case and lower case matters
- * @param {boolean} [options.includeForeignChars] if unknown char should be included in ciphertext
- * @param {string[]} [options.alphabet] alphabet used for encryption process
- * @returns {string} ciphertext, the encrypted text
+ * @param plaintext text to encrypt
+ * @param options optional configuration for encryption
+ * @param options.caseSensitive if correct input of upper case and lower case matters
+ * @param options.includeForeignChars if unknown char should be included in ciphertext
+ * @param options.alphabet alphabet used for encryption process
+ * @returns ciphertext, the encrypted text
  *
  * @example
  * encrypt('abc')
@@ -67,12 +67,12 @@ export function encrypt(
 /**
  * [Atbash cipher](https://en.wikipedia.org/wiki/Atbash) decryption.
  *
- * @param {string} ciphertext text to decrypt
- * @param {Object} [options] optional configuration for decryption
- * @param {boolean} [options.caseSensitive] if correct input of upper case and lower case matters
- * @param {boolean} [options.includeForeignChars=true] if unknown char should be included in plaintext
- * @param {string[]} [options.alphabet] alphabet used for decryption process
- * @returns {string} plaintext, the decrypted text
+ * @param ciphertext text to decrypt
+ * @param options optional configuration for decryption
+ * @param options.caseSensitive if correct input of upper case and lower case matters
+ * @param options.includeForeignChars if unknown char should be included in plaintext
+ * @param options.alphabet alphabet used for decryption process
+ * @returns plaintext, the decrypted text
  *
  * @example
  * decrypt('zyx')

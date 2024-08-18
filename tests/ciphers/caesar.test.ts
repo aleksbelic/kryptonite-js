@@ -9,41 +9,56 @@ import { ALPHABET_SR_CYR } from '../../src/globals';
 
 describe('Caesar cipher - encryption', () => {
     test('Shift', () => {
-        expect(encrypt('abcdefghijklmnopqrstuvwxyz', 1)).toEqual(
+        expect(encrypt('abcdefghijklmnopqrstuvwxyz', { shift: 1 })).toEqual(
             'bcdefghijklmnopqrstuvwxyza',
         );
-        expect(encrypt('abcdefghijklmnopqrstuvwxyz', -1)).toEqual(
+        expect(encrypt('abcdefghijklmnopqrstuvwxyz', { shift: -1 })).toEqual(
             'zabcdefghijklmnopqrstuvwxy',
         );
-        expect(encrypt('abc', 30)).toEqual('efg');
-        expect(encrypt('abc', -30)).toEqual('wxy');
+        expect(encrypt('abc', { shift: 30 })).toEqual('efg');
+        expect(encrypt('abc', { shift: -30 })).toEqual('wxy');
     });
 
     test('Case sensitive', () => {
-        expect(encrypt('ABc', 1, true)).toEqual('BCd');
-        expect(encrypt('aBc', 1, false)).toEqual('bcd');
+        expect(encrypt('ABc', { shift: 1, caseSensitive: true })).toEqual(
+            'BCd',
+        );
+        expect(encrypt('aBc', { shift: 1, caseSensitive: false })).toEqual(
+            'bcd',
+        );
     });
 
     test('Include foreign chars', () => {
-        expect(encrypt('ab!c', 1, true, true)).toEqual('bc!d');
-        expect(encrypt('ab!c', 1, true, false)).toEqual('bcd');
+        expect(
+            encrypt('ab!c', {
+                shift: 1,
+                caseSensitive: true,
+                includeForeignChars: true,
+            }),
+        ).toEqual('bc!d');
+        expect(
+            encrypt('ab!c', {
+                shift: 1,
+                caseSensitive: true,
+                includeForeignChars: false,
+            }),
+        ).toEqual('bcd');
     });
 
     test('Custom alphabet', () => {
-        expect(() => encrypt('a', 1, undefined, undefined, ['a'])).toThrow(
+        expect(() => encrypt('a', { shift: 1, alphabet: ['a'] })).toThrow(
             'Invalid alphabet: it needs to be at least 2 characters long.',
         );
         expect(() =>
-            encrypt('abc', 1, undefined, undefined, ['c', 'b', 'a', 'c', 'd']),
+            encrypt('abc', { shift: 1, alphabet: ['c', 'b', 'a', 'c', 'd'] }),
         ).toThrow('Invalid alphabet: it must not contain duplicates.');
         expect(
-            encrypt(
-                'Ако не почнеш, нећеш ни завршити',
-                10,
-                true,
-                true,
-                ALPHABET_SR_CYR,
-            ),
+            encrypt('Ако не почнеш, нећеш ни завршити', {
+                shift: 10,
+                caseSensitive: true,
+                includeForeignChars: true,
+                alphabet: ALPHABET_SR_CYR,
+            }),
         ).toEqual('Јтч хњ џчжхњи, хњвњи хр пјлширбр');
     });
 
@@ -51,62 +66,81 @@ describe('Caesar cipher - encryption', () => {
         expect(
             encrypt(
                 'Ignavi coram morte quidem animam trahunt, audaces autem illam non saltem advertunt.',
-                5,
+                { shift: 5 },
             ),
         ).toBe(
             'Nlsfan htwfr rtwyj vznijr fsnrfr ywfmzsy, fzifhjx fzyjr nqqfr sts xfqyjr fiajwyzsy.',
         );
-        expect(encrypt('Veni, vidi, vici.', 22, false, false)).toBe(
-            'rajerezereye',
-        );
+        expect(
+            encrypt('Veni, vidi, vici.', {
+                shift: 22,
+                caseSensitive: false,
+                includeForeignChars: false,
+            }),
+        ).toBe('rajerezereye');
     });
 });
 
 describe('Caesar cipher - decryption', () => {
     test('Shift', () => {
-        expect(decrypt('bcdefghijklmnopqrstuvwxyza', 1)).toEqual(
+        expect(decrypt('bcdefghijklmnopqrstuvwxyza', { shift: 1 })).toEqual(
             'abcdefghijklmnopqrstuvwxyz',
         );
-        expect(decrypt('zabcdefghijklmnopqrstuvwxy', -1)).toEqual(
+        expect(decrypt('zabcdefghijklmnopqrstuvwxy', { shift: -1 })).toEqual(
             'abcdefghijklmnopqrstuvwxyz',
         );
-        expect(decrypt('efg', 30)).toEqual('abc');
-        expect(decrypt('wxy', -30)).toEqual('abc');
+        expect(decrypt('efg', { shift: 30 })).toEqual('abc');
+        expect(decrypt('wxy', { shift: -30 })).toEqual('abc');
     });
 
     test('Case sensitive', () => {
-        expect(decrypt('BCd', 1, true)).toEqual('ABc');
-        expect(decrypt('bCd', 1, false)).toEqual('abc');
+        expect(decrypt('BCd', { shift: 1, caseSensitive: true })).toEqual(
+            'ABc',
+        );
+        expect(decrypt('bCd', { shift: 1, caseSensitive: false })).toEqual(
+            'abc',
+        );
     });
 
     test('Include foreign chars', () => {
-        expect(decrypt('bc!d', 1, true, true)).toEqual('ab!c');
-        expect(decrypt('bc!d', 1, true, false)).toEqual('abc');
+        expect(
+            decrypt('bc!d', {
+                shift: 1,
+                caseSensitive: true,
+                includeForeignChars: true,
+            }),
+        ).toEqual('ab!c');
+        expect(
+            decrypt('bc!d', {
+                shift: 1,
+                caseSensitive: true,
+                includeForeignChars: false,
+            }),
+        ).toEqual('abc');
     });
 
     test('Custom alphabet', () => {
-        expect(() => decrypt('a', 1, undefined, undefined, ['a'])).toThrow(
+        expect(() => decrypt('a', { shift: 1, alphabet: ['a'] })).toThrow(
             'Invalid alphabet: it needs to be at least 2 characters long.',
         );
         expect(() =>
-            decrypt('bcd', 1, undefined, undefined, ['c', 'b', 'a', 'c', 'd']),
+            decrypt('bcd', { shift: 1, alphabet: ['c', 'b', 'a', 'c', 'd'] }),
         ).toThrow('Invalid alphabet: it must not contain duplicates.');
         expect(
-            decrypt(
-                'Јтч хњ џчжхњи, хњвњи хр пјлширбр',
-                10,
-                true,
-                true,
-                ALPHABET_SR_CYR,
-            ),
+            decrypt('Јтч хњ џчжхњи, хњвњи хр пјлширбр', {
+                shift: 10,
+                caseSensitive: true,
+                includeForeignChars: true,
+                alphabet: ALPHABET_SR_CYR,
+            }),
         ).toEqual('Ако не почнеш, нећеш ни завршити');
     });
 
     test('Various', () => {
-        expect(decrypt('T slgp yz topl hsle T lx oztyr', -15)).toEqual(
-            'I have no idea what I am doing',
-        );
-        expect(decrypt('Qjen wx onja xo rln lxum KNNA', 9)).toEqual(
+        expect(
+            decrypt('T slgp yz topl hsle T lx oztyr', { shift: -15 }),
+        ).toEqual('I have no idea what I am doing');
+        expect(decrypt('Qjen wx onja xo rln lxum KNNA', { shift: 9 })).toEqual(
             'Have no fear of ice cold BEER',
         );
     });
@@ -116,7 +150,7 @@ describe('Caesar cipher - console.log output', () => {
     test('Print shift', () => {
         const consoleLogSpy = jest.spyOn(global.console, 'log');
 
-        printShift('abc', 1);
+        printShift('abc', { shift: 1 });
 
         expect(consoleLogSpy).toHaveBeenCalled();
         expect(consoleLogSpy).toHaveBeenCalledTimes(1);
@@ -129,7 +163,7 @@ describe('Caesar cipher - console.log output', () => {
     test('Print all shift', () => {
         const consoleLogSpy = jest.spyOn(global.console, 'log');
 
-        printAllShifts('a', undefined, undefined, ['a', 'b', 'c']);
+        printAllShifts('a', { alphabet: ['a', 'b', 'c'] });
 
         expect(consoleLogSpy).toHaveBeenCalled();
         expect(consoleLogSpy).toHaveBeenCalledTimes(3);

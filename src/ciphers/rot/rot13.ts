@@ -29,7 +29,11 @@ export function encrypt(
     caseSensitive = true,
     includeForeignChars = true,
 ): string {
-    return caesar.encrypt(plaintext, 13, caseSensitive, includeForeignChars);
+    return caesar.encrypt(plaintext, {
+        shift: 13,
+        caseSensitive,
+        includeForeignChars,
+    });
 }
 
 /**
