@@ -68,7 +68,7 @@ export function encrypt(
  * [Atbash cipher](https://en.wikipedia.org/wiki/Atbash) decryption.
  *
  * @param ciphertext text to decrypt
- * @param options optional configuration for decryption
+ * @param options configuration for decryption
  * @param options.caseSensitive if correct input of upper case and lower case matters
  * @param options.includeForeignChars if unknown char should be included in plaintext
  * @param options.alphabet alphabet used for decryption process

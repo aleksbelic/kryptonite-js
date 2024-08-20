@@ -14,11 +14,13 @@ import { ALPHABET_EN } from './globals';
  * // returns true
  */
 export function isUpperCase(text: string): boolean {
+    if (text.length === 0)
+        throw new Error('Invalid param: an empty string provided.');
     return text === text.toUpperCase();
 }
 
 /**
- * Returns key of the specified value for given map.
+ * Returns key of the specified value for given map
  *
  * @param map
  * @param value value whose key we're looking for
@@ -47,7 +49,7 @@ export function getMapKeyByValue(
 }
 
 /**
- * Returns an array of unique chars for specified text.
+ * Returns an array of unique chars for specified text
  *
  * @param text
  * @param [caseSensitive=false] if upper/lower case makes difference
@@ -74,7 +76,7 @@ export function getUniqueCharsFromText(
 }
 
 /**
- * Returns shifted pair-letter for given char, rotation number & alphabet.
+ * Returns shifted pair-letter for given char, rotation number & alphabet
  *
  * @param char letter in alphabet whose shifted pair we're looking for, case insensitive
  * @param shift number of left or right alphabet rotations
@@ -111,10 +113,10 @@ export function getShiftedChar(
 }
 
 /**
- * Checks if user defined alphabet is valid.
+ * Checks if user defined alphabet is valid
  *
- * @param {string[]} alphabet user defined alphabet being checked
- * @returns {boolean} true
+ * @param alphabet user defined alphabet being checked
+ * @returns true
  */
 export function checkAlphabet(alphabet: string[]): boolean | never {
     if (!Array.isArray(alphabet)) {
@@ -152,7 +154,7 @@ export function checkAlphabet(alphabet: string[]): boolean | never {
 }
 
 /**
- * Returns random printable ASCII char.
+ * Returns random printable ASCII char
  *
  * @returns random printable ASCII char
  *
@@ -165,7 +167,7 @@ export function getRandomAsciiChar(): string {
 }
 
 /**
- * Returns count of existing chars found in provided text.
+ * Returns count of existing chars found in provided text
  * 
  * @param text
  * @param [caseSensitive=false] if correct input of upper case and lower case matters
@@ -220,7 +222,7 @@ export function getCharCount(
 }
 
 /**
- * Returns relative frequency of existing chars found in provided text.
+ * Returns relative frequency of existing chars found in provided text
  *
  * @param text
  * @param [caseSensitive=false] if correct input of upper case and lower case matters
@@ -281,7 +283,7 @@ export function sortCharCountArray(
 }
 
 /**
- * Replaces all chars found in provided map with their replacement pair.
+ * Replaces all chars found in provided map with their replacement pair
  *
  * @param text
  * @param replacementMap map of replacement pairs

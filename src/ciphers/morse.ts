@@ -4,12 +4,12 @@ import { getMapKeyByValue } from '../helpers';
 /**
  * [Morse code](https://en.wikipedia.org/wiki/Morse_code) encryption.
  *
- * @param {string} plaintext text to be encrypted
- * @param {Object} [options] optional encoding options
- * @param {string} [options.short] symbol to represent short signals (e.g., dots (".") in Morse code)
- * @param {string} [options.long] symbol to represent long signals (e.g., dashes ("-") in Morse code)
- * @param {string} [options.space] symbol to represent spaces between words
- * @returns {string} ciphertext, the encrypted text
+ * @param plaintext text to be encrypted
+ * @param options optional encoding options
+ * @param options.short symbol to represent short signals (e.g., dots (".") in Morse code)
+ * @param options.long symbol to represent long signals (e.g., dashes ("-") in Morse code)
+ * @param options.space symbol to represent spaces between words
+ * @returns ciphertext, the encrypted text
  *
  * @example
  * encrypt('abc')
@@ -65,12 +65,12 @@ export function encrypt(
 /**
  * [Morse code](https://en.wikipedia.org/wiki/Morse_code) decryption.
  *
- * @param {string} ciphertext text to be decrypted
- * @param {Object} [options] optional decoding options
- * @param {string} [options.short] symbol to represent short signals (e.g., dots in Morse code)
- * @param {string} [options.long] symbol to represent long signals (e.g., dashes in Morse code)
- * @param {string} [options.space] symbol to represent spaces between words
- * @returns {string} plaintext, the decrypted text
+ * @param ciphertext text to be decrypted
+ * @param options optional decoding options
+ * @param options.short symbol to represent short signals (e.g., dots in Morse code)
+ * @param options.long symbol to represent long signals (e.g., dashes in Morse code)
+ * @param options.space symbol to represent spaces between words
+ * @returns plaintext, the decrypted text
  *
  * @example
  * decrypt('.- -... -.-.')

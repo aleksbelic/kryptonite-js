@@ -2,19 +2,24 @@ import { ALPHABET_EN } from '../globals';
 import { isUpperCase } from '../helpers';
 
 /**
- * [Vigenère cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher) encryption.
+ * [Vigenère cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher) encryption
+ *
  * @param plaintext text to be encrypted
- * @param key word used to switch cipher alphabets every letter
- * @param [caseSensitive=true] if correct input of upper case and lower case matters
- * @param [includeForeignChars=true] if unknown char should be included in ciphertext
- * @param alphabet used alphabet
- * @returns ciphertext
+ * @param options configuration for encryption
+ * @param options.key word used to switch cipher alphabets every letter
+ * @param options.caseSensitive if correct input of upper case and lower case matters
+ * @param options.includeForeignChars if unknown char should be included in ciphertext
+ * @param options.alphabet used alphabet
+ * @returns ciphertext, the encrypted text
+ *
  * @example
- * encrypt('My secret msg', 'mykey')
+ * encrypt('My secret msg', { key: 'mykey' })
  * // returns 'Yw ciadcd qqs'
- * encrypt('My secret msg', 'mykey', false)
+ *
+ * encrypt('My secret msg', { key: 'mykey', caseSensitive: false })
  * // returns 'yw ciadcd qqs'
- * encrypt('My secret msg', 'mykey', undefined, false)
+ *
+ * encrypt('My secret msg', { key: 'mykey', includeForeignChars: false })
  * // returns 'Ywciadcdqqs'
  */
 export function encrypt(
@@ -26,11 +31,14 @@ export function encrypt(
         alphabet?: string[];
     },
 ): string {
-    if (options.key === '') throw new Error('No key provided.');
+    const {
+        key,
+        caseSensitive = true,
+        includeForeignChars = true,
+        alphabet = ALPHABET_EN,
+    } = options;
 
-    const caseSensitive = options.caseSensitive ?? true;
-    const includeForeignChars = options.includeForeignChars ?? true;
-    const alphabet = options.alphabet ?? ALPHABET_EN;
+    if (key === '') throw new Error('No key provided.');
 
     let ciphertext = '',
         currentChar: string,
@@ -48,7 +56,7 @@ export function encrypt(
         currentCharEncrypted =
             alphabet[
                 (alphabet.indexOf(currentChar.toLowerCase()) +
-                    alphabet.indexOf(options.key[j % options.key.length])) %
+                    alphabet.indexOf(key[j % key.length])) %
                     alphabet.length
             ];
         ciphertext +=
@@ -61,19 +69,24 @@ export function encrypt(
 }
 
 /**
- * [Vigenère cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher) decryption.
+ * [Vigenère cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher) decryption
+ *
  * @param ciphertext text to be decrypted
- * @param key word used to switch cipher alphabets every letter
- * @param [caseSensitive=true] if correct input of upper case and lower case matters
- * @param [includeForeignChars=true] if unknown char should be included in plaintext
- * @param alphabet used alphabet
- * @returns plaintext
+ * @param options configuration for decryption
+ * @param options.key word used to switch cipher alphabets every letter
+ * @param options.caseSensitive if correct input of upper case and lower case matters
+ * @param options.includeForeignChars if unknown char should be included in plaintext
+ * @param options.alphabet used alphabet
+ * @returns plaintext, the decrypted text
+ *
  * @example
- * decrypt('Yw ciadcd qqs', 'mykey')
+ * decrypt('Yw ciadcd qqs', { key: 'mykey' })
  * // returns 'My secret msg'
- * decrypt('Yw ciadcd qqs', 'mykey', false)
+ *
+ * decrypt('Yw ciadcd qqs', { key: 'mykey', caseSensitive: false })
  * // returns 'my secret msg'
- * decrypt('Yw ciadcd qqs', 'mykey', undefined, false)
+ *
+ * decrypt('Yw ciadcd qqs', { key: 'mykey', includeForeignChars: false })
  * // returns 'Mysecretmsg'
  */
 export function decrypt(
@@ -85,11 +98,14 @@ export function decrypt(
         alphabet?: string[];
     },
 ): string {
-    if (options.key === '') throw new Error('No key provided.');
+    const {
+        key,
+        caseSensitive = true,
+        includeForeignChars = true,
+        alphabet = ALPHABET_EN,
+    } = options;
 
-    const caseSensitive = options.caseSensitive ?? true;
-    const includeForeignChars = options.includeForeignChars ?? true;
-    const alphabet = options.alphabet ?? ALPHABET_EN;
+    if (key === '') throw new Error('No key provided.');
 
     let plaintext = '',
         currentChar: string,
@@ -107,7 +123,7 @@ export function decrypt(
         }
         currentCharDecryptedIndex =
             alphabet.indexOf(currentChar.toLowerCase()) -
-            alphabet.indexOf(options.key[j % options.key.length]);
+            alphabet.indexOf(key[j % key.length]);
         currentCharDecrypted =
             alphabet[
                 (currentCharDecryptedIndex + alphabet.length) % alphabet.length

@@ -1,22 +1,34 @@
 /**
- * [Scytale cipher](https://en.wikipedia.org/wiki/Scytale) encryption.
+ * [Scytale cipher](https://en.wikipedia.org/wiki/Scytale) encryption
+ *
  * @param plaintext text to be encrypted
- * @param [columnCount=4] number of text columns created by wounding plaintext around a scytale
- * @returns ciphertext
+ * @param options configuration for encryption
+ * @param options.columnCount number of text columns created by wounding plaintext around a scytale
+ * @returns ciphertext, the encrypted text
+ *
  * @example
- * encrypt('abcdef', 2)
+ * encrypt('abcdef')
+ * // returns 'aebfc d'
+ *
+ * encrypt('abcdef', { columnCount: 2 })
  * // returns 'acebdf'
- * encrypt('abcdef', 5)
+ *
+ * encrypt('abcdef', { columnCount: 5 })
  * // returns 'afb c d e'
  */
-export function encrypt(plaintext: string, columnCount = 4): string {
+export function encrypt(
+    plaintext: string,
+    options?: { columnCount: number },
+): string {
+    const { columnCount = 4 } = options || {};
+
     if (columnCount < 1) {
         throw new Error(
             'Invalid param: number of columns must be a positive integer.',
         );
     }
 
-    let ciphertextArray: string[] = new Array(columnCount).fill('');
+    let ciphertextArray = new Array(columnCount).fill('');
     const rowCount = Math.ceil(plaintext.length / columnCount);
 
     Array.from(plaintext).forEach((char, index) => {
@@ -30,17 +42,29 @@ export function encrypt(plaintext: string, columnCount = 4): string {
 }
 
 /**
- * [Scytale cipher](https://en.wikipedia.org/wiki/Scytale) encryption.
+ * [Scytale cipher](https://en.wikipedia.org/wiki/Scytale) decryption
+ *
  * @param ciphertext text to be decrypted
- * @param columnCount [columnCount=4] number of text columns created by wounding ciphertext around a scytale
- * @returns plaintext
+ * @param options configuration for decryption
+ * @param options.columnCount number of text columns created by wounding ciphertext around a scytale
+ * @returns plaintext, the decrypted text
+ *
  * @example
- * decrypt('acebdf', 2)
+ * decrypt('aebfc d')
  * // returns 'abcdef'
- * decrypt('afb c d e', 5)
+ *
+ * decrypt('acebdf', { columnCount: 2 })
+ * // returns 'abcdef'
+ *
+ * decrypt('afb c d e', { columnCount: 5 })
  * // returns 'abcdef'
  */
-export function decrypt(ciphertext: string, columnCount = 4): string {
+export function decrypt(
+    ciphertext: string,
+    options?: { columnCount?: number },
+): string {
+    const { columnCount = 4 } = options || {};
+
     if (columnCount < 1) {
         throw new Error(
             'Invalid param: number of columns must be a positive integer.',
@@ -49,5 +73,5 @@ export function decrypt(ciphertext: string, columnCount = 4): string {
         throw new Error('Invalid param: no ciphertext provided.');
     }
     const rowCount = Math.ceil(ciphertext.length / columnCount);
-    return encrypt(ciphertext, rowCount);
+    return encrypt(ciphertext, { columnCount: rowCount });
 }

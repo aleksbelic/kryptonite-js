@@ -59,7 +59,7 @@ export function encrypt(
  * [Bacon's cipher](https://en.wikipedia.org/wiki/Bacon%27s_cipher) decryption.
  *
  * @param ciphertext text to be decrypted
- * @param options optional configuration for decryption
+ * @param options configuration for decryption
  * @param options.version cipher version (1 or 2). 1st version uses the same code for letters 'i' & 'j' as well as for 'u' & v, while the 2nd version has unique code for each letter
  * @returns plaintext, the decrypted text
  *
@@ -171,7 +171,7 @@ export function encryptInText(
  * Returns decrypted message hidden in specified text where lower case letters represent letter 'a' & upper case - letter 'b'
  *
  * @param text text that contains hidden, encrypted message
- * @param options optional configuration for decryption
+ * @param options configuration for decryption
  * @param options.version cipher version (1 or 2). 1st version uses the same code for letters 'i' & 'j' as well as for 'u' & v, while the 2nd version has unique code for each letter
  * @returns plaintext hidden in specified text
  *

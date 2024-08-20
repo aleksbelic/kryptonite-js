@@ -1,13 +1,26 @@
+// TODO: case sensitive, white space
+
 /**
- * [Rail Fence cipher](https://en.wikipedia.org/wiki/Rail_fence_cipher) encryption.
+ * [Rail Fence cipher](https://en.wikipedia.org/wiki/Rail_fence_cipher) encryption
+ *
  * @param plaintext text to be encrypted
- * @param railCount number of successive "rails" of an imaginary fence
- * @returns ciphertext
+ * @param options optional configuration for encryption
+ * @param options.railCount number of successive "rails" of an imaginary fence
+ * @returns ciphertext, the encrypted text
+ *
  * @example
- * encrypt('WE ARE DISCOVERED FLEE AT ONCE', 3)
+ * encrypt('WE ARE DISCOVERED FLEE AT ONCE')
  * // returns 'WECRUOERDSOEERNTNEAIVDAC'
+ *
+ * encrypt('GROUND CONTROL TO MAJOR TOM', { railCount: 6 })
+ * // returns 'GRTRTOROONLOMUOTJNCOADM'
  */
-export function encrypt(plaintext: string, railCount = 3): string {
+export function encrypt(
+    plaintext: string,
+    options?: { railCount?: number },
+): string {
+    const { railCount = 3 } = options || {};
+
     plaintext = plaintext.replace(/\s/g, '');
     const ciphertextRails: string[] = new Array(railCount).fill('');
 
@@ -29,15 +42,26 @@ export function encrypt(plaintext: string, railCount = 3): string {
 }
 
 /**
- * [Rail Fence cipher](https://en.wikipedia.org/wiki/Rail_fence_cipher) decryption.
+ * [Rail Fence cipher](https://en.wikipedia.org/wiki/Rail_fence_cipher) decryption
+ *
  * @param ciphertext text to be decrypted
- * @param railCount number of successive "rails" of an imaginary fence
- * @returns plaintext
+ * @param options configuration for decryption
+ * @param options.railCount number of successive "rails" of an imaginary fence
+ * @returns plaintext, the decrypted text
+ *
  * @example
- * decrypt('WECRUOERDSOEERNTNEAIVDAC', 3)
+ * decrypt('WECRUOERDSOEERNTNEAIVDAC')
  * // returns 'WEAREDISCOVEREDFLEEATONCE'
+ *
+ * decrypt('GRTRTOROONLOMUOTJNCOADM', { railCount: 6 })
+ * // returns 'GROUNDCONTROLTOMAJORTOM'
  */
-export function decrypt(ciphertext: string, railCount = 3): string {
+export function decrypt(
+    ciphertext: string,
+    options?: { railCount?: number },
+): string {
+    const { railCount = 3 } = options || {};
+
     let plaintext = '';
     const ciphertextRails: string[] = new Array(railCount).fill('');
     const ciphertextRailsLengths: number[] = new Array(railCount).fill(0);

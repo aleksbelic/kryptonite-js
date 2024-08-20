@@ -5,7 +5,7 @@ import { checkAlphabet, getShiftedChar, isUpperCase } from '../helpers';
  * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) encryption
  *
  * @param plaintext text to be encrypted
- * @param options optional configuration for encryption
+ * @param options configuration for encryption
  * @param options.shift number of left or right alphabet rotations
  * @param options.caseSensitive if correct input of upper case and lower case matters
  * @param options.includeForeignChars if unknown char should be included in ciphertext
@@ -45,7 +45,7 @@ export function encrypt(
         caseSensitive = true,
         includeForeignChars = true,
         alphabet = ALPHABET_EN,
-    } = options || {};
+    } = options;
     checkAlphabet(alphabet);
 
     let ciphertext = '',
@@ -71,7 +71,7 @@ export function encrypt(
  * [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher) decryption
  *
  * @param ciphertext text to be decrypted
- * @param options optional configuration for decryption
+ * @param options configuration for decryption
  * @param options.shift number of left or right alphabet rotations
  * @param options.caseSensitive if correct input of upper case and lower case matters
  * @param options.includeForeignChars if unknown char should be included in plaintext
@@ -111,7 +111,7 @@ export function decrypt(
         caseSensitive = true,
         includeForeignChars = true,
         alphabet = ALPHABET_EN,
-    } = options || {};
+    } = options;
 
     return encrypt(ciphertext, {
         shift: alphabet.length - shift,
@@ -125,7 +125,7 @@ export function decrypt(
  * Prints decrypted plaintext for given ciphertext, shift & alphabet
  *
  * @param ciphertext text to be decrypted
- * @param options optional configuration for encryption
+ * @param options configuration for encryption
  * @param options.shift number of left or right alphabet rotations
  * @param options.caseSensitive if correct input of upper case and lower case matters
  * @param options.includeForeignChars if unknown char should be included in ciphertext
@@ -149,7 +149,7 @@ export function printShift(
         caseSensitive = true,
         includeForeignChars = true,
         alphabet = ALPHABET_EN,
-    } = options || {};
+    } = options;
 
     console.log(
         encrypt(ciphertext, {
@@ -165,13 +165,13 @@ export function printShift(
  * Prints decrypted plaintext of given ciphertext with all possible shifts
  *
  * @param ciphertext text to be decrypted
- * @param options optional configuration for decryption
+ * @param options configuration for decryption
  * @param options.caseSensitive if correct input of upper case and lower case matters
  * @param options.includeForeignChars if unknown char should be included in ciphertext
  * @param options.alphabet used alphabet
  *
  * @example
- * printAllShifts('a', undefined, undefined, ['a', 'b', 'c'])
+ * printAllShifts('a', { alphabet: ['a', 'b', 'c'] })
  * // prints
  * 'a'
  * 'b'
@@ -179,7 +179,7 @@ export function printShift(
  */
 export function printAllShifts(
     ciphertext: string,
-    options: {
+    options?: {
         caseSensitive?: boolean;
         includeForeignChars?: boolean;
         alphabet?: string[];

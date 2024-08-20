@@ -2,24 +2,32 @@ import { ALPHABET_EN, portaMap } from '../globals';
 import { isUpperCase } from '../helpers';
 
 /**
- * [Porta cipher](http://practicalcryptography.com/ciphers/porta-cipher) encryption.
+ * [Porta cipher](http://practicalcryptography.com/ciphers/porta-cipher) encryption
+ *
  * @param plaintext text to be encrypted
- * @param key secret key used in the encryption process
- * @param [caseSensitive=true] if correct input of upper case and lower case matters
- * @param [includeForeignChars=true] if unknown char should be included in ciphertext
- * @returns ciphertext
+ * @param options encoding options
+ * @param options.key secret key used in the encryption process
+ * @param options.caseSensitive if correct input of upper case and lower case matters
+ * @param options.includeForeignChars if unknown char should be included in ciphertext
+ * @returns ciphertext, the encrypted text
+ *
  * @example
  * encrypt('abc', 'key')
  * // returns 'sqo'
- * encrypt('aBc', 'key')
+ *
+ * encrypt('aBc', { key: 'key' })
  * // returns 'sQo'
- * encrypt('aBc', 'key', false)
+ *
+ * encrypt('aBc', { key: 'key', caseSensitive: false })
  * // returns 'sqo'
- * encrypt('aB_c', 'key')
+ *
+ * encrypt('aB_c', { key: 'key' })
  * // returns 'sQ_u'
- * encrypt('aB_c', 'key', undefined, false)
+ *
+ * encrypt('aB_c', { key: 'key', includeForeignChars: false })
  * // returns 'sQo'
- * encrypt('aB_c', 'key', false, false)
+ *
+ * encrypt('aB_c', { key: 'key', caseSensitive: false, includeForeignChars: false })
  * returns 'sqo'
  */
 export function encrypt(
@@ -30,11 +38,10 @@ export function encrypt(
         includeForeignChars?: boolean;
     },
 ): string {
+    const { caseSensitive = true, includeForeignChars = true } = options;
+
     if (options.key === '')
         throw new Error('Invalid param: key cannot be an empty string.');
-
-    const caseSensitive = options.caseSensitive ?? true;
-    const includeForeignChars = options.includeForeignChars ?? true;
 
     if (!includeForeignChars) {
         plaintext = plaintext.replace(/[^a-zA-Z]/g, '');
@@ -86,24 +93,32 @@ export function encrypt(
 }
 
 /**
- * [Porta cipher](http://practicalcryptography.com/ciphers/porta-cipher) decryption.
+ * [Porta cipher](http://practicalcryptography.com/ciphers/porta-cipher) decryption
+ *
  * @param ciphertext text to be decrypted
- * @param key secret key used in the decryption process
- * @param [caseSensitive=true] if correct input of upper case and lower case matters
- * @param [includeForeignChars=true] if unknown char should be included in ciphertext
- * @returns plaintext
+ * @param options configuration for decryption
+ * @param options.key secret key used in the decryption process
+ * @param options.caseSensitive if correct input of upper case and lower case matters
+ * @param options.includeForeignChars if unknown char should be included in ciphertext
+ * @returns plaintext, the decrypted text
+ *
  * @example
- * decrypt('sqo', 'key')
+ * decrypt('sqo', { key: 'key' })
  * // returns 'abc'
- * decrypt('sQo', 'key')
+ *
+ * decrypt('sQo', { key: 'key' })
  * // returns 'aBc'
- * decrypt('sQo', 'key', false)
+ *
+ * decrypt('sQo', { key: 'key', caseSensitive: false })
  * // returns 'abc'
- * decrypt('sQ_u', 'key')
+ *
+ * decrypt('sQ_u', { key: 'key' })
  * // returns 'aB_c'
- * decrypt('sQ_o', 'key', undefined, false)
+ *
+ * decrypt('sQ_o', { key: 'key', includeForeignChars: false })
  * returns 'aBc'y
- * decrypt('sQ_o', 'key', false, false)
+ *
+ * decrypt('sQ_o', { key: 'key', caseSensitive: false, includeForeignChars: false })
  * // returns 'abc'
  */
 export function decrypt(
@@ -114,9 +129,11 @@ export function decrypt(
         includeForeignChars?: boolean;
     },
 ): string {
+    const { key, caseSensitive = true, includeForeignChars = true } = options;
+
     return encrypt(ciphertext, {
-        key: options.key,
-        caseSensitive: options.caseSensitive ?? true,
-        includeForeignChars: options.includeForeignChars ?? true,
+        key,
+        caseSensitive,
+        includeForeignChars,
     });
 }

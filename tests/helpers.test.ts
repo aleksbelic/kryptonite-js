@@ -12,6 +12,9 @@ import {
 
 describe('Helper functions', () => {
     test('Is upper case', () => {
+        expect(() => isUpperCase('')).toThrow(
+            'Invalid param: an empty string provided.',
+        );
         expect(isUpperCase('a')).toEqual(false);
         expect(isUpperCase('A')).toEqual(true);
         expect(isUpperCase('abc')).toEqual(false);
