@@ -158,6 +158,6 @@ test('Various', () => {
         'abcaaa',
     );
     expect(() => encrypt('abc', { version: 3 })).toThrow(
-        "Bacon cipher version '3' unknown - please select verson 1 or 2.",
+        "Bacon cipher version '3' unknown - please select version 1 or 2.",
     );
 });

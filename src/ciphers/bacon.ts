@@ -5,7 +5,7 @@ import { getMapKeyByValue, isUpperCase } from '../helpers';
  * [Bacon's cipher](https://en.wikipedia.org/wiki/Bacon%27s_cipher) encryption
  *
  * @param plaintext text to be encrypted
- * @param options optional configuration for encryption
+ * @param options configuration for encryption
  * @param options.version cipher version (1 or 2). 1st version uses the same code for letters 'i' & 'j' as well as for 'u' & v, while the 2nd version has unique code for each letter
  * @param options.includeForeignChars if unknown char should be included in ciphertext
  * @returns ciphertext, the encrypted text
@@ -116,7 +116,7 @@ export function decrypt(
  *
  * @param message message that will be encrypted & hidden inside specified text
  * @param text text used to hide encrypted message
- * @param options optional configuration for encryption
+ * @param options configuration for encryption
  * @param options.version cipher version (1 or 2). 1st version uses the same code for letters 'i' & 'j' as well as for 'u' & v, while the 2nd version has unique code for each letter
  * @returns specified text containing encrypted message
  *
@@ -203,7 +203,7 @@ export function encryptInRandomText() {
 }
 
 /**
- * Checks if provided Bacon's cipher verion is valid.
+ * Checks if provided Bacon's cipher version is valid.
  *
  * @param version cipher version
  *
@@ -212,7 +212,7 @@ export function encryptInRandomText() {
 function checkVersion(version: number): boolean | never {
     if ([1, 2].indexOf(version) === -1) {
         throw new Error(
-            `Bacon cipher version '${version}' unknown - please select verson 1 or 2.`,
+            `Bacon cipher version '${version}' unknown - please select version 1 or 2.`,
         );
     }
     return true;

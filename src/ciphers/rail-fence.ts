@@ -1,11 +1,11 @@
-// TODO: case sensitive, white space
-
 /**
  * [Rail Fence cipher](https://en.wikipedia.org/wiki/Rail_fence_cipher) encryption
  *
  * @param plaintext text to be encrypted
- * @param options optional configuration for encryption
- * @param options.railCount number of successive "rails" of an imaginary fence
+ * @param options configuration for encryption
+ * @param options.railCount number of successive "rails" of an imaginary fence, default is **3**
+ * @param options.caseSensitive if correct input of upper case and lower case matters, default is **true**
+ * @param options.includeWhitespace if whitespace should be included, default is **false**
  * @returns ciphertext, the encrypted text
  *
  * @example
@@ -17,11 +17,21 @@
  */
 export function encrypt(
     plaintext: string,
-    options?: { railCount?: number },
+    options?: {
+        railCount?: number;
+        caseSensitive?: boolean;
+        includeWhitespace?: boolean;
+    },
 ): string {
-    const { railCount = 3 } = options || {};
+    const {
+        railCount = 3,
+        caseSensitive = true,
+        includeWhitespace = false,
+    } = options || {};
 
-    plaintext = plaintext.replace(/\s/g, '');
+    if (!caseSensitive) plaintext = plaintext.toUpperCase();
+    if (!includeWhitespace) plaintext = plaintext.replace(/\s/g, '');
+
     const ciphertextRails: string[] = new Array(railCount).fill('');
 
     let railIndex = 0;
@@ -46,7 +56,9 @@ export function encrypt(
  *
  * @param ciphertext text to be decrypted
  * @param options configuration for decryption
- * @param options.railCount number of successive "rails" of an imaginary fence
+ * @param options.railCount number of successive "rails" of an imaginary fence, default is **3**
+ * @param options.caseSensitive if correct input of upper case and lower case matters, default is **true**
+ * @param options.includeWhitespace if whitespace should be included, default is **false**
  * @returns plaintext, the decrypted text
  *
  * @example
@@ -58,9 +70,20 @@ export function encrypt(
  */
 export function decrypt(
     ciphertext: string,
-    options?: { railCount?: number },
+    options?: {
+        railCount?: number;
+        caseSensitive?: boolean;
+        includeWhitespace?: boolean;
+    },
 ): string {
-    const { railCount = 3 } = options || {};
+    const {
+        railCount = 3,
+        caseSensitive = true,
+        includeWhitespace = false,
+    } = options || {};
+
+    if (!caseSensitive) ciphertext = ciphertext.toUpperCase();
+    if (!includeWhitespace) ciphertext = ciphertext.replace(/\s/g, '');
 
     let plaintext = '';
     const ciphertextRails: string[] = new Array(railCount).fill('');

@@ -5,10 +5,10 @@ import { checkAlphabet, getShiftedChar, isUpperCase } from '../helpers';
  * [Atbash cipher](https://en.wikipedia.org/wiki/Atbash) encryption.
  *
  * @param plaintext text to encrypt
- * @param options optional configuration for encryption
- * @param options.caseSensitive if correct input of upper case and lower case matters
- * @param options.includeForeignChars if unknown char should be included in ciphertext
- * @param options.alphabet alphabet used for encryption process
+ * @param options configuration for encryption
+ * @param options.caseSensitive if correct input of upper case and lower case matters, default is **true**
+ * @param options.includeForeignChars if unknown char should be included in ciphertext, default is **true**
+ * @param options.alphabet alphabet used for encryption process, default is **English alphabet**
  * @returns ciphertext, the encrypted text
  *
  * @example
@@ -69,9 +69,9 @@ export function encrypt(
  *
  * @param ciphertext text to decrypt
  * @param options configuration for decryption
- * @param options.caseSensitive if correct input of upper case and lower case matters
- * @param options.includeForeignChars if unknown char should be included in plaintext
- * @param options.alphabet alphabet used for decryption process
+ * @param options.caseSensitive if correct input of upper case and lower case matters, default is **true**
+ * @param options.includeForeignChars if unknown char should be included in plaintext, default is **true**
+ * @param options.alphabet alphabet used for decryption process, default is **English alphabet**
  * @returns plaintext, the decrypted text
  *
  * @example
